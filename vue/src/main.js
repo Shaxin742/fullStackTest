@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
+import './element-variables.scss'
 import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
@@ -14,6 +15,7 @@ import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
   ak: 'oZNrr2X9Qz082TrGnnLesB1hb8kLED2v'
 })
+
 import { mockXHR } from '../mock'
 if (process.env.NODE_ENV === 'production') {
   mockXHR()

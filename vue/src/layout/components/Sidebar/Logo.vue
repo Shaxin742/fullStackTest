@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: 'oh my sex lady',
+      title: '养猪秘籍',
       logo: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1143925357,1051122394&fm=58&s=F1B38B703C33E59C301D49CE0300A0A2'
     }
   }

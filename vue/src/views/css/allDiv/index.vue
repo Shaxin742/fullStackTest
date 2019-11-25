@@ -3,6 +3,7 @@
     <div class="con" :class="{ 'active': isActive }">
       <div v-for="v in 4" :key="v" class="item" @click="tran">测试</div>
     </div>
+    {{ name }}
     <div class="innerCon" :style="{top:top,left:left}" :class="{ 'active': isActive }">
       <div class="inner">
         <div class="innerVal">
@@ -14,7 +15,9 @@
   </div>
 </template>
 <script>
+import mixin from '@/mixins/map.js'
 export default {
+  mixins: [mixin],
   data: function() {
     return {
       isActive: false,
@@ -33,13 +36,17 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@function px2rem($px) {
+  @return 1600/$px * 1rem;
+}
+
 .main {
   height: 100%;
   width: 100%;
   background: lightblue;
 }
 .con {
-  width: 220px;
+  width: px2rem(220);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +74,7 @@ export default {
   }
 }
 .innerCon {
-  transition-delay: .5s;
+  transition-delay: 0.5s;
   transform-origin: 50% 50%;
   position: absolute;
   overflow: hidden;
@@ -100,7 +107,7 @@ export default {
     height: 100%;
     transition: all 0.6s;
     display: block;
-    transition-delay: .5s;
+    transition-delay: 0.5s;
   }
 }
 </style>

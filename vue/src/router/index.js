@@ -47,12 +47,14 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
   },
 
   {
@@ -86,44 +88,104 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/g2',
+    path: '/antv',
     component: Layout,
-    redirect: '/g2/g2bar',
-    name: 'g2',
-    meta: { title: 'g2', icon: 'example' },
+    redirect: '/antv/g2/g2bar',
+    name: 'antv',
+    meta: { title: 'antv', icon: 'example' },
     children: [
       {
-        path: 'bar',
-        name: 'bar',
-        component: () => import('@/views/g2/bar/index'),
-        meta: { title: 'bar', icon: 'eye' }
+        path: '/g2',
+        redirect: '/g2/g2bar',
+        component: () => import('@/views/routerview'),
+        name: 'g2',
+        meta: { title: 'g2', icon: 'example' },
+        children: [
+          {
+            path: 'bar',
+            name: 'bar',
+            component: () => import('@/views/antv/g2/bar/index'),
+            meta: { title: 'bar', icon: 'eye' }
+          },
+          {
+            path: 'bar2',
+            name: 'bar2',
+            component: () => import('@/views/antv/g2/bar2/index'),
+            meta: { title: 'bar2', icon: 'eye' }
+          },
+          {
+            path: 'line',
+            name: 'line',
+            component: () => import('@/views/antv/g2/line/index'),
+            meta: { title: 'line', icon: 'eye' }
+          }
+        ]
       },
       {
-        path: 'line',
-        name: 'line',
-        component: () => import('@/views/g2/line/index'),
-        meta: { title: 'line', icon: 'eye' }
-      }
-    ]
-  },
-  {
-    path: '/g6',
-    component: Layout,
-    redirect: '/g6/g6',
-    name: 'g6',
-    meta: { title: 'g6', icon: 'example' },
-    children: [
-      {
-        path: 'g6',
+        path: '/g6',
+        component: () => import('@/views/routerview'),
+        redirect: '/g6/g6',
         name: 'g6',
-        component: () => import('@/views/g6/g6/index'),
-        meta: { title: 'g6', icon: 'eye' }
+        meta: { title: 'g6', icon: 'example' },
+        children: [
+          {
+            path: 'g6',
+            name: 'g6',
+            component: () => import('@/views/antv/g6/g6/index'),
+            meta: { title: 'g6', icon: 'eye' }
+          },
+          {
+            path: 'g62',
+            name: 'g62',
+            component: () => import('@/views/antv/g6/g62/index'),
+            meta: { title: 'g62', icon: 'eye' }
+          },
+          {
+            path: 'g63',
+            name: 'g63',
+            component: () => import('@/views/antv/g6/g63/index'),
+            meta: { title: 'g63', icon: 'eye' }
+          },
+          {
+            path: 'g64',
+            name: 'g64',
+            component: () => import('@/views/antv/g6/g64/index'),
+            meta: { title: 'g64', icon: 'eye' }
+          },
+          {
+            path: 'editor',
+            name: 'editor',
+            component: () => import('@/views/antv/g6/editor/index'),
+            meta: { title: 'editor', icon: 'eye' }
+          },
+          {
+            path: 'vueEditor',
+            name: 'vueEditor',
+            component: () => import('@/views/antv/g6/vueEditor/index'),
+            meta: { title: 'vueEditor', icon: 'eye' }
+          }
+          // {
+          //   path: 'g6editor',
+          //   name: 'g6editor',
+          //   component: () => import('@/views/antv/g6/g6editor'),
+          //   meta: { title: 'g6editor', icon: 'eye' }
+          // }
+        ]
       },
       {
-        path: 'g6editor',
-        name: 'g6editor',
-        component: () => import('@/views/g6/g6editor'),
-        meta: { title: 'g6editor', icon: 'eye' }
+        path: '/l7',
+        component: () => import('@/views/routerview'),
+        redirect: '/l7/l7',
+        name: 'l7',
+        meta: { title: 'l7', icon: 'example' },
+        children: [
+          {
+            path: 'l7',
+            name: 'l7',
+            component: () => import('@/views/antv/l7/l7/index'),
+            meta: { title: 'l7', icon: 'eye' }
+          }
+        ]
       }
     ]
   },
@@ -139,7 +201,8 @@ export const constantRoutes = [
         name: 'bdMap',
         component: () => import('@/views/bdMap/bdMap'),
         meta: { title: 'bdMap', icon: 'eye' }
-      }, {
+      },
+      {
         path: 'xiazuan',
         name: 'xiazuan',
         component: () => import('@/views/bdMap/xiazuan'),
@@ -162,15 +225,72 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/vue',
+    component: Layout,
+    redirect: '/vue/filterComp',
+    name: 'vue',
+    meta: { title: 'vue', icon: 'example' },
+    children: [
+      {
+        path: 'filterComp',
+        name: 'filterComp',
+        component: () => import('@/views/vue/filterComp'),
+        meta: { title: 'filterComp', icon: 'eye' }
+      },
+      {
+        path: 'tree',
+        name: 'tree',
+        component: () => import('@/views/vue/tree'),
+        meta: { title: 'tree', icon: 'eye' }
+      }
+    ]
+  },
+  {
+    path: '/echarts',
+    component: Layout,
+    redirect: '/echarts/pie',
+    name: 'echarts',
+    meta: { title: 'echarts', icon: 'example' },
+    children: [
+      {
+        path: 'pie',
+        name: 'pie',
+        component: () => import('@/views/echarts/pie'),
+        meta: { title: 'echarts', icon: 'eye' }
+      }
+    ]
+  },
+  {
+    path: '/gaode',
+    component: Layout,
+    redirect: '/gaode/gdLine',
+    name: 'gaode',
+    meta: { title: 'gaode', icon: 'example' },
+    children: [
+      {
+        path: 'gdLine',
+        name: 'gdLine',
+        component: () => import('@/views/gaode/line'),
+        meta: { title: 'gdLine', icon: 'eye' }
+      },
+      {
+        path: 'keshihua',
+        name: 'keshihua',
+        component: () => import('@/views/gaode/keshihua'),
+        meta: { title: 'keshihua', icon: 'eye' }
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 
