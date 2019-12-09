@@ -152,6 +152,7 @@ export default {
       console.log(row, event, column, event.currentTarget)
     },
     setCurrent(row) {
+      console.log(row)
       this.$refs.userTable.setCurrentRow(row)
     }
   }

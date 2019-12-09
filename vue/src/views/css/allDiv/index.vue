@@ -46,7 +46,8 @@ export default {
   background: lightblue;
 }
 .con {
-  width: px2rem(220);
+  // width: px2rem(220);
+  width: 220px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;

@@ -84,6 +84,18 @@ export const constantRoutes = [
         name: 'userTable',
         component: () => import('@/views/users/table/index'),
         meta: { title: 'userTable', icon: 'eye' }
+      },
+      {
+        path: 'userTable2',
+        name: 'userTable2',
+        component: () => import('@/views/users/table2/index'),
+        meta: { title: 'userTable', icon: 'eye' }
+      },
+      {
+        path: 'userTable3',
+        name: 'userTable3',
+        component: () => import('@/views/users/table3/index'),
+        meta: { title: 'userTable', icon: 'eye' }
       }
     ]
   },
@@ -243,6 +255,18 @@ export const constantRoutes = [
         name: 'tree',
         component: () => import('@/views/vue/tree'),
         meta: { title: 'tree', icon: 'eye' }
+      },
+      {
+        path: 'render',
+        name: 'render',
+        component: () => import('@/views/vue/render'),
+        meta: { title: 'render', icon: 'eye' }
+      },
+      {
+        path: 'typeView',
+        name: 'typeView',
+        component: () => import('@/views/vue/typeView'),
+        meta: { title: 'typeView', icon: 'eye' }
       }
     ]
   },
@@ -257,7 +281,19 @@ export const constantRoutes = [
         path: 'pie',
         name: 'pie',
         component: () => import('@/views/echarts/pie'),
-        meta: { title: 'echarts', icon: 'eye' }
+        meta: { title: 'pie', icon: 'eye' }
+      },
+      {
+        path: 'bar',
+        name: 'bar',
+        component: () => import('@/views/echarts/bar'),
+        meta: { title: 'bar', icon: 'eye' }
+      },
+      {
+        path: 'radder',
+        name: 'radder',
+        component: () => import('@/views/echarts/radar'),
+        meta: { title: 'radder', icon: 'eye' }
       }
     ]
   },

@@ -10,13 +10,16 @@
       class="filter-tree"
       default-expand-all
     />
-
+    <el-date-picker
+      v-model="timeVal"
+      type="date"
+      placeholder="选择日期"
+    />
   </div>
 </template>
 
 <script>
 export default {
-
   data() {
     return {
       filterText: '',
@@ -58,7 +61,8 @@ export default {
       defaultProps: {
         children: 'children',
         label: 'label'
-      }
+      },
+      timeVal: ''
     }
   },
   watch: {
