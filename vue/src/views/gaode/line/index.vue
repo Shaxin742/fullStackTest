@@ -59,7 +59,8 @@ export default {
           label: '酱籽'
         }],
       mapType: 'whitesmoke',
-      map: null
+      map: null,
+      count: 0
     }
   },
   watch: {
@@ -77,28 +78,35 @@ export default {
       pitch: 40
       // viewMode: '3D'
     })
+    const $t = this
+    this.map.on('click', function(ev) {
+      console.log(ev.lnglat.lng)
+      $t.addMarker(ev)
+    })
   },
   methods: {
-    addMarker() {
-    // 构造矢量圆形
+    addMarker(ev) {
+      const lng = ev.lnglat.lng
+      const lat = ev.lnglat.lat
+      // 构造矢量圆形
       var marker = new AMap.Marker({
         icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-        position: [116.405467, 39.907761]
+        position: [lng, lat],
+        // label: {content,offset,direction}
+        title: this.count += 1
       })
       this.map.add(marker)
-      this.map.setFitView()
+      marker.on('click', this.getAttr)
+      // this.map.setFitView()
+    },
+    getAttr(ev) {
+      console.log(ev)
     },
     removeMarker() {
-      var circle = new AMap.Circle({
-        center: new AMap.LngLat('116.403322', '39.920255'), // 圆心位置
-        radius: 1000, // 半径
-        strokeColor: '#F33', // 线颜色
-        strokeOpacity: 1, // 线透明度
-        strokeWeight: 3, // 线粗细度
-        fillColor: '#ee2200', // 填充颜色
-        fillOpacity: 0.35 // 填充透明度
-      })
-      this.map.remove(circle)
+      // 获取已经添加的marker
+      const markers = this.map.getAllOverlays('marker')
+      console.log(this.map.getAllOverlays('marker'))
+      // this.map.remove(markers[0])
     },
     addCircle() {
       var circle = new AMap.Circle({

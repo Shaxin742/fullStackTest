@@ -1,13 +1,14 @@
 <template>
   <div class="table-page">
     <base-table
-      :data-source="dataSource"
+      size="mini"
+      :data-source="tableData"
       :options="options"
       :columns="columns"
+      :loading="loading"
       :load="load"
       :lazy="lazy"
       :row-key="rowKey"
-      size="mini"
       :current-page="currentPage"
       :page-size="pageSize"
       :total="total"
@@ -16,7 +17,7 @@
       @handleCurrentChange="handleCurrentChange"
     />
     <el-button
-      @click="dataSource=[
+      @click="tableData=[
       {
         id: '2',
         title: '编号3',
@@ -33,7 +34,7 @@ export default {
     const $t = this
     return {
       // table数据
-      dataSource: [
+      tableData: [
         {
           id: '1',
           title: '编号3',
@@ -51,6 +52,7 @@ export default {
           name: '编号3',
           title: '编编号3编号3编号3编号3编号3编号3编号3编号3编号3编号3编号3号3',
           state: 2,
+          'show-overflow-tooltip': true,
           hasChildren: true
         },
         {
@@ -60,11 +62,11 @@ export default {
           state: 0
         }
       ],
+      loading: false,
       // table 的参数
       options: {
         stripe: true, // 是否为斑马纹 table
-        loading: false, // 是否添加表格loading加载动画
-        highlightCurrentRow: true, // 是否支持当前行高亮显示
+        highlightCurrentRow: false, // 是否支持当前行高亮显示
         mutiSelect: true, // 是否支持列表项选中功能
         border: true
       },
@@ -82,6 +84,7 @@ export default {
           prop: 'name',
           label: '名称',
           sortable: true,
+          'show-overflow-tooltip': true,
           showTip: true,
           align: 'left'
         },
@@ -90,14 +93,8 @@ export default {
           label: '标题',
           align: 'center',
           showTip: true,
+          'show-overflow-tooltip': true,
           formatter: (row, column, cellValue) => {
-            // return ` <el-popover trigger="hover" placement="top">
-            //           <p>姓名: ${row.title}</p>
-            //           <p>住址: ${row.title}</p>
-            //           <div slot="reference" class="name-wrapper">
-            //             <el-tag size="medium">${row.title}</el-tag>
-            //           </div>
-            //         </el-popover> `
             return `<span style="white-space: nowrap;color: dodgerblue;">${row.title}</span>`
           }
         },
@@ -156,8 +153,9 @@ export default {
   },
   methods: {
     // 选中行  多选
-    handleSelectionChange(ids) {
-      console.log('ids:', ids)
+    handleSelectionChange(vals) {
+      const ids = vals.map(item => item.id)
+      console.log('vals:', ids)
     },
     // 查看按钮
     viewData(row) {

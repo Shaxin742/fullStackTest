@@ -27,7 +27,6 @@
             <p>详情</p>
             <section slot="reference" class="content">
               <p>{{ item.day }}</p>
-
             </section>
           </el-popover>
         </li>
@@ -79,7 +78,6 @@ export default {
         date: data
       }
       const res = await getCalender(params)
-      console.log(res.data)
       this.calendatArr = cloneDeep(res.data)
     },
     // 是否是当前月

@@ -36,7 +36,8 @@ const en = {
   keshihua: 'keshihua',
   pie: 'pie',
   radar: 'radar',
-  typeView: 'typeView'
+  typeView: 'typeView',
+  xiding: 'xiding'
 }
 
 export default en

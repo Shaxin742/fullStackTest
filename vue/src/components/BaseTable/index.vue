@@ -24,7 +24,9 @@ column:需要展示的列
   <div class="table">
     <el-table
       ref="mutipleTable"
-      v-loading="options.loading"
+      v-loading="loading"
+      :stripe="options.stripe"
+      :border="options.border"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
       :data="dataSource"
       :row-key="rowKey"
@@ -32,21 +34,13 @@ column:需要展示的列
       :highlight-current-row="options.highlightCurrentRow"
       :load="load"
       :lazy="lazy"
-      :stripe="options.stripe"
-      :border="options.border"
       @selection-change="handleSelectionChange"
     >
       <el-table-column v-if="options.mutiSelect" type="selection" style="width: 55px;" />
       <template v-for="(column, index) in columns">
         <el-table-column
-          :key="column.label"
-          :prop="column.prop"
-          :label="column.label"
-          :align="column.align"
-          :width="column.width"
-          :fixed="column.fixed"
-          :sortable="column.sortable"
-          :show-tip="column.showTip"
+          :key="index"
+          v-bind="column"
         >
           <template slot-scope="scope">
             <template v-if="!column.render">
@@ -68,8 +62,21 @@ column:需要展示的列
           </template>
         </el-table-column>
       </template>
-    </el-table>
 
+      <!-- <template v-for="item in columns">
+        <el-table-column v-if="item.render" :key="item.dataIndex" v-bind="item" sortable="sortable">
+          <template slot-scope="{row, column, $index}">
+            <columns-render
+              :render-col="item.render"
+              :record="row"
+              :value="row[item.dataIndex]"
+              :index="$index"
+            />
+          </template>
+        </el-table-column>
+        <el-table-column v-else :key="item.prop" v-bind="item" />
+      </template> -->
+    </el-table>
     <div style="text-align:right;margin:4px 0">
       <el-pagination
         background
@@ -105,6 +112,10 @@ export default {
         return function() {}
       }
     },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     lazy: {
       type: Boolean,
       default: false
@@ -112,7 +123,8 @@ export default {
     dataSource: {
       type: Array,
       default: () => []
-    }, // 数据列表
+    },
+    // 数据列表
     columns: {
       type: Array,
       default: () => []
@@ -146,8 +158,7 @@ export default {
   // 数据
   data() {
     return {
-      pageIndex: 1,
-      multipleSelection: [] // 多行选中
+      pageIndex: 1
     }
   },
   computed: {},
@@ -155,12 +166,8 @@ export default {
   methods: {
     // 多行选中
     handleSelectionChange(val) {
-      this.multipleSelection = val
-      const ids = []
-      val.map(v => {
-        ids.push(v.id)
-      })
-      this.$emit('handleSelectionChange', ids)
+      console.log(val)
+      this.$emit('handleSelectionChange', val)
     },
     handleSizeChange(val) {
       this.$emit('handleSizeChange', val)
@@ -172,6 +179,12 @@ export default {
 }
 </script>
 <style lang="scss" >
+.has-gutter{
+  background: green;
+}
+// .el-table thead{
+//   background: yellow
+// }
 // .blockSpan {
 //   display: inline-block;
 //   width: 100%;

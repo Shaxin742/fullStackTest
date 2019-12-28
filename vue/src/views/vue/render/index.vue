@@ -1,9 +1,11 @@
 <template>
   <div>
     {{ name }}
+    <br>
     <render-dom :change="spanClick" :config="spanConfig" type="span" />
     <render-dom :change="spanClick" :config="selectConfig" type="select" />
     <render-dom :change="spanClick" :config="timeConfig" type="timePicker" />
+    <render-dom :change="spanClick" :config="spanConfig" type="tooltip" />
   </div>
 </template>
 

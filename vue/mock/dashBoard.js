@@ -48,16 +48,12 @@ function getCalender(timeVal) {
 }
 
 export default [
-  // user login
   {
     url: '/dashBoard/getCalendar',
     type: 'get',
     response: config => {
-      console.log(config)
       const { date } = config.query
-      console.log(data)
       const data = getCalender(date)
-      //
       return {
         code: 20000,
         data: data

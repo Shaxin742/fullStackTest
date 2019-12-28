@@ -35,7 +35,7 @@ export function filterAsyncRoutes(routes, roles) {
 }
 
 const state = {
-  routes: [],
+  routes: constantRoutes,
   addRoutes: []
 }
 
@@ -49,14 +49,9 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
-      commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+      asyncRoutes.push({ path: '*', redirect: '/404', hidden: true })
+      commit('SET_ROUTES', asyncRoutes)
+      resolve()
     })
   }
 }

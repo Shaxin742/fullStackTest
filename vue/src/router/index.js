@@ -55,8 +55,19 @@ export const constantRoutes = [
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
     ]
-  },
+  }
 
+  // { path: '*', redirect: '/404', hidden: true }
+]
+
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
+
+export const asyncRoutes = [
   {
     path: '/example',
     component: Layout,
@@ -85,12 +96,12 @@ export const constantRoutes = [
         component: () => import('@/views/users/table/index'),
         meta: { title: 'userTable', icon: 'eye' }
       },
-      {
-        path: 'userTable2',
-        name: 'userTable2',
-        component: () => import('@/views/users/table2/index'),
-        meta: { title: 'userTable', icon: 'eye' }
-      },
+      // {
+      //   path: 'userTable2',
+      //   name: 'userTable2',
+      //   component: () => import('@/views/users/table2/index'),
+      //   meta: { title: 'userTable', icon: 'eye' }
+      // },
       {
         path: 'userTable3',
         name: 'userTable3',
@@ -169,13 +180,13 @@ export const constantRoutes = [
             name: 'editor',
             component: () => import('@/views/antv/g6/editor/index'),
             meta: { title: 'editor', icon: 'eye' }
-          },
-          {
-            path: 'vueEditor',
-            name: 'vueEditor',
-            component: () => import('@/views/antv/g6/vueEditor/index'),
-            meta: { title: 'vueEditor', icon: 'eye' }
           }
+          // {
+          //   path: 'vueEditor',
+          //   name: 'vueEditor',
+          //   component: () => import('@/views/antv/g6/vueEditor/index'),
+          //   meta: { title: 'vueEditor', icon: 'eye' }
+          // }
           // {
           //   path: 'g6editor',
           //   name: 'g6editor',
@@ -183,22 +194,22 @@ export const constantRoutes = [
           //   meta: { title: 'g6editor', icon: 'eye' }
           // }
         ]
-      },
-      {
-        path: '/l7',
-        component: () => import('@/views/routerview'),
-        redirect: '/l7/l7',
-        name: 'l7',
-        meta: { title: 'l7', icon: 'example' },
-        children: [
-          {
-            path: 'l7',
-            name: 'l7',
-            component: () => import('@/views/antv/l7/l7/index'),
-            meta: { title: 'l7', icon: 'eye' }
-          }
-        ]
       }
+      // {
+      //   path: '/l7',
+      //   component: () => import('@/views/routerview'),
+      //   redirect: '/l7/l7',
+      //   name: 'l7',
+      //   meta: { title: 'l7', icon: 'example' },
+      //   children: [
+      //     {
+      //       path: 'l7',
+      //       name: 'l7',
+      //       component: () => import('@/views/antv/l7/l7/index'),
+      //       meta: { title: 'l7', icon: 'eye' }
+      //     }
+      //   ]
+      // }
     ]
   },
   {
@@ -234,6 +245,12 @@ export const constantRoutes = [
         name: 'allDiv',
         component: () => import('@/views/css/allDiv'),
         meta: { title: 'allDiv', icon: 'eye' }
+      },
+      {
+        path: 'xiding',
+        name: 'xiding',
+        component: () => import('@/views/css/xiding'),
+        meta: { title: 'xiding', icon: 'eye' }
       }
     ]
   },
@@ -267,6 +284,72 @@ export const constantRoutes = [
         name: 'typeView',
         component: () => import('@/views/vue/typeView'),
         meta: { title: 'typeView', icon: 'eye' }
+      },
+      {
+        path: 'elTree',
+        name: 'elTree',
+        component: () => import('@/views/vue/elTree'),
+        meta: { title: 'elTree', icon: 'eye' }
+      },
+      {
+        path: 'test',
+        name: 'test',
+        component: () => import('@/views/vue/test'),
+        meta: { title: 'test', icon: 'eye' }
+      },
+      {
+        path: 'pdf',
+        name: 'pdf',
+        component: () => import('@/views/vue/pdf'),
+        meta: { title: 'pdf', icon: 'eye' }
+      },
+      {
+        path: 'pdf2',
+        name: 'pdf2',
+        component: () => import('@/views/vue/pdf2'),
+        meta: { title: 'pdf', icon: 'eye' }
+      },
+      {
+        path: 'pdf3',
+        name: 'pdf3',
+        component: () => import('@/views/vue/pdf3'),
+        meta: { title: 'pdf', icon: 'eye' }
+      },
+      {
+        path: 'pdf4',
+        name: 'pdf4',
+        component: () => import('@/views/vue/pdf4'),
+        meta: { title: 'pdf', icon: 'eye' }
+      },
+      {
+        path: 'pdf5',
+        name: 'pdf5',
+        component: () => import('@/views/vue/pdf5'),
+        meta: { title: 'pdf', icon: 'eye' }
+      },
+      {
+        path: 'tuozhuai',
+        name: 'tuozhuai',
+        component: () => import('@/views/vue/tuozhuai'),
+        meta: { title: 'tuozhuai', icon: 'eye' }
+      },
+      {
+        path: 'tuozhuai2',
+        name: 'tuozhuai2',
+        component: () => import('@/views/vue/tuozhuai2'),
+        meta: { title: 'tuozhuai', icon: 'eye' }
+      },
+      {
+        path: 'tuozhuai3',
+        name: 'tuozhuai3',
+        component: () => import('@/views/vue/tuozhuai3'),
+        meta: { title: 'tuozhuai', icon: 'eye' }
+      },
+      {
+        path: 'touxiang',
+        name: 'touxiang',
+        component: () => import('@/views/vue/touxiang'),
+        meta: { title: 'touxiang', icon: 'eye' }
       }
     ]
   },
@@ -317,16 +400,8 @@ export const constantRoutes = [
         meta: { title: 'keshihua', icon: 'eye' }
       }
     ]
-  },
-  { path: '*', redirect: '/404', hidden: true }
+  }
 ]
-
-const createRouter = () =>
-  new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-  })
 
 const router = createRouter()
 

@@ -15,6 +15,7 @@
       type="date"
       placeholder="选择日期"
     />
+
   </div>
 </template>
 
@@ -70,7 +71,6 @@ export default {
       this.$refs.tree2.filter(val)
     }
   },
-
   methods: {
     filterNode(value, data) {
       if (!value) return true

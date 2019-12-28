@@ -36,7 +36,8 @@ const cn = {
   keshihua: 'keshihua',
   pie: 'pie',
   radar: 'radar',
-  typeView: '打字'
+  typeView: '打字',
+  xiding: '吸顶'
 }
 
 export default cn
