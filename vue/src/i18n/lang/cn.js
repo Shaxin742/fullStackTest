@@ -37,7 +37,10 @@ const cn = {
   pie: 'pie',
   radar: 'radar',
   typeView: '打字',
-  xiding: '吸顶'
+  xiding: '吸顶',
+  radder: '雷达',
+  xuri: '旭日图',
+  kline: 'k线'
 }
 
 export default cn

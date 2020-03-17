@@ -298,12 +298,6 @@ export const asyncRoutes = [
         meta: { title: 'test', icon: 'eye' }
       },
       {
-        path: 'pdf',
-        name: 'pdf',
-        component: () => import('@/views/vue/pdf'),
-        meta: { title: 'pdf', icon: 'eye' }
-      },
-      {
         path: 'pdf2',
         name: 'pdf2',
         component: () => import('@/views/vue/pdf2'),
@@ -377,6 +371,12 @@ export const asyncRoutes = [
         name: 'radder',
         component: () => import('@/views/echarts/radar'),
         meta: { title: 'radder', icon: 'eye' }
+      },
+      {
+        path: 'kline',
+        name: 'kline',
+        component: () => import('@/views/echarts/kline'),
+        meta: { title: 'kline', icon: 'eye' }
       }
     ]
   },

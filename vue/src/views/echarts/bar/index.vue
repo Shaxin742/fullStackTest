@@ -16,82 +16,61 @@ export default {
   },
   mounted() {
     this.myChart = echarts.init(document.getElementById('bar'))
-    var xAxisData = []
-    var data1 = []
-    var data2 = []
-    for (var i = 0; i < 50; i++) {
-      xAxisData.push('类目' + i)
-      data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
-      data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5)
-    }
+    const data = [
+      {
+        value: ['1997/10/4', 151]
+      },
+      {
+        value: ['1997/10/5', 147]
+      },
+      {
+        value: ['1997/10/6', 138]
+      },
+      {
+        value: ['1997/10/7', 147]
+      },
+      {
+        value: ['1997/10/8', 144]
+      },
+      {
+        value: ['1997/10/9', 152]
+      },
+      {
+        value: ['1997/10/10', 146]
+      },
+      {
+        value: ['1997/10/11', 137]
+      },
+      {
+        value: ['1997/10/12', 136]
+      },
+      {
+        value: ['1997/10/13', 137]
+      }
+    ]
     this.myChart.setOption({
-      backgroundColor: '#40415f',
-      legend: {
-        show: true,
-        data: ['bar', 'bar2'],
-        align: 'left',
-        textStyle: {
-          fontSize: 12,
-          color: 'white',
-          padding: [0, 20, 0, 5]
-        }
-      },
-      tooltip: {
-        textStyle: {
-          color: 'white'
-        }
-      },
       xAxis: {
-        data: xAxisData,
-        silent: false,
-        axisLabel: {
-          textStyle: {
-            color: 'white'
-          }
-        },
+        type: 'time',
         splitLine: {
           show: false
         }
       },
       yAxis: {
-        axisLabel: {
-          textStyle: {
-            color: 'white'
-          }
+        type: 'value',
+        // boundaryGap: [0, '100%'],
+        splitLine: {
+          show: false
         }
       },
       series: [
         {
-          name: 'bar',
-          type: 'bar',
-          data: data1,
-          itemStyle: {
-            normal: {
-              color: '#4ad2ff'
-            }
-          },
-          animationDelay: function(idx) {
-            return idx * 10
-          }
-        },
-        {
-          name: 'bar2',
-          type: 'bar',
-          itemStyle: {
-            normal: {
-              color: '#f22111'
-            }
-          },
-          data: data2,
-          animationDelay: function(idx) {
-            return idx * 10 + 100
-          }
+          name: '模拟数据',
+          type: 'line',
+          showSymbol: false,
+          hoverAnimation: false,
+          data: data
         }
-      ],
-      animationEasing: 'elasticOut',
-      animationDelayUpdate: function(idx) {
-        return idx * 5
-      }
+      ]
     })
     // window.addEventListener('resize', () => {
     //   this.myChart.resize()

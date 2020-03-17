@@ -5,7 +5,8 @@
       <img
         ref="image"
         :src="url"
-        :style="{left: image.left + 'px', top: image.top + 'px', width: image.width + 'px', height: image.height + 'px'}"
+        class="image"
+        :style="{left: image.left + 'px',top: image.top + 'px',width: image.width + 'px', height: image.height + 'px'}"
         @load="loadImage"
       >
       <div
@@ -113,8 +114,8 @@ export default {
         height: 'auto'
       },
       frame: { // 截取框位置大小
-        left: 0,
-        top: 0,
+        left: 20,
+        top: 20,
         width: this.width,
         height: this.height
       },
@@ -157,12 +158,13 @@ export default {
       if (!this.isDowm) {
         return
       }
+      // var maxLeft = this.frame.left + this.frame.width
       var maxLeft = this.frame.left + this.frame.width
       var maxTop = this.frame.top + this.frame.height
       switch (this.isDowm) {
         case 'frame':
-          this.frame.left = ev.offsetX - this.setX
-          this.frame.top = ev.offsetY - this.setY
+          this.frame.left = (ev.offsetX - this.setX) > this.image.left ? ev.offsetX - this.setX : this.image.left
+          this.frame.top = (ev.offsetY - this.setY) > this.image.top ? ev.offsetY - this.setY : this.image.top
           break
         case 'left':
           this.move_l(ev, maxLeft)
@@ -196,13 +198,17 @@ export default {
       // console.log(ev.offsetX)
     },
     move_l(e, maxLeft) {
-      var maxW = this.frame.left + this.frame.width - 2
+      var maxW = this.frame.left + this.frame.width
       var disW = this.frame.left - e.offsetX
+      console.log('offf', e.offsetX)
+      // console.log(maxW, disW, this.frame.width)
+      // console.log(maxLeft, disW, this.frame.left)
       this.frame.width = Math.min(Math.max(0, this.frame.width + disW), maxW)
+      // this.frame.width = disW > 0 ? (this.frame.width + disW) : 0
       this.frame.left = Math.max(Math.min(maxLeft, this.frame.left - disW), 0)
     },
     move_r(e) {
-      var maxW = this.image.width - this.frame.left - 2
+      var maxW = this.image.width - this.frame.left
       var dragW = e.offsetX - this.setX - this.frame.left
       this.frame.width = Math.min(Math.max(0, dragW), maxW)
     },

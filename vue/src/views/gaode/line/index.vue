@@ -104,7 +104,7 @@ export default {
     },
     removeMarker() {
       // 获取已经添加的marker
-      const markers = this.map.getAllOverlays('marker')
+      const markers = this.map.getAllOverlays('marker')//eslint-disable-line
       console.log(this.map.getAllOverlays('marker'))
       // this.map.remove(markers[0])
     },

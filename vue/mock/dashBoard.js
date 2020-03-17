@@ -7,34 +7,32 @@ function getNewDate(date) {
 }
 // 转为时间
 function getDate(year, month, day = 0) {
-  // console.log(new Date(year, month, day))
   return new Date(year, month, day)
 }
-
+function getlocaData(year, month, day = 0) {
+  const date = new Date(year, month, day).toLocaleString()
+  const timestrip = Date.parse(date) + 28800000
+  return new Date(timestrip)
+}
 // 处理日历数据
 function getCalender(timeVal) {
   const calendatArr = []
   timeVal = JSON.parse(timeVal)
-  // console.log(timeVal)
+  console.log(timeVal)
   // 年月日 转换后的
   const { year, month } = getNewDate(
     getDate(timeVal.year, timeVal.month + 1, 0)
   )
-  const firstDay = getDate(year, month, 1)
-  // console.log('当前月份第一天', firstDay)
-  const lastDay = new Date(year, month + 1, 0)
-  // console.log('当前月份最后一天', lastDay)
+  console.log(getlocaData(year, month, 1))
+  const firstDay = getlocaData(year, month, 1)
+  const lastDay = getlocaData(year, month + 1, 0)
 
   const firstWeekDay = firstDay.getDay() === 0 ? 7 : firstDay.getDay()
   const lastWeekDay = lastDay.getDay() === 0 ? 7 : lastDay.getDay()
-  // console.log('第一天周几', firstWeekDay)
-  // console.log('最后一天周几', lastWeekDay)
   const curmonthdays =
-    new Date(year, month - 1, 0).getDate() + firstWeekDay - lastWeekDay + 6
-  // console.log('月份天数', curmonthdays)
+    new Date(year, month + 1, 0).getDate() + firstWeekDay - lastWeekDay + 6
 
   const startTime = firstDay - (firstWeekDay - 1) * 24 * 60 * 60 * 1000
-  // console.log(startTime)
 
   for (let i = 0; i < curmonthdays; i++) {
     calendatArr.push({

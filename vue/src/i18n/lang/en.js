@@ -35,9 +35,11 @@ const en = {
   gdLine: 'gdLine',
   keshihua: 'keshihua',
   pie: 'pie',
-  radar: 'radar',
+  radder: 'radder',
   typeView: 'typeView',
-  xiding: 'xiding'
+  xiding: 'xiding',
+  xuri: 'xuri',
+  kline: 'kline'
 }
 
 export default en

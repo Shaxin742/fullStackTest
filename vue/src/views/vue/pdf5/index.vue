@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <pdf :url="url" :page-no="1" />
+    <pdf ref="pdf" :url="url" :page-no="1" />
   </div>
 </template>
 
 <script>
-import pdf from './pdf.vue'
-
+import pdf from './pdfView.vue'
+const data = require('./jj.json')
+// import { getPdf } from '@/api/pdf'
 export default {
   name: 'App',
   components: {
@@ -14,10 +15,18 @@ export default {
   },
   data() {
     return {
-      // url: 'http://image.cache.timepack.cn/nodejs.pdf'
-      url: 'http://192.168.98.172:5765/kabala/climb/download?fileName=/climb/yypt/pdf/test.pdf'
+      url: data.data
+      // url: 'http://192.168.98.172:8766/api/operation-fund-confirm/getPdf?filePath=/climb/yypt/pdf/h1.pdf'
     }
+  },
+  mounted() {
+    this.$refs.pdf.repaint()
   }
+  // created() {
+  //   getPdf().then(res => {
+  //     console.log(res)
+  //   })
+  // }
 }
 </script>
 

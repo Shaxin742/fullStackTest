@@ -178,8 +178,9 @@ $light_gray:#eee;
 
   .login-form {
     position: absolute;
-    left: 55%;
+    left: 50%;
     top: 50%;
+    margin-left: 230px;
     margin-top: -160px;
     width: 400px;
     max-width: 100%;
@@ -188,7 +189,11 @@ $light_gray:#eee;
     border-radius: 4px;
     background: #e0e0e04f;
   }
-
+@media screen and (max-width: 892px) {
+  .login-form {
+    margin-left: -200px;
+  }
+}
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $light_white;

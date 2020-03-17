@@ -37,7 +37,7 @@ export default {
     if (item.hasState('selected')) {
       return
     } else {
-      if (self.shouldUpdate.call(self, e)) {
+      if (self.shouldUpdate.call(self, e)) { //eslint-disable-line
         graph.setItemState(item, 'hover', true)
       }
     }
@@ -53,7 +53,7 @@ export default {
         g.attr('fill', '#fff')
       }
     })
-    if (self.shouldUpdate.call(self, e)) {
+    if (self.shouldUpdate.call(self, e)) { //eslint-disable-line
       if (!item.hasState('selected')) { graph.setItemState(item, 'hover', false) }
     }
     graph.paint()

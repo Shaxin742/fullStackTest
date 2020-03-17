@@ -10,7 +10,7 @@
 
 <script>
 import pdf from 'vue-pdf'
-const src = pdf.createLoadingTask('http://192.168.98.172:5765/kabala/climb/download?fileName=/climb/yypt/pdf/test.pdf')
+const src = pdf.createLoadingTask('http://image.cache.timepack.cn/nodejs.pdf')
 export default {
   components: {
     pdf

@@ -78,12 +78,14 @@ export default {
           prop: 'id',
           label: '编号',
           sortable: true,
+          // sortable: 'custom',
           align: 'left'
         },
         {
           prop: 'name',
           label: '名称',
           sortable: true,
+          // sortable: 'custom',
           'show-overflow-tooltip': true,
           showTip: true,
           align: 'left'
