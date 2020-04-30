@@ -655,7 +655,7 @@ export default [
     type: 'get',
     response: config => {
       return {
-        code: 20000,
+        code: 200,
         data: kline
       }
     }

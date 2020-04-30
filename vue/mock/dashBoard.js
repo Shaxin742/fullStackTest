@@ -51,9 +51,10 @@ export default [
     type: 'get',
     response: config => {
       const { date } = config.query
+      console.log(date)
       const data = getCalender(date)
       return {
-        code: 20000,
+        code: 200,
         data: data
       }
     }

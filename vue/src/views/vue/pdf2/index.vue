@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id="pdfCentent">
+    12312312pdf2
     <div class="parent">
       <button @click="$refs.pdf.print()">打印</button>
       <pdf ref="pdf" :src="src" :page="currentPage" @progress="getProgress" @page-loaded="currentPage=$event" @loaded="loadPdfHandler" />

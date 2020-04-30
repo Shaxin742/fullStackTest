@@ -18,6 +18,10 @@
 import PDFJS from 'pdfjs-dist'
 // PDFJS.disableWorker = true
 // PDFJS.cMapPacked = true
+
+// PDFJS.cMapUrl = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.2.228/cmaps/'
+// // cMapUrl: './cmaps/',
+// PDFJS.cMapPacked = true
 PDFJS.GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker.min')
 export default {
   name: 'PdfView',
@@ -57,10 +61,9 @@ export default {
       this.pageNum = this.pageNo || 1
       PDFJS.getDocument({
         data: atob(this.url),
-        cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.288/cmaps/',
+        cMapUrl: './cmaps/',
         cMapPacked: true
       }).then(pdfDoc => {
-        console.log(pdfDoc)
         this.pdfDoc = pdfDoc
         this.$emit('getAllPdfNo', this.pdfDoc.numPages)
         this.renderPage(this.pageNum)

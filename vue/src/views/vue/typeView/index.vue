@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     typeItems(container, speed, str) {
-      const defaultStr = `我希望有个如你一般的人. 如山间清爽的风. 如古城温暖的光.  从清晨到夜晚.  由山野到书房. 只要最后是你，就好.` // 将要添加的元素的默认内容
+      // 将要添加的元素的默认内容
+      const defaultStr = `我希望有个如你一般的人. 如山间清爽的风. 如古城温暖的光.  从清晨到夜晚.  由山野到书房. 只要最后是你，就好.`
       const defaultSpeed = 300
       str = str || defaultStr
       speed = speed || defaultSpeed
