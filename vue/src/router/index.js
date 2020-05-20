@@ -383,6 +383,12 @@ export const asyncRoutes = [
         name: 'kline',
         component: () => import('@/views/echarts/kline'),
         meta: { title: 'kline', icon: 'eye' }
+      },
+      {
+        path: 'liquidfill',
+        name: 'liquidfill',
+        component: () => import('@/views/echarts/liquidfill'),
+        meta: { title: 'liquidfill', icon: 'eye' }
       }
     ]
   },
