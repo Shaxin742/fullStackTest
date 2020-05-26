@@ -57,12 +57,9 @@ const actions = {
   changeRoles({ commit, dispatch }, role) {
     return new Promise(async resolve => {
       const token = role + '-token'
-
       commit('SET_TOKEN', token)
       setToken(token)
-
       dispatch('tagsView/delAllViews', null, { root: true })
-
       resolve()
     })
   }
