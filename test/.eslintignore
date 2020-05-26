@@ -1,0 +1,7 @@
+build/*.js
+src/assets
+public
+dist
+
+// eslint-disable-next-line
+.call
