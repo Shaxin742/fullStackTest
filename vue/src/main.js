@@ -24,12 +24,10 @@ Vue.use(BaiduMap, {
 })
 
 // mock 开服务类型
-// import { mockXHR } from '../mock'
-// if (process.env.NODE_ENV === 'production') {
-//   mockXHR()
-// }
-
-require('./mock')
+import { mockXHR } from '../mock'
+if (process.env.NODE_ENV === 'production') {
+  mockXHR()
+}
 
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)

@@ -6,15 +6,24 @@
     <render-dom :change="spanClick" :config="selectConfig" type="select" />
     <render-dom :change="spanClick" :config="timeConfig" type="timePicker" />
     <render-dom :change="spanClick" :config="spanConfig" type="tooltip" />
+
+    <render :arr="arr" />
+    <el-input-mock v-model="value" :disabled="false" style="width:300px" />
+
+    <renderTest value="render测试" />
   </div>
 </template>
 
 <script>
 import renderDom from './renderDom'
+import render from './render.vue'
+import renderTest from './renderTest.vue'
+import elInputMock from './elInputMock.vue'
 export default {
   name: 'Render',
   components: {
-    renderDom
+    renderDom,
+    render, elInputMock, renderTest
   },
   data() {
     return {
@@ -48,7 +57,14 @@ export default {
       spanConfig: {
         content: '阿三大苏打'
       },
-      selectype: 'select'
+      selectype: 'select',
+      arr: [
+        { name: '哈哈哈' },
+        { name: '哈哈2哈' },
+        { name: '哈哈3哈' },
+        { name: '哈哈4哈' }
+      ],
+      value: '还是说说'
     }
   },
   methods: {

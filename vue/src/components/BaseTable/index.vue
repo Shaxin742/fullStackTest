@@ -36,6 +36,9 @@ column:需要展示的列
       :lazy="lazy"
       @selection-change="handleSelectionChange"
     >
+      <template slot="ematy">
+        12312312
+      </template>
       <el-table-column v-if="options.mutiSelect" type="selection" style="width: 55px;" />
       <template v-for="(column, index) in columns">
         <el-table-column

@@ -110,108 +110,108 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/antv',
-    component: Layout,
-    redirect: '/antv/g2/g2bar',
-    name: 'antv',
-    meta: { title: 'antv', icon: 'example' },
-    children: [
-      {
-        path: '/g2',
-        redirect: '/g2/g2bar',
-        component: () => import('@/views/routerview'),
-        name: 'g2',
-        meta: { title: 'g2', icon: 'example' },
-        children: [
-          {
-            path: 'bar',
-            name: 'bar',
-            component: () => import('@/views/antv/g2/bar/index'),
-            meta: { title: 'bar', icon: 'eye' }
-          },
-          {
-            path: 'bar2',
-            name: 'bar2',
-            component: () => import('@/views/antv/g2/bar2/index'),
-            meta: { title: 'bar2', icon: 'eye' }
-          },
-          {
-            path: 'line',
-            name: 'line',
-            component: () => import('@/views/antv/g2/line/index'),
-            meta: { title: 'line', icon: 'eye' }
-          }
-        ]
-      },
-      {
-        path: '/g6',
-        component: () => import('@/views/routerview'),
-        redirect: '/g6/g6',
-        name: 'g6',
-        meta: { title: 'g6', icon: 'example' },
-        children: [
-          {
-            path: 'g6',
-            name: 'g6',
-            component: () => import('@/views/antv/g6/g6/index'),
-            meta: { title: 'g6', icon: 'eye' }
-          },
-          {
-            path: 'g62',
-            name: 'g62',
-            component: () => import('@/views/antv/g6/g62/index'),
-            meta: { title: 'g62', icon: 'eye' }
-          },
-          {
-            path: 'g63',
-            name: 'g63',
-            component: () => import('@/views/antv/g6/g63/index'),
-            meta: { title: 'g63', icon: 'eye' }
-          },
-          {
-            path: 'g64',
-            name: 'g64',
-            component: () => import('@/views/antv/g6/g64/index'),
-            meta: { title: 'g64', icon: 'eye' }
-          },
-          {
-            path: 'editor',
-            name: 'editor',
-            component: () => import('@/views/antv/g6/editor/index'),
-            meta: { title: 'editor', icon: 'eye' }
-          }
-          // {
-          //   path: 'vueEditor',
-          //   name: 'vueEditor',
-          //   component: () => import('@/views/antv/g6/vueEditor/index'),
-          //   meta: { title: 'vueEditor', icon: 'eye' }
-          // }
-          // {
-          //   path: 'g6editor',
-          //   name: 'g6editor',
-          //   component: () => import('@/views/antv/g6/g6editor'),
-          //   meta: { title: 'g6editor', icon: 'eye' }
-          // }
-        ]
-      }
-      // {
-      //   path: '/l7',
-      //   component: () => import('@/views/routerview'),
-      //   redirect: '/l7/l7',
-      //   name: 'l7',
-      //   meta: { title: 'l7', icon: 'example' },
-      //   children: [
-      //     {
-      //       path: 'l7',
-      //       name: 'l7',
-      //       component: () => import('@/views/antv/l7/l7/index'),
-      //       meta: { title: 'l7', icon: 'eye' }
-      //     }
-      //   ]
-      // }
-    ]
-  },
+  // {
+  //   path: '/antv',
+  //   component: Layout,
+  //   redirect: '/antv/g2/g2bar',
+  //   name: 'antv',
+  //   meta: { title: 'antv', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: '/g2',
+  //       redirect: '/g2/g2bar',
+  //       component: () => import('@/views/routerview'),
+  //       name: 'g2',
+  //       meta: { title: 'g2', icon: 'example' },
+  //       children: [
+  //         {
+  //           path: 'bar',
+  //           name: 'bar',
+  //           component: () => import('@/views/antv/g2/bar/index'),
+  //           meta: { title: 'bar', icon: 'eye' }
+  //         },
+  //         {
+  //           path: 'bar2',
+  //           name: 'bar2',
+  //           component: () => import('@/views/antv/g2/bar2/index'),
+  //           meta: { title: 'bar2', icon: 'eye' }
+  //         },
+  //         {
+  //           path: 'line',
+  //           name: 'line',
+  //           component: () => import('@/views/antv/g2/line/index'),
+  //           meta: { title: 'line', icon: 'eye' }
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: '/g6',
+  //       component: () => import('@/views/routerview'),
+  //       redirect: '/g6/g6',
+  //       name: 'g6',
+  //       meta: { title: 'g6', icon: 'example' },
+  //       children: [
+  //         {
+  //           path: 'g6',
+  //           name: 'g6',
+  //           component: () => import('@/views/antv/g6/g6/index'),
+  //           meta: { title: 'g6', icon: 'eye' }
+  //         },
+  //         {
+  //           path: 'g62',
+  //           name: 'g62',
+  //           component: () => import('@/views/antv/g6/g62/index'),
+  //           meta: { title: 'g62', icon: 'eye' }
+  //         },
+  //         {
+  //           path: 'g63',
+  //           name: 'g63',
+  //           component: () => import('@/views/antv/g6/g63/index'),
+  //           meta: { title: 'g63', icon: 'eye' }
+  //         },
+  //         {
+  //           path: 'g64',
+  //           name: 'g64',
+  //           component: () => import('@/views/antv/g6/g64/index'),
+  //           meta: { title: 'g64', icon: 'eye' }
+  //         },
+  //         {
+  //           path: 'editor',
+  //           name: 'editor',
+  //           component: () => import('@/views/antv/g6/editor/index'),
+  //           meta: { title: 'editor', icon: 'eye' }
+  //         }
+  //         // {
+  //         //   path: 'vueEditor',
+  //         //   name: 'vueEditor',
+  //         //   component: () => import('@/views/antv/g6/vueEditor/index'),
+  //         //   meta: { title: 'vueEditor', icon: 'eye' }
+  //         // }
+  //         // {
+  //         //   path: 'g6editor',
+  //         //   name: 'g6editor',
+  //         //   component: () => import('@/views/antv/g6/g6editor'),
+  //         //   meta: { title: 'g6editor', icon: 'eye' }
+  //         // }
+  //       ]
+  //     }
+  //     // {
+  //     //   path: '/l7',
+  //     //   component: () => import('@/views/routerview'),
+  //     //   redirect: '/l7/l7',
+  //     //   name: 'l7',
+  //     //   meta: { title: 'l7', icon: 'example' },
+  //     //   children: [
+  //     //     {
+  //     //       path: 'l7',
+  //     //       name: 'l7',
+  //     //       component: () => import('@/views/antv/l7/l7/index'),
+  //     //       meta: { title: 'l7', icon: 'eye' }
+  //     //     }
+  //     //   ]
+  //     // }
+  //   ]
+  // },
   {
     path: '/bdMap',
     component: Layout,
