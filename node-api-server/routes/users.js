@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var URL = require('url'); //请求url模块
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -16,8 +15,17 @@ router.post('/login',function(req,res,next){
       token: 'editor-token'
     }
   }
-  var params = URL.parse(req.url,true).query;
 
+  // var body = '';
+  // req.on('data', function (data) {
+  //   body += data;
+  // });
+  // req.on('end', function () {
+  //   var json = JSON.parse(body);
+  //   console.log(222,json)
+  // })
+
+  var params = req.body;
   const token = tokens[params.username]
   if (!token) {
     return {
@@ -27,6 +35,7 @@ router.post('/login',function(req,res,next){
   }
   var response = {code:200,data:token};
   res.send(JSON.stringify(response));
+
 })
 
 router.get('/info',function(req,res){
@@ -44,7 +53,10 @@ router.get('/info',function(req,res){
       name: 'Normal Editor'
     }
   }
-  var params = URL.parse(req.url,true).query;
+
+  // var params = URL.parse(req.url,true).query;
+
+  var params = req.query
   const info = users[params.token]
   if (!info) {
     return {

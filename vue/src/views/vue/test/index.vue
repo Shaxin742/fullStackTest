@@ -5,14 +5,28 @@
     <el-button @click="showArr">showArr</el-button>
     <el-button @click="toast">toast</el-button>
     <el-button @click="toast2">toast</el-button>
+
+    <el-tooltip class="item" effect="dark" :content="ceshi" placement="left-end">
+      <el-input disable :value="ceshi" style="width:200px;" />
+    </el-tooltip>
+    <el-tooltip content="Top center" placement="top">
+      <el-button>Dark</el-button>
+    </el-tooltip>
+    <input22 text="1renderInput">123123sss</input22>
+    <innn length="5" value="12312323" />
+    <innn length="12" value="哈哈哈" />
   </div>
 </template>
 
 <script>
+import input22 from './renderInput'
+import innn from './innn.vue'
 export default {
   name: 'Test',
+  components: { input22, innn },
   data() {
     return {
+      ceshi: '叫啊叫啊叫啊叫啊叫啊叫啊叫啊叫',
       actions: new Map([
         ['test1', () => { console.log('test1') }],
         ['test2', () => { console.log('test3') }],
