@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b2584"],{"245a":function(n,o,a){"use strict";a.r(o);var e=a("03a1"),s=a.n(e),c={login:function(n){return console.log("12312312312312"),{code:200,message:"success",data:"admin-token"}}};s.a.mock(/app\/dev-api\/user\/login/,c.login);o["default"]=s.a}}]);

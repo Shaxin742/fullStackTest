@@ -353,6 +353,20 @@ export const asyncRoutes = [
       }
     ]
   },
+  // {
+  //   path: '/utils',
+  //   component: Layout,
+  //   redirect: '/utils/utils',
+  //   name: 'utils',
+  //   meta: { title: 'utils', icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'utils',
+  //       name: 'utils',
+  //       component: () => import('@/views/utils'),
+  //       meta: { title: 'utils', icon: 'eye' }
+  //     }]
+  // },
   {
     path: '/echarts',
     component: Layout,
