@@ -7,6 +7,7 @@ import '@/style/index.scss'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/mock'
+import './permission' // 权限
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

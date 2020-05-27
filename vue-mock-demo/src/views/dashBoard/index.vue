@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:56:10
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-27 13:22:43
+ * @LastEditTime: 2020-05-27 15:06:12
  -->
 <template>
   <div>
@@ -18,6 +18,3 @@
 <script>
 export default {};
 </script>
-
-<style>
-</style>
