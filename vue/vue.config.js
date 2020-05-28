@@ -42,7 +42,8 @@ module.exports = {
       // }
       '/dev-api': {
         // target: `http://0.0.0.0:${port}/mock`, // 本地mock数据
-        target: `http://127.0.0.1:5000`, // python 项目
+        // target: `http://127.0.0.1:5000`, // python 项目 没写完
+        target: `http://127.0.0.1:3000`, // node 项目
         changeOrigin: true,
         pathRewrite: {
           '/app/api/dev-api': ''

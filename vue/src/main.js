@@ -11,9 +11,10 @@ import i18n from './i18n'
 import '@/icons' // icon
 import '@/permission' // permission control
 import BaiduMap from 'vue-baidu-map'
-import {
-  message
-} from './resetMessage'
+// 重写message提示框 方式1
+// import message from '@/utils/resetMsg/resetMsg.js'
+// 重写message提示框 方式2
+import { message } from '@/utils/resetMsg/resetMessage'
 
 // ExportSavePdf 直接用这个方法 我挂在在vue了
 
@@ -33,26 +34,12 @@ Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
 
-Vue.prototype.$message = message // 重写message提示框
-// 全局重写 element 的message 弹框事件
-// Vue.prototype.$message1 = function(msg) {
-//   console.log(msg)
-//   this.$message.error('111')
-// }
-// const messagearr = ['success', 'warning', 'info', 'error']
-// messagearr.forEach(function(type) {
-//   console.log(type)
-//   Vue.prototype.$message[type] = function(options) {
-//     type = type === 'error' ? 'warning' : type
-//     return ElementUI.Message[type](options)
-//   }
-// })
-// Vue.prototype.$message.close = function(id, userOnClose) {
-//   return ElementUI.Message.close(id, userOnClose)
-// }
-// Vue.prototype.$message.closeAll = function() {
-//   return ElementUI.Message.closeAll()
-// }
+// 重写message提示框 方式1
+// Vue.use(message)
+
+// 重写message提示框 方式2 只能用this.$message.xxx
+Vue.prototype.$message = message
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -39,7 +39,6 @@ export default {
     handleDragLeave(e) {
       e.preventDefault()
     }
-
   }
 }
 </script>

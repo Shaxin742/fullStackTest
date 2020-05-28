@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login',function(req,res,next){
+  console.log(req)
   const tokens = {
     admin: {
       token: 'admin-token'
@@ -24,18 +25,18 @@ router.post('/login',function(req,res,next){
   //   var json = JSON.parse(body);
   //   console.log(222,json)
   // })
-
+  var response
   var params = req.body;
+  console.log(params.username)
   const token = tokens[params.username]
-  if (!token) {
-    return {
-      code: 400,
-      message: '用户名或密码错误'
-    }
+  console.log(token)
+  console.log(!token)
+  if(token){
+    response = {code:200,data:token};
+  }else{
+    response = {code:400,data:'用户名或密码错误'};
   }
-  var response = {code:200,data:token};
-  res.send(JSON.stringify(response));
-
+  res.send(response);
 })
 
 router.get('/info',function(req,res){
@@ -57,15 +58,14 @@ router.get('/info',function(req,res){
   // var params = URL.parse(req.url,true).query;
 
   var params = req.query
+  var response
   const info = users[params.token]
   if (!info) {
-    return {
-      code: 400,
-      message: '登录失败'
-    }
+    response= {code:400,data:'登录失败'}
+  }else{
+    response= {code:200,data:info};
   }
-  var response = {code:200,data:info};
-  res.send(JSON.stringify(response));
+  res.send(response);
 })
 
 router.post('/logout',function(res){

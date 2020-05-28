@@ -1,6 +1,7 @@
 <template>
   <div>
     <canvas id="imgCanvas" />
+    <canvas ref="$canvas" width="190" height="190">></canvas>
     <div class="body">
       <img
         ref="image"
@@ -9,6 +10,7 @@
         :style="{left: image.left + 'px',top: image.top + 'px',width: image.width + 'px', height: image.height + 'px'}"
         @load="loadImage"
       >
+
       <div
         class="plank"
         @mousedown="mousedown($event, 'plank')"
@@ -106,6 +108,7 @@ export default {
       isDowm: false,
       setX: 0, // 当鼠标第一次点下时的位置  计算用
       setY: 0,
+      scaleRate: 1,
 
       image: { // 图片位置大小
         left: 20,
@@ -140,12 +143,29 @@ export default {
       immediate: true,
       handler: function(val, oldVal) {
         this.$nextTick(() => {
-          this.drawImage()
+          this.setPreview()
         })
       }
     }
   },
   methods: {
+    // 设置预览图
+    setPreview() {
+      const { frame, scaleRate } = this
+      const $canvas = this.$refs.$canvas.getContext('2d')
+      $canvas.clearRect(0, 0, 190, 190)
+      $canvas.drawImage(
+        this.$refs.image,
+        Math.floor(frame.left / scaleRate),
+        Math.floor(frame.top / scaleRate),
+        frame.width / scaleRate,
+        frame.width / scaleRate,
+        0,
+        0,
+        190,
+        190
+      )
+    },
     touchHandle() {},
     mousedown(ev, type) {
       console.log(ev, type)
@@ -196,6 +216,7 @@ export default {
           break
       }
       // console.log(ev.offsetX)
+      this.setPreview()
     },
     move_l(e, maxLeft) {
       var maxW = this.frame.left + this.frame.width

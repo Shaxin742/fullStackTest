@@ -346,6 +346,12 @@ export const asyncRoutes = [
         meta: { title: 'touxiang', icon: 'eye' }
       },
       {
+        path: 'touxiang2',
+        name: 'touxiang2',
+        component: () => import('@/views/vue/touxiang2'),
+        meta: { title: 'touxiang2', icon: 'eye' }
+      },
+      {
         path: 'html2pdf',
         name: 'html2pdf',
         component: () => import('@/views/vue/html2pdf'),
