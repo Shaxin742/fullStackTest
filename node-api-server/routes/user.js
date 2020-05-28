@@ -68,9 +68,9 @@ router.get('/info',function(req,res){
   res.send(response);
 })
 
-router.post('/logout',function(res){
+router.post('/logout',function(req,res){
   var response = {code:200,data:'success'};
-  res.send(JSON.stringify(response));
+  res.send(response);
 })
 
 module.exports = router;
