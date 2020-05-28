@@ -2,48 +2,89 @@
  * @Author: ShaXin
  * @Date: 2020-05-27 17:21:04
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 17:15:59
+ * @LastEditTime: 2020-05-28 18:02:18
  -->
 <template>
-  <div class="layout">
-    <el-container>
-      <el-aside>
-        <sidebar />
-      </el-aside>
-      <el-container>
-        <el-header>
-          <navbar />
-        </el-header>
-        <el-main>
-          <router-view />
-        </el-main>
-      </el-container>
-    </el-container>
+  <div
+    :class="classObj"
+    class="app-wrapper"
+  >
+    123
   </div>
 </template>
 
 <script>
-import sidebar from "./sidebar";
-import navbar from "./navbar";
+import { mapState } from 'vuex'
+
 export default {
+  name: 'Layout',
   components: {
-    sidebar,
-    navbar
+  },
+  data: function() {
+    return { aaa: 2 }
+  },
+  computed: {
+    ...mapState({
+      sidebar: state => state.app.sidebar,
+      device: state => state.app.device,
+      showSettings: state => state.settings.showSettings,
+      fixedHeader: state => state.settings.fixedHeader
+    }),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+        withoutAnimation: this.sidebar.withoutAnimation,
+        mobile: this.device === 'mobile'
+      }
+    }
+  },
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    }
   }
-};
+}
 </script>
 
-<style lang='scss'>
-.layout {
+<style lang="scss" scoped>
+@import "~@/styles/mixin.scss";
+@import "~@/styles/variables.scss";
+
+.app-wrapper {
+  @include clearfix;
+  position: relative;
   height: 100%;
-  .el-container {
-    height: 100%;
+  width: 100%;
+  &.mobile.openSidebar {
+    position: fixed;
+    top: 0;
   }
-  .el-header {
-    padding: 0;
-  }
-  .el-menu{
-    border-right:0px;
-  }
+}
+.drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - 54px);
+}
+
+.mobile .fixed-header {
+  width: 100%;
 }
 </style>

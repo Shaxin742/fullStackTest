@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 16:31:11
+ * @LastEditTime: 2020-05-28 17:57:28
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -55,13 +55,13 @@ export const asyncRoutes = [
         path: 'test',
         name: 'test',
         component: () => import('@/views/vue/test'),
-        meta: { title: '测试', icon: 'eye' }
+        meta: { title: '测试' }
       },
       {
         path: 'ceshi',
         name: 'test',
         component: () => import('@/views/vue/test'),
-        meta: { title: '测试2', icon: 'eye' }
+        meta: { title: '测试2' }
       },
     ]
   },
