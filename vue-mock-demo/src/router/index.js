@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-27 17:23:05
+ * @LastEditTime: 2020-05-28 16:31:11
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -21,12 +21,12 @@ export const constantRoutes = [
   //   component: () => import('@/views/dashBoard/index'),
   //   hidden: true
   // },
-  
+
   {
     path: '/',
     redirect: '/dashboard',
     hidden: true,
-    component:layout,
+    component: layout,
     children: [
       {
         path: 'dashboard',
@@ -37,11 +37,44 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '*',
+    path: "/404",
+    name: "notFound",
     component: () => import('@/views/404/index'),
     hidden: true
   }
-  
+]
+export const asyncRoutes = [
+  {
+    path: '/vue',
+    component: layout,
+    redirect: '/vue/test',
+    name: 'vue',
+    meta: { title: 'vue', icon: 'example' },
+    children: [
+      {
+        path: 'test',
+        name: 'test',
+        component: () => import('@/views/vue/test'),
+        meta: { title: '测试', icon: 'eye' }
+      },
+      {
+        path: 'ceshi',
+        name: 'test',
+        component: () => import('@/views/vue/test'),
+        meta: { title: '测试2', icon: 'eye' }
+      },
+    ]
+  },
+  {
+    path: 'external-link',
+    component: layout,
+    children: [
+      {
+        path: 'https://github.com/PanJiaChen/vue-element-admin',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
 ]
 
 const createRouter = () =>
