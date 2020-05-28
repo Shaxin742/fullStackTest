@@ -370,7 +370,7 @@ export default {
     // 取消
     onCancel() {
       console.log(123123)
-      this.$emit('cancle')
+      this.$emit('cancel')
     }
   }
 }

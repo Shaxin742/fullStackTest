@@ -1,8 +1,7 @@
 
 <template>
   <div class="content">
-    <!-- <img :src="path"> -->
-    <cut-image @ok="onok" @cancel="oncancle" />
+    <cut-image @ok="onok" @cancel="cancel" />
   </div>
 </template>
 <script>
@@ -20,7 +19,7 @@ export default {
       this.path = ev.path
       this.url = ''
     },
-    oncancle() {
+    cancel() {
       // url设置为空，隐藏控件
       this.$message.error('取消')
     }
