@@ -7,7 +7,9 @@ const en = {
   chinese: 'chinese',
   english: 'english',
   Dashboard: 'Dashboard',
-  test:'test'
+  test:'test',
+  song:'song',
+  form:'form'
 }
 
 export default en

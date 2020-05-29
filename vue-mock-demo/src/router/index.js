@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-29 11:10:13
+ * @LastEditTime: 2020-05-29 15:56:14
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -45,23 +45,23 @@ export const constantRoutes = [
 ]
 export const asyncRoutes = [
   {
-    path: '/vue',
+    path: '/components',
     component: Layout,
-    redirect: '/vue/test',
+    redirect: '/components/form',
     name: 'vue',
     meta: { title: 'vue', icon: 'example' },
     children: [
       {
-        path: 'test',
-        name: 'test',
-        component: () => import('@/views/vue/test'),
-        meta: { title: 'test' }
+        path: 'form',
+        name: 'form',
+        component: () => import('@/views/components/form'),
+        meta: { title: 'form' }
       },
       {
-        path: 'ceshi',
-        name: 'test',
-        component: () => import('@/views/vue/test'),
-        meta: { title: 'test' }
+        path: 'song',
+        name: 'song',
+        component: () => import('@/views/components/song'),
+        meta: { title: 'song' }
       },
     ]
   },
