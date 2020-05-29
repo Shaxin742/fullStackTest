@@ -7,7 +7,7 @@
 import request from '@/utils/request'
 import mockState from '@/utils/mockState'
 const serverUrl = mockState.serverUrlMock
-const serverName = 'dev-api/'
+const serverName = 'user-api/'
 
 export function login(data) {
   return request({

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-28 16:51:24
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 17:07:38
+ * @LastEditTime: 2020-05-29 10:42:22
  */
 import Cookies from 'js-cookie'
 
@@ -28,6 +28,10 @@ const mutations = {
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   },
+  
+  TOGGLE_DEVICE: (state, device) => {
+    state.device = device
+  },
 }
 
 const actions = {
@@ -36,6 +40,9 @@ const actions = {
   },
   closeSideBar({ commit }, { withoutAnimation }) {
     commit('CLOSE_SIDEBAR', withoutAnimation)
+  },
+  toggleDevice({ commit }, device) {
+    commit('TOGGLE_DEVICE', device)
   },
 }
 

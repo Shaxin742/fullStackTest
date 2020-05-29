@@ -1,25 +1,43 @@
-<!--
- * @Author: ShaXin
- * @Date: 2020-05-27 17:21:04
- * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 18:02:18
- -->
 <template>
   <div
     :class="classObj"
     class="app-wrapper"
   >
-    123
+    <div
+      v-if="device==='mobile'&&sidebar.opened"
+      class="drawer-bg"
+      @click="handleClickOutside"
+    />
+    <sidebar class="sidebar-container" />
+    <div class="main-container">
+      <div class="fixed-header">
+        <navbar />
+        <tags-view />
+      </div>
+      <app-main />
+      <right-panel>
+        瞅你玛丽个臭批
+      </right-panel>
+    </div>
   </div>
 </template>
 
 <script>
+import RightPanel from '@/components/RightPanel'
+import { Navbar, Sidebar, AppMain, TagsView } from './components'
+import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
 
 export default {
   name: 'Layout',
   components: {
+    Navbar,
+    Sidebar,
+    AppMain,
+    TagsView,
+    RightPanel
   },
+  mixins: [ResizeMixin],
   data: function() {
     return { aaa: 2 }
   },
@@ -27,8 +45,8 @@ export default {
     ...mapState({
       sidebar: state => state.app.sidebar,
       device: state => state.app.device,
-      showSettings: state => state.settings.showSettings,
-      fixedHeader: state => state.settings.fixedHeader
+      // showSettings: state => state.settings.showSettings,
+      // fixedHeader: state => state.settings.fixedHeader
     }),
     classObj() {
       return {

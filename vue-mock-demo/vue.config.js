@@ -27,11 +27,18 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/app/api/dev-api': {
-        target: `http://127.0.0.1:5900`, // python 项目
+      '/app/api/user-api': {
+        target: `http://127.0.0.1:3000`, // python 项目
         changeOrigin: true,
         pathRewrite: {
-          '/app/api/dev-api': '/app'
+          '/app/api/user-api': ''
+        }
+      },
+      '/app/api/dash-api': {
+        target: `http://127.0.0.1:3000`, // python 项目
+        changeOrigin: true,
+        pathRewrite: {
+          '/app/api/dash-api': ''
         }
       }
     }

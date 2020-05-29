@@ -2,11 +2,11 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 17:57:28
+ * @LastEditTime: 2020-05-29 11:10:13
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import layout from '@/components/layout'
+import Layout from '@/components/Layout'
 
 Vue.use(Router)
 
@@ -26,7 +26,7 @@ export const constantRoutes = [
     path: '/',
     redirect: '/dashboard',
     hidden: true,
-    component: layout,
+    component: Layout,
     children: [
       {
         path: 'dashboard',
@@ -46,7 +46,7 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: '/vue',
-    component: layout,
+    component: Layout,
     redirect: '/vue/test',
     name: 'vue',
     meta: { title: 'vue', icon: 'example' },
@@ -55,19 +55,19 @@ export const asyncRoutes = [
         path: 'test',
         name: 'test',
         component: () => import('@/views/vue/test'),
-        meta: { title: '测试' }
+        meta: { title: 'test' }
       },
       {
         path: 'ceshi',
         name: 'test',
         component: () => import('@/views/vue/test'),
-        meta: { title: '测试2' }
+        meta: { title: 'test' }
       },
     ]
   },
   {
     path: 'external-link',
-    component: layout,
+    component: Layout,
     children: [
       {
         path: 'https://github.com/PanJiaChen/vue-element-admin',
