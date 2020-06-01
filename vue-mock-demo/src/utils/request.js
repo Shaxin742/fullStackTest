@@ -1,49 +1,51 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
-import store from '@/store'
-import { getToken } from '@/utils/auth'
+import Cookies from 'js-cookie'
+const pending = []
+const CancelToken = axios.CancelToken
 
-// create an axios instance
+const cancelPending = (config) => {
+  pending.forEach((item, index) => {
+    if (config) {
+      if (item.UrlPath === config.url) {
+        item.Cancel() // 取消请求
+        pending.splice(index, 1) // 移除当前请求记录
+      }
+    } else {
+      item.Cancel() // 取消请求
+      pending.splice(index, 1) // 移除当前请求记录
+    }
+  })
+}
+// 创建axios实例
 const service = axios.create({
-  baseURL: '/app',
-  timeout: 5000 // request timeout
+  baseURL: '/app', // api的base_url
+  timeout: 600000 // 请求超时时间
 })
 
-// request interceptor
 service.interceptors.request.use(
   config => {
-    if (store.getters.token) {
-      config.headers['X-Token'] = getToken()
+    if (Cookies.get('Admin-Token')) {
+      config.headers['Authorization'] = Cookies.get('Admin-Token')
     }
+    cancelPending(config)
+    config.cancelToken = new CancelToken(res => {
+      pending.push({ 'UrlPath': config.url, 'Cancel': res })
+    })
     return config
   },
-  error => {
-    return Promise.reject(error)
+  (error, response) => {
+    console.log(error)
+    console.log(response)
   }
 )
 
-// response interceptor
 service.interceptors.response.use(
   response => {
-    const res = response.data
-    if (res.code !== 200) {
-      Message({
-        message: res.message || 'Error',
-        type: 'error',
-        duration: 5 * 1000
-      })
-    } else {
-      return res
-    }
-  },
-  error => {
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
+    cancelPending(response.config)
+    return response.data
+  }, error => {
+    console.log(error)
     return Promise.reject(error)
   }
 )
-
 export default service

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-29 15:52:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-29 17:34:12
+ * @LastEditTime: 2020-06-01 15:23:11
  -->
 <template>
   <div class="con">
@@ -140,23 +140,23 @@
 </template>
 <script>
 function realFormatSecond(second) {
-  const secondType = typeof second;
-  if (secondType === "number" || secondType === "string") {
-    second = parseInt(second);
-    const hours = Math.floor(second / 3600);
-    second = second - hours * 3600;
-    const mimute = Math.floor(second / 60);
-    second = second - mimute * 60;
-    return ("0" + mimute).slice(-2) + ":" + ("0" + second).slice(-2);
+  const secondType = typeof second
+  if (secondType === 'number' || secondType === 'string') {
+    second = parseInt(second)
+    const hours = Math.floor(second / 3600)
+    second = second - hours * 3600
+    const mimute = Math.floor(second / 60)
+    second = second - mimute * 60
+    return ('0' + mimute).slice(-2) + ':' + ('0' + second).slice(-2)
   } else {
-    return "0:00:00";
+    return '0:00:00'
   }
 }
 export default {
-  name: "AudioPlay",
+  name: 'AudioPlay',
   filters: {
     formatSecond(second = 0) {
-      return realFormatSecond(second);
+      return realFormatSecond(second)
     }
   },
   props: {
@@ -169,13 +169,13 @@ export default {
     return {
       currentTime: 0,
       logoUrl:
-        "http://cdn.duitang.com/uploads/item/201309/26/20130926095128_SiPMh.jpeg",
-      songUrl: "",
-      lrcObj: "", // 歌词
-      lrc: "", // 歌词
+        'http://cdn.duitang.com/uploads/item/201309/26/20130926095128_SiPMh.jpeg',
+      songUrl: '',
+      lrcObj: '', // 歌词
+      lrc: '', // 歌词
       lrcList: [],
       lrcIndex: 0,
-      title: "",
+      title: '',
       audio: {
         currentTime: 0,
         maxTime: 0,
@@ -183,7 +183,7 @@ export default {
         muted: false,
         speed: 1,
         waiting: true,
-        preload: "auto"
+        preload: 'auto'
       },
       sliderTime: 0,
       volumeShow: false,
@@ -203,76 +203,74 @@ export default {
         // 不要快进按钮
         noSpeed: true
       }
-    };
+    }
   },
   watch: {
     data: {
       handler(val) {
-        if (val && JSON.stringify(val)!=='{}') {
-          let data = val
-          this.lrcList = [];
-          this.songUrl = data.url;
-          console.log(data)
-          data.lrc = data.lrc.replace(/[\\r\\n]/g, "");
-          if (data.lrc !== "") {
-            this.lrcObj = this.handleLrc(data.lrc);
+        if (val && JSON.stringify(val) !== '{}') {
+          const data = val
+          this.lrcList = []
+          this.songUrl = data.url
+          data.lrc = data.lrc.replace(/[\\r\\n]/g, '')
+          if (data.lrc !== '') {
+            this.lrcObj = this.handleLrc(data.lrc)
           } else {
-            this.lrc = "暂无歌词";
+            this.lrc = '暂无歌词'
           }
           if (data.imgUrl) {
-            this.logoUrl = data.imgUrl;
+            this.logoUrl = data.imgUrl
           }
-          this.title = data.name;
-          this.$nextTick(()=>{
-            this.$refs.audio.pause();
+          this.title = data.name
+          this.$nextTick(() => {
+            this.$refs.audio.pause()
           })
         }
       },
       immediate: true
-    },
+    }
   },
   methods: {
     closeVol() {
-      this.volumeShow = false;
+      this.volumeShow = false
     },
     showVol() {
-      this.volumeShow = true;
+      this.volumeShow = true
     },
     // 进度条toolTip
     formatProcessToolTip(index = 0) {
-      index = parseInt((this.audio.maxTime / 100) * index);
-      return "进度条: " + realFormatSecond(index);
+      index = parseInt((this.audio.maxTime / 100) * index)
+      return '进度条: ' + realFormatSecond(index)
     },
     // 音量条toolTip
     formatVolumeToolTip(index) {
-      return "音量条: " + index;
+      return '音量条: ' + index
     },
     // 播放跳转
     changeCurrentTime(index) {
       this.$refs.audio.currentTime = parseInt(
         (index / 100) * this.audio.maxTime
-      );
+      )
     },
     changeVolume(index) {
-      console.log(index);
-      this.$refs.audio.volume = index / 100;
-      this.sliderVolume = index;
+      this.$refs.audio.volume = index / 100
+      this.sliderVolume = index
     },
     // 控制音频的播放与暂停
     startPlayOrPause() {
-      return this.audio.playing ? this.pause() : this.play();
+      return this.audio.playing ? this.pause() : this.play()
     },
     // 播放音频
     play() {
-      this.$refs.audio.play();
+      this.$refs.audio.play()
     },
     // 暂停音频
     pause() {
-      this.$refs.audio.pause();
+      this.$refs.audio.pause()
     },
     // 当音频暂停
     onPause() {
-      this.audio.playing = false;
+      this.audio.playing = false
     },
     // handleClose(done) {
     //   this.$confirm('确认关闭？', {
@@ -287,83 +285,83 @@ export default {
     //     .catch(_ => {})
     // },
     handleLrc(v) {
-      var lyrics = v.split("[");
-      v.split("[").map(v => {
-        this.lrcList.push(v.slice(9));
-      });
-      this.lrcList.shift(); // / 截取时会多一个空的
-      lyrics.shift();
-      var b = [];
+      var lyrics = v.split('[')
+      v.split('[').map(v => {
+        this.lrcList.push(v.slice(9))
+      })
+      this.lrcList.shift() // / 截取时会多一个空的
+      lyrics.shift()
+      var b = []
       lyrics.map(v => {
-        b.push("[" + v);
-      });
-      lyrics = b;
-      var lrcObj = [];
+        b.push('[' + v)
+      })
+      lyrics = b
+      var lrcObj = []
       for (var i = 0; i < lyrics.length; i++) {
-        var lyric = decodeURIComponent(lyrics[i]);
-        var timeReg = /\[\d*:\d*((\.|:)\d*)*\]/g;
-        var timeRegExpArr = lyric.match(timeReg);
-        if (!timeRegExpArr) continue;
-        var clause = lyric.replace(timeReg, "");
+        var lyric = decodeURIComponent(lyrics[i])
+        var timeReg = /\[\d*:\d*((\.|:)\d*)*\]/g
+        var timeRegExpArr = lyric.match(timeReg)
+        if (!timeRegExpArr) continue
+        var clause = lyric.replace(timeReg, '')
         for (var k = 0, h = timeRegExpArr.length; k < h; k++) {
-          var t = timeRegExpArr[k];
-          const min = Number(String(t.match(/\[\d*/i)).slice(1));
-          const sec = Number(String(t.match(/:\d*/i)).slice(1));
-          var time = min * 60 + sec;
-          lrcObj.push({ T: time, V: clause });
+          var t = timeRegExpArr[k]
+          const min = Number(String(t.match(/\[\d*/i)).slice(1))
+          const sec = Number(String(t.match(/:\d*/i)).slice(1))
+          var time = min * 60 + sec
+          lrcObj.push({ T: time, V: clause })
         }
       }
-      return lrcObj;
+      return lrcObj
     },
     onError() {
-      this.audio.waiting = true;
-      this.$message.error("文件错误");
+      this.audio.waiting = true
+      this.$message.error('文件错误')
     },
     // 当音频开始等待
     onWaiting(res) {
-      console.log(res);
+      console.log(res)
     },
     // 当音频开始播放
     onPlay(res) {
-      this.audio.playing = true;
-      this.audio.loading = false;
+      this.audio.playing = true
+      this.audio.loading = false
       if (!this.controlList.onlyOnePlaying) {
-        return;
+        return
       }
-      const target = res.target;
-      const audios = document.getElementsByTagName("audio");
+      const target = res.target
+      const audios = document.getElementsByTagName('audio');
       [...audios].forEach(item => {
         if (item !== target) {
-          item.pause();
+          item.pause()
         }
-      });
+      })
     },
     // 当timeupdate事件大概每秒一次，用来更新音频流的当前播放时间
     onTimeupdate(res) {
-      this.audio.currentTime = res.target.currentTime;
+      this.audio.currentTime = res.target.currentTime
       this.sliderTime = parseInt(
         (this.audio.currentTime / this.audio.maxTime) * 100
-      );
-      const _this = this;
-      if (this.lrc !== "暂无歌词") {
+      )
+      const _this = this
+      if (this.lrc !== '暂无歌词') {
         _this.lrcObj.map((v, index) => {
           if (v.T === Math.floor(this.audio.currentTime)) {
-            this.lrcIndex = index;
+            this.lrcIndex = index
           }
-        });
+        })
         if (this.$refs.lrcDiv) {
-          this.$refs.lrcDiv.scrollTop = 16 * this.lrcIndex;
+          this.$refs.lrcDiv.scrollTop = 16 * this.lrcIndex
         }
       }
     },
     // 当加载语音流元数据完成后，会触发该事件的回调函数
     // 语音元数据主要是语音的长度之类的数据
     onLoadedmetadata(res) {
-      this.audio.waiting = false;
-      this.audio.maxTime = parseInt(res.target.duration);
+      this.audio.waiting = false
+      this.audio.maxTime = parseInt(res.target.duration)
     }
   }
-};
+}
 </script>
 <style scoped>
 .con >>> .el-dialog {

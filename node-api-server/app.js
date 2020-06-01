@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var dashBoardRouter = require('./routes/dashBoard');
+var componentsRouter = require('./routes/components');
 
 var app = express();
 
@@ -14,8 +15,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// 这里dest对应的值是你要将上传的文件存的文件夹
+
 app.use(logger('dev'));
-app.use(express.json());
+// app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/dashBoard', dashBoardRouter);
+app.use('/components', componentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

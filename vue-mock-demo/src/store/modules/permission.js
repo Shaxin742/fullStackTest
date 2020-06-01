@@ -2,20 +2,18 @@
  * @Author: ShaXin
  * @Date: 2020-05-28 15:38:29
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 16:11:04
+ * @LastEditTime: 2020-06-01 15:24:02
  */
-import {asyncRoutes,constantRoutes} from '@/router'
+import { asyncRoutes, constantRoutes } from '@/router'
 
 const state = {
   routes: constantRoutes,
-  addRoutes:[]
+  addRoutes: []
 }
 
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
-    console.log(routes)
-    console.log(state.addRoutes)
     state.routes = constantRoutes.concat(routes)
   }
 }
@@ -23,7 +21,6 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }) {
     return new Promise(resolve => {
-      console.log(asyncRoutes)
       // asyncRoutes.push({ path: '*', redirect: '/404', hidden: true })
       commit('SET_ROUTES', asyncRoutes)
       resolve()

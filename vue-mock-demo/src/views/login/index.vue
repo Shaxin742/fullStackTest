@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:53:30
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-27 17:17:54
+ * @LastEditTime: 2020-06-01 15:24:15
  -->
 <template>
   <div class="login-container">
@@ -120,9 +120,8 @@ export default {
             this.loading = false
           }).catch(() => {
             this.loading = false
-          }) 
+          })
         } else {
-          console.log('error submit!!')
           return false
         }
       })

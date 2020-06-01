@@ -1,5 +1,5 @@
 
-import { getUrlParams } from "./utils.js";
+import { getUrlParams } from './utils.js'
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -63,5 +63,5 @@ export default {
       code: 200,
       data: 'success'
     }
-  },
+  }
 }

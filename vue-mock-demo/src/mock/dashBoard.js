@@ -1,4 +1,4 @@
-import { getUrlParams } from "./utils.js";
+import { getUrlParams } from './utils.js'
 function getNewDate(date) {
   const year = date.getFullYear()
   const month = date.getMonth()
@@ -19,13 +19,10 @@ function getlocaData(year, month, day = 0) {
 function getCalender(timeVal) {
   const calendatArr = []
   timeVal = JSON.parse(timeVal)
-  console.log(timeVal)
   // 年月日 转换后的
   const { year, month } = getNewDate(
     getDate(timeVal.year, timeVal.month + 1, 0)
   )
-  console.log(year,month)
-  console.log(getlocaData(year, month, 1))
   const firstDay = getlocaData(year, month, 1)
   const lastDay = getlocaData(year, month + 1, 0)
 
@@ -56,5 +53,5 @@ export default {
       message: 'success',
       data: data
     }
-  },
+  }
 }

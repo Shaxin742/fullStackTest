@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login',function(req,res,next){
-  console.log(req)
   const tokens = {
     admin: {
       token: 'admin-token'
@@ -27,7 +26,6 @@ router.post('/login',function(req,res,next){
   // })
   var response
   var params = req.body;
-  console.log(params.username)
   const token = tokens[params.username]
   console.log(token)
   console.log(!token)
