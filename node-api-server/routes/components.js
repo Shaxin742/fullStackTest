@@ -2,21 +2,19 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 17:34:16
+ * @LastEditTime: 2020-06-01 18:04:35
  */
 
 var express = require('express');
-let app = express();
 var router = express.Router();
+const multer = require('multer');
+const upload = multer({                     // 实例化multer对象
+  dest: './public/uploads'                        // 保存上传文件的目录
+});
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
-var multer = require("multer");
-// 这里dest对应的值是你要将上传的文件存的文件夹
-var upload = multer({ dest: './public/uploads' });
-app.use(express.static('./public'));
-
 router.get('/getSongs', function (req, res) {
   const { name } = req.query
   console.log(name)
@@ -40,8 +38,9 @@ router.get('/getSongs', function (req, res) {
 })
 
 // router.post('/formsubmit', function (req, res) {
-router.post("/formsubmit", upload.single('file'), (req, res) => {
-  console.log(req.body);
+router.post("/formsubmit", upload.single('multipartFiles',10), (req, res) => {
+  console.log(req.fields);
+  console.log(req.files);
   res.send({ code: 200, data: '123123' });
 })
 

@@ -15,20 +15,9 @@ router.post('/login',function(req,res,next){
       token: 'editor-token'
     }
   }
-
-  // var body = '';
-  // req.on('data', function (data) {
-  //   body += data;
-  // });
-  // req.on('end', function () {
-  //   var json = JSON.parse(body);
-  //   console.log(222,json)
-  // })
   var response
   var params = req.body;
   const token = tokens[params.username]
-  console.log(token)
-  console.log(!token)
   if(token){
     response = {code:200,data:token};
   }else{
