@@ -6,10 +6,14 @@ import '@/styles/index.scss' // global css
 import '@/icons' // icon
 import '@/permission' // permission control
 import { App, store, router, i18n, message, BaiduMap, ElementUI, htmlToPdf } from './tools'
-
+// import ShaxinCascader from '@/components/ShaxinCascader'
+import ShaxinSelect from '@/components/ShaxinSelect/select'
 Vue.use(BaiduMap, {
   ak: 'oZNrr2X9Qz082TrGnnLesB1hb8kLED2v'
 })
+
+// Vue.use(ShaxinCascader)
+Vue.component('el-select', ShaxinSelect);
 
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)

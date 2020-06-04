@@ -8,13 +8,33 @@ const service = axios.create({
   baseURL: '/app/api/dev-api', // url = base url + request url
   timeout: 5000 // request timeout
 })
+let pending = []
+let CancelToken = axios.CancelToken
 
+let cancelPending = (config) => {
+  pending.forEach((item, index) => {
+    if (config) {
+      if (item.UrlPath === config.url) {
+        item.Cancel() // 取消请求
+        pending.splice(index, 1) // 移除当前请求记录
+      };
+    } else {
+      item.Cancel() // 取消请求
+      pending.splice(index, 1) // 移除当前请求记录
+    }
+  })
+}
 // request interceptor
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
       config.headers['X-Token'] = getToken()
     }
+    
+    cancelPending(config)
+    config.cancelToken = new CancelToken(res => {
+      pending.push({'UrlPath': config.url, 'Cancel': res})
+    })
     return config
   },
   error => {
@@ -26,6 +46,7 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
+    cancelPending(response.config)
     const res = response.data
     console.log(res)
     if (res.code !== 200) {

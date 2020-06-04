@@ -2,12 +2,12 @@
  * @Author: ShaXin
  * @Date: 2020-05-28 15:47:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 17:00:28
+ * @LastEditTime: 2020-06-04 14:42:17
  -->
 <template>
   <div>
     <el-form ref="ruleForm" :rules="rules" :model="form" label-width="80px">
-      <el-form-item label="活动名称" prop="name">
+      <!-- <el-form-item label="活动名称" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item label="活动区域" prop="region">
@@ -15,7 +15,7 @@
           <el-option label="区域一" value="shanghai" />
           <el-option label="区域二" value="beijing" />
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
 
       <el-form-item label="图片" prop="fileList">
         <el-upload
@@ -61,13 +61,13 @@ export default {
         fileList: []
       },
       rules: {
-        name: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        region: [
-          { required: true, message: '请选择活动区域', trigger: 'change' }
-        ],
+        // name: [
+        //   { required: true, message: '请输入活动名称', trigger: 'blur' },
+        //   { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        // ],
+        // region: [
+        //   { required: true, message: '请选择活动区域', trigger: 'change' }
+        // ],
         fileList: [
           { validator: validateRequire, trigger: 'change' }
         ]
@@ -94,15 +94,15 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const formData = new FormData()
-          Object.keys(form).map(item => {
-            if (item !== 'fileList') {
-              formData.append(item, form[item])
-            }
-          })
+          // Object.keys(form).map(item => {
+          //   if (item !== 'fileList') {
+          //     formData.append(item, form[item])
+          //   }
+          // })
           fileList.map(val => {
-            formData.append('multipartFiles', val.raw, val.name)
+            formData.append('files', val.raw, val.name)
           })
-          console.log(formData.get('multipartFiles'))
+          console.log(formData.get('files'))
           console.log(formData.get('name'))
           console.log(formData.get('region'))
 

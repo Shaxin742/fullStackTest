@@ -356,6 +356,18 @@ export const asyncRoutes = [
         name: 'html2pdf',
         component: () => import('@/views/vue/html2pdf'),
         meta: { title: 'html2pdf', icon: 'eye' }
+      },
+      {
+        path: 'cascader',
+        name: 'cascader',
+        component: () => import('@/views/vue/cascader'),
+        meta: { title: 'cascader', icon: 'eye' }
+      },
+      {
+        path: 'cascader2',
+        name: 'cascader2',
+        component: () => import('@/views/vue/cascader2'),
+        meta: { title: 'cascader2', icon: 'eye' }
       }
     ]
   },

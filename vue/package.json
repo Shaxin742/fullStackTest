@@ -38,6 +38,7 @@
     "postcss-px2rem": "^0.3.0",
     "react": "^16.11.0",
     "screenfull": "^5.0.0",
+    "shaxin-element-ui": "^2.13.3",
     "vue": "^2.6.10",
     "vue-amap": "^0.5.10",
     "vue-baidu-map": "^0.21.22",

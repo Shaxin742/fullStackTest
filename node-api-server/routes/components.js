@@ -2,12 +2,15 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 18:04:35
+ * @LastEditTime: 2020-06-02 09:10:53
  */
 
 var express = require('express');
 var router = express.Router();
+const app = express();
 const multer = require('multer');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
 const upload = multer({                     // 实例化multer对象
   dest: './public/uploads'                        // 保存上传文件的目录
 });
@@ -37,11 +40,18 @@ router.get('/getSongs', function (req, res) {
   res.send(response);
 })
 
-// router.post('/formsubmit', function (req, res) {
-router.post("/formsubmit", upload.single('multipartFiles',10), (req, res) => {
+router.post('/formsubmit', function (req, res) {
+// router.post("/formsubmit", upload.single('files',10), (req, res) => {
   console.log(req.fields);
   console.log(req.files);
+  console.log(req.body);
   res.send({ code: 200, data: '123123' });
 })
-
+// router.post("/formsubmit", multipartMiddleware, function (req, res) {
+//   app.use(bodyParser.urlencoded({ extended: false }));
+//   console.log(req)
+//   let { files } = req
+//   console.log(files.file)
+//   res.send({ code: 200, data: '123123' });
+// })
 module.exports = router;
