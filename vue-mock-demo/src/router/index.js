@@ -37,8 +37,8 @@ export const constantRoutes = [
     ]
   },
   {
-    path: "/404",
-    name: "notFound",
+    path: '/404',
+    name: 'notFound',
     component: () => import('@/views/404/index'),
     hidden: true
   }
@@ -62,7 +62,7 @@ export const asyncRoutes = [
         name: 'song',
         component: () => import('@/views/components/song'),
         meta: { title: 'song' }
-      },
+      }
     ]
   },
   {
@@ -74,7 +74,7 @@ export const asyncRoutes = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  },
+  }
 ]
 
 const createRouter = () =>
@@ -83,7 +83,6 @@ const createRouter = () =>
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRoutes
   })
-
 
 const router = createRouter()
 

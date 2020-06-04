@@ -22,6 +22,7 @@
           v-model="form.fileList"
           action=""
           list-type="picture-card"
+          accept="image/jpeg,image/png,image/bmp"
           :auto-upload="false"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
@@ -106,7 +107,7 @@ export default {
           console.log(formData.get('name'))
           console.log(formData.get('region'))
 
-          formsubmit({ data: formData }).then(res => {
+          formsubmit(formData).then(res => {
             console.log(res)
           })
         } else {

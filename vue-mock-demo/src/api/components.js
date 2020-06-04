@@ -23,7 +23,7 @@ export function formsubmit(data) {
     url: serverUrl(`${serverName}components/formsubmit`),
     method: 'post',
     headers: {
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data;boundary = ' + new Date().getTime()
     },
     data
   })

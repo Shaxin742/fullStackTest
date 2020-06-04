@@ -94,7 +94,7 @@ const actions = {
       removeToken()
       resolve()
     })
-  },
+  }
 }
 
 export default {

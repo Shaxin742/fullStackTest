@@ -10,7 +10,7 @@ const state = {
   sidebar: {
     opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     withoutAnimation: false
-  },
+  }
 }
 
 const mutations = {
@@ -28,10 +28,10 @@ const mutations = {
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   },
-  
+
   TOGGLE_DEVICE: (state, device) => {
     state.device = device
-  },
+  }
 }
 
 const actions = {
@@ -43,7 +43,7 @@ const actions = {
   },
   toggleDevice({ commit }, device) {
     commit('TOGGLE_DEVICE', device)
-  },
+  }
 }
 
 export default {

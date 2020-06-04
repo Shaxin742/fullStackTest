@@ -8,12 +8,13 @@
 var express = require('express');
 var router = express.Router();
 const app = express();
-const multer = require('multer');
-var multipart = require('connect-multiparty');
-var multipartMiddleware = multipart();
-const upload = multer({                     // 实例化multer对象
-  dest: './public/uploads'                        // 保存上传文件的目录
-});
+var multiparty = require("multiparty");
+// const multer = require('multer');
+// var multipart = require('connect-multiparty');
+// var multipartMiddleware = multipart();
+// const upload = multer({                     // 实例化multer对象
+//   dest: './public/uploads'                        // 保存上传文件的目录
+// });
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -41,11 +42,15 @@ router.get('/getSongs', function (req, res) {
 })
 
 router.post('/formsubmit', function (req, res) {
-// router.post("/formsubmit", upload.single('files',10), (req, res) => {
-  console.log(req.fields);
-  console.log(req.files);
-  console.log(req.body);
-  res.send({ code: 200, data: '123123' });
+  var form = new multiparty.Form({ uploadDir: './public/uploads' });
+  form.parse(req, function(err, fields, files) {
+      console.log(fields, files,' fields2')
+      console.log( files)
+      if (err) {
+      } else {
+          res.send({ code: 200, data: files.files[0].path})
+      }
+  });
 })
 // router.post("/formsubmit", multipartMiddleware, function (req, res) {
 //   app.use(bodyParser.urlencoded({ extended: false }));
