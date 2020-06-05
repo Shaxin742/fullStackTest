@@ -31,7 +31,6 @@ service.interceptors.request.use(
     config.cancelToken = new CancelToken(res => {
       pending.push({ 'UrlPath': config.url, 'Cancel': res })
     })
-    console.log(config)
     return config
   },
   (error, response) => {
