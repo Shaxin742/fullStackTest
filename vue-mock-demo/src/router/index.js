@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-29 15:56:14
+ * @LastEditTime: 2020-06-05 17:06:39
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -62,6 +62,12 @@ export const asyncRoutes = [
         name: 'song',
         component: () => import('@/views/components/song'),
         meta: { title: 'song' }
+      },
+      {
+        path: 'userTable',
+        name: 'userTable',
+        component: () => import('@/views/components/userTable'),
+        meta: { title: 'userTable' }
       }
     ]
   },
