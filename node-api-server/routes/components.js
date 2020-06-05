@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-05 14:11:55
+ * @LastEditTime: 2020-06-05 14:15:56
  */
 
 var express = require('express');
@@ -47,6 +47,15 @@ router.post('/formsubmit', function (req, res) {
     }
   });
 })
+
+// SQL
+// SQL
+// SQL
+// SQL
+// SQL
+// SQL
+// SQL
+// SQL
 
 router.post('/sqlInsert', function (req, res) {
   db.pool.query('INSERT INTO users (username,password) values (?,?)', ['admin', '1232456'], (err, results) => {

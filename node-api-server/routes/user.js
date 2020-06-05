@@ -1,29 +1,25 @@
 var express = require('express');
 var router = express.Router();
-var URL = require('url'); //请求url模块
+var db = require('../db/db'); //引入db
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
 router.post('/login',function(req,res,next){
-  const tokens = {
-    admin: {
-      token: 'admin-token'
-    },
-    editor: {
-      token: 'editor-token'
-    }
-  }
   var response
   var params = req.body;
-  const token = tokens[params.username]
-  if(token){
-    response = {code:200,data:token};
-  }else{
-    response = {code:400,data:'用户名或密码错误'};
-  }
-  res.send(response);
+
+  let sqlSelect = 'SELECT * FROM users WHERE username = ? && password=?'
+  db.pool.query(sqlSelect, [params.username, params.password], (err, results) => {
+    console.log(err);
+    console.log(results);
+    if(err){
+      response = {code:400,data:'用户名或密码错误'};
+    }
+    response = {code:200,data:params.username+"-token"};
+    res.send(response);
+  });
 })
 
 router.get('/info',function(req,res){
