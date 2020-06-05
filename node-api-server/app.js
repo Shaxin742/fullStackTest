@@ -9,6 +9,8 @@ var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var dashBoardRouter = require('./routes/dashBoard');
 var componentsRouter = require('./routes/components');
+var fs = require("fs");
+
 
 app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

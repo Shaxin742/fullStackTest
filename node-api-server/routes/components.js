@@ -2,23 +2,18 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-02 09:10:53
+ * @LastEditTime: 2020-06-05 14:11:55
  */
 
 var express = require('express');
 var router = express.Router();
-const app = express();
+var db = require('../db/db'); //引入db
 var multiparty = require("multiparty");
-// const multer = require('multer');
-// var multipart = require('connect-multiparty');
-// var multipartMiddleware = multipart();
-// const upload = multer({                     // 实例化multer对象
-//   dest: './public/uploads'                        // 保存上传文件的目录
-// });
-/* GET users listing. */
+
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
+
 router.get('/getSongs', function (req, res) {
   const { name } = req.query
   console.log(name)
@@ -43,20 +38,46 @@ router.get('/getSongs', function (req, res) {
 
 router.post('/formsubmit', function (req, res) {
   var form = new multiparty.Form({ uploadDir: './public/uploads' });
-  form.parse(req, function(err, fields, files) {
-      console.log(fields, files,' fields2')
-      console.log( files)
-      if (err) {
-      } else {
-          res.send({ code: 200, data: files.files[0].path})
-      }
+  form.parse(req, function (err, fields, files) {
+    console.log(fields, files, ' fields2')
+    console.log(files)
+    if (err) {
+    } else {
+      res.send({ code: 200, data: files.files[0].path })
+    }
   });
 })
-// router.post("/formsubmit", multipartMiddleware, function (req, res) {
-//   app.use(bodyParser.urlencoded({ extended: false }));
-//   console.log(req)
-//   let { files } = req
-//   console.log(files.file)
-//   res.send({ code: 200, data: '123123' });
-// })
+
+router.post('/sqlInsert', function (req, res) {
+  db.pool.query('INSERT INTO users (username,password) values (?,?)', ['admin', '1232456'], (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: 123 })
+  });
+})
+router.post('/sqlSelect', function (req, res) {
+  let sqlSelect = 'SELECT * FROM users WHERE username = ? && password=?'
+  db.pool.query(sqlSelect, ['admin', '123456'], (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: results })
+  });
+})
+router.post('/sqlDelete', function (req, res) {
+  let sqlSelect = 'DELETE FROM users WHERE username = ? && password=?'
+  db.pool.query(sqlSelect, ['admin', '1232456'], (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: results })
+  });
+})
+
+router.post('/sqlUpdate', function (req, res) {
+  let sqlSelect = 'UPDATE users SET username = ?  WHERE  username=?'
+  db.pool.query(sqlSelect, ['admin2222', 'admin'], (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: results })
+  });
+})
 module.exports = router;
