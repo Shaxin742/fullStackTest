@@ -7,9 +7,12 @@ const en = {
   chinese: 'chinese',
   english: 'english',
   Dashboard: 'Dashboard',
-  test:'test',
-  song:'song',
-  form:'form'
+  test: 'test',
+  song: 'song',
+  form: 'form',
+  userTable: 'userTable',
+  ExternalLink: '外链',
+  vue: 'vue'
 }
 
 export default en

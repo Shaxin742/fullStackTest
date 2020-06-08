@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-05 17:06:39
+ * @LastEditTime: 2020-06-08 18:11:32
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -77,7 +77,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'https://github.com/PanJiaChen/vue-element-admin',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { title: 'ExternalLink', icon: 'link' }
       }
     ]
   }
