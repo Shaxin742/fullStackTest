@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:54:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 09:13:36
+ * @LastEditTime: 2020-06-08 17:47:31
  */
 import request from '@/utils/request'
 
@@ -34,5 +34,13 @@ export function getTableData(params) {
     url: serverUrl(`${serverName}components/getTableData`),
     method: 'get',
     params
+  })
+}
+
+export function deleteTableData(data) {
+  return request({
+    url: serverUrl(`${serverName}components/deleteTableData`),
+    method: 'delete',
+    data
   })
 }

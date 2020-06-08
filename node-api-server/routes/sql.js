@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-08 09:35:53
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 09:36:11
+ * @LastEditTime: 2020-06-08 17:24:33
  */
 
 var express = require('express')
@@ -25,8 +25,8 @@ router.post('/sqlSelect', function(req, res) {
   })
 })
 router.post('/sqlDelete', function(req, res) {
-  const sqlSelect = 'DELETE FROM users WHERE username = ? && password=?'
-  db.pool.query(sqlSelect, ['admin', '1232456'], (err, results) => {
+  const sqlDelete = 'DELETE FROM users WHERE username = ? && password=?'
+  db.pool.query(sqlDelete, ['admin', '1232456'], (err, results) => {
     console.log(err)
     console.log(results)
     res.send({ code: 200, data: results })
@@ -34,8 +34,8 @@ router.post('/sqlDelete', function(req, res) {
 })
 
 router.post('/sqlUpdate', function(req, res) {
-  const sqlSelect = 'UPDATE users SET username = ?  WHERE  username=?'
-  db.pool.query(sqlSelect, ['admin2222', 'admin'], (err, results) => {
+  const sqlUpdate = 'UPDATE users SET username = ?  WHERE  username=?'
+  db.pool.query(sqlUpdate, ['admin2222', 'admin'], (err, results) => {
     console.log(err)
     console.log(results)
     res.send({ code: 200, data: results })

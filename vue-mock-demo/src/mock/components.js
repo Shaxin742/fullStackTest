@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:46:52
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 09:17:01
+ * @LastEditTime: 2020-06-08 17:04:17
  */
 import { getUrlParams } from './utils.js'
 const songs = {
@@ -49,6 +49,14 @@ export default {
         tableData: [{ date: '2010-02-02', name: '阿毛', province: '辽宁', city: '划水', address: '宽甸东泰', zip: 100833 }],
         total: 10
       }
+    }
+  },
+
+  deleteTableData: option => {
+    return {
+      code: 200,
+      message: 'success',
+      data: '删除成功'
     }
   }
 }

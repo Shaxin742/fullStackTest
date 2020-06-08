@@ -182,7 +182,6 @@ export default {
   methods: {
     // 多行选中
     handleSelectionChange(val) {
-      console.log(val)
       this.$emit('handleSelectionChange', val)
     },
     handleSizeChange(val) {

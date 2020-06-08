@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 16:37:52
+ * @LastEditTime: 2020-06-08 17:49:08
  */
 
 var express = require('express');
@@ -58,7 +58,7 @@ router.get('/getTableData', function (req, res) {
   console.log([(pageNo - 1) * pageSize, pageSize])
 
   // 排序 和不排序 使用不同sql 语句  
-  //  这块大概有问题 我自己想的方法
+  // 这块大概有问题 我自己想的方法
   // TODO
   let sqlSelect = sortOrder ? 'SELECT * FROM userdata where name like ? ORDER BY ' + sortName + ' ' + sortOrder + ' limit  ? ,?' :
     'SELECT * FROM userdata where name like ? limit  ? ,?'
@@ -74,6 +74,20 @@ router.get('/getTableData', function (req, res) {
     console.log(err);
     console.log(results);
     res.send({ code: 200, data: { tableData: results, total: total } })
+  });
+})
+
+// 删除
+router.delete('/deleteTableData', function (req, res) {
+  let datas = req.body.data
+  console.log(datas)
+  const sqlDelete = `DELETE FROM userData WHERE id IN (${datas+''})`
+  console.log(sqlDelete)
+  // 查询data
+  db.pool.query(sqlDelete, (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: '删除成功' })
   });
 })
 

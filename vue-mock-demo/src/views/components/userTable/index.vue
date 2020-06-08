@@ -2,21 +2,24 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 15:55:26
+ * @LastEditTime: 2020-06-08 17:52:24
  -->
 <template>
   <div>
     <el-form ref="form" size="mini" :model="form" label-width="100px" class="demo-ruleForm">
-      <el-row>
+      <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item label="姓名" prop="name">
             <el-input v-model="form.name" autocomplete="off" />
           </el-form-item>
         </el-col>
+        <el-col :span="16" style="text-align:right;">
+          <el-form-item>
+            <el-button type="primary" @click="submitForm()">查询</el-button>
+            <el-button type="danger" @click="deleteItem()">删除</el-button>
+          </el-form-item>
+        </el-col>
       </el-row>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm()">提交</el-button>
-      </el-form-item>
     </el-form>
     <BaseTable
       muti-select
@@ -29,13 +32,14 @@
       :current-page="pageNo"
       @handleSizeChange="handleSizeChange"
       @handleCurrentChange="handleCurrentChange"
+      @handleSelectionChange="handleSelectionChange"
       @sortChange="sortChange"
     />
   </div>
 </template>
 
 <script>
-import { getTableData } from '@/api/components'
+import { getTableData, deleteTableData } from '@/api/components'
 import BaseTable from '@/components/BaseTable'
 export default {
   components: {
@@ -117,6 +121,7 @@ export default {
       total: 0,
       pageSize: 10,
       pageNo: 1,
+      multipleSelection: [],
       sortName: '',
       sortOrder: ''
     }
@@ -159,6 +164,9 @@ export default {
       this.pageNo = val
       this.getTableData()
     },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    },
     // 排序
     sortChange({ column, prop, order }) {
       if (order === 'descending') {
@@ -170,10 +178,30 @@ export default {
       }
       this.sortName = prop
       this.getTableData()
+    },
+
+    async deleteItem() {
+      this.loading = true
+      const arr = this.multipleSelection.map(item => {
+        return item.id
+      })
+      try {
+        const res = await deleteTableData({ data: arr })
+        this.$message.success(res.data)
+        this.loading = false
+        this.getTableData()
+      } catch (error) {
+        this.$message.error('访问失败')
+        this.loading = false
+      }
     }
   }
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
+.demo-ruleForm {
+  margin-top: 20px;
+  margin-right: 20px;
+}
 </style>
