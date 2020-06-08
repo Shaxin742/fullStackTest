@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:54:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 17:04:54
+ * @LastEditTime: 2020-06-08 09:13:36
  */
 import request from '@/utils/request'
 
@@ -26,5 +26,13 @@ export function formsubmit(data) {
       'Content-Type': 'multipart/form-data;boundary = ' + new Date().getTime()
     },
     data
+  })
+}
+
+export function getTableData(params) {
+  return request({
+    url: serverUrl(`${serverName}components/getTableData`),
+    method: 'get',
+    params
   })
 }

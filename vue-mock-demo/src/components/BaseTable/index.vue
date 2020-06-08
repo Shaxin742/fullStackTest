@@ -35,6 +35,7 @@ column:需要展示的列
       :load="load"
       :lazy="lazy"
       @selection-change="handleSelectionChange"
+      @sort-change="sortChange"
     >
       <template slot="ematy">12312312</template>
       <el-table-column v-if="mutiSelect" type="selection" style="width: 55px;" />
@@ -77,11 +78,10 @@ column:需要展示的列
     </el-table>
     <div style="text-align:right;margin:4px 0">
       <el-pagination
-        background
         :current-page="currentPage"
         :page-sizes="pageSizes"
         :page-size="pageSize"
-        layout="total, sizes, prev, pager, next, jumper"
+        :layout="layout"
         :total="total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -156,32 +156,29 @@ export default {
       type: Boolean,
       default: false
     },
+
     // table 表格的控制参数
     currentPage: {
       type: [String, Number],
-      required: true
+      default: 1
     },
     pageSizes: {
       type: Array,
-      default: () => ['10', '20', '30', '50']
+      default: () => [10, 20, 30, 40]
     },
     pageSize: {
-      type: [String, Number],
-      required: true
+      type: Number,
+      default: 10
     },
     total: {
-      type: [String, Number],
+      type: Number,
       required: true
+    },
+    layout: {
+      type: String,
+      default: 'total, sizes, prev, pager, next, jumper'
     }
   },
-  // 数据
-  data() {
-    return {
-      pageIndex: 1
-    }
-  },
-  computed: {},
-  mounted() {},
   methods: {
     // 多行选中
     handleSelectionChange(val) {
@@ -193,6 +190,9 @@ export default {
     },
     handleCurrentChange(val) {
       this.$emit('handleCurrentChange', val)
+    },
+    sortChange(data) {
+      this.$emit('sortChange', data)
     }
   }
 }

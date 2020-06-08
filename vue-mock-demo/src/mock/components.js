@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:46:52
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 16:35:11
+ * @LastEditTime: 2020-06-08 09:17:01
  */
 import { getUrlParams } from './utils.js'
 const songs = {
@@ -38,6 +38,17 @@ export default {
       code: 200,
       message: '获取歌曲成功',
       data: '123'
+    }
+  },
+
+  getTableData: option => {
+    return {
+      code: 200,
+      message: 'success',
+      data: {
+        tableData: [{ date: '2010-02-02', name: '阿毛', province: '辽宁', city: '划水', address: '宽甸东泰', zip: 100833 }],
+        total: 10
+      }
     }
   }
 }

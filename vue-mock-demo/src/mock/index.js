@@ -3,7 +3,6 @@ import Mock from 'mockjs'
 import user from './user.js' // 登录登出
 import dashBoard from './dashBoard.js' // 首页
 import components from './components.js' // 组件
-import userTable from './userTable.js' // 用户表
 
 // 登录登出
 Mock.mock(/app\/user-api\/user\/login.*/, 'post', user.login)
@@ -16,8 +15,6 @@ Mock.mock(/app\/dash-api\/dashBoard\/getCalendar.*/, 'get', dashBoard.getCalenda
 // 组件 components
 Mock.mock(/app\/dash-api\/components\/getSongs.*/, 'get', components.getSongs)
 Mock.mock(/app\/dash-api\/components\/formsubmit.*/, 'post', components.formsubmit)
-
-// usertable
-Mock.mock(/app\/dash-api\/userTable\/getTableData.*/, 'get', userTable.getTableData)
+Mock.mock(/app\/dash-api\/components\/getTableData.*/, 'get', components.getTableData)
 
 export default Mock
