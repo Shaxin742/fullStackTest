@@ -36,15 +36,17 @@
       @handleSelectionChange="handleSelectionChange"
       @sortChange="sortChange"
     />
+    <add-model :visible="addVisible" />
   </div>
 </template>
 
 <script>
+import addModel from './addModel'
 import { getTableData, deleteTableData } from '@/api/components'
 import BaseTable from '@/components/BaseTable'
 export default {
   components: {
-    BaseTable
+    BaseTable, addModel
   },
   data: function() {
     return {
@@ -124,7 +126,9 @@ export default {
       pageNo: 1,
       multipleSelection: [],
       sortName: '',
-      sortOrder: ''
+      sortOrder: '',
+
+      addVisible: false
     }
   },
   mounted() {
@@ -190,6 +194,9 @@ export default {
         this.$message.error('访问失败')
         this.loading = false
       }
+    },
+    addTableData() {
+      this.addVisible = true
     }
   }
 }
