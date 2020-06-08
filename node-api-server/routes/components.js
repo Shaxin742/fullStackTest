@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 17:49:08
+ * @LastEditTime: 2020-06-08 18:04:04
  */
 
 var express = require('express');
@@ -36,6 +36,7 @@ router.get('/getSongs', function (req, res) {
   res.send(response);
 })
 
+// 图片上传
 router.post('/formsubmit', function (req, res) {
   var form = new multiparty.Form({ uploadDir: './public/uploads' });
   form.parse(req, function (err, fields, files) {
@@ -48,6 +49,7 @@ router.post('/formsubmit', function (req, res) {
   });
 })
 
+// 查询
 router.get('/getTableData', function (req, res) {
   console.log(req.query.pageSize)
   let pageSize = Number(req.query.pageSize)

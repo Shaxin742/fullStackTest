@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 17:52:24
+ * @LastEditTime: 2020-06-08 18:07:47
  -->
 <template>
   <div>
@@ -15,7 +15,8 @@
         </el-col>
         <el-col :span="16" style="text-align:right;">
           <el-form-item>
-            <el-button type="primary" @click="submitForm()">查询</el-button>
+            <el-button type="primary" @click="addTableData()">新增</el-button>
+            <el-button type="primary" @click="getTableData()">查询</el-button>
             <el-button type="danger" @click="deleteItem()">删除</el-button>
           </el-form-item>
         </el-col>
@@ -130,13 +131,8 @@ export default {
     this.getTableData()
   },
   methods: {
-    submitForm() {
-      console.log(this.form)
-      this.getTableData()
-    },
     async getTableData() {
       const { pageSize, pageNo, sortName, sortOrder } = this
-      console.log(pageSize)
       const { name } = this.form
       this.loading = true
       const data = {
