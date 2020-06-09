@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 10:43:01
+ * @LastEditTime: 2020-06-09 11:39:33
  -->
 <template>
   <div>
@@ -201,7 +201,6 @@ export default {
       }
     },
     viewData(record) {
-      console.log(record)
       this.$refs.dataModel.init(record.row, true)
     },
     addTableData() {

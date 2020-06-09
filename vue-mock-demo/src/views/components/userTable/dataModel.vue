@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 11:32:28
+ * @LastEditTime: 2020-06-09 11:39:22
  -->
 <template>
   <div>
@@ -22,7 +22,6 @@
           <el-input v-model="data.name" :disabled="isView" />
         </el-form-item>
         <el-form-item label="省份">
-          <!-- <el-input v-model="data.province" /> -->
           <el-select
             v-model="data.province"
             :disabled="isView"
@@ -39,7 +38,6 @@
           </el-select>
         </el-form-item>
         <el-form-item label="城市">
-          <!-- <el-input v-model="data.city" :disabled="isView" /> -->
           <el-select v-model="data.city" :disabled="!data.province||isView" filterable placeholder="请选择" @change="changeCity">
             <el-option
               v-for="item in citys"
@@ -82,17 +80,13 @@ export default {
   methods: {
     init(val, isView) {
       this.isView = !!isView
-
-      console.log(val)
       this.data = cloneDeep(val)
       this.title =
         JSON.stringify(val) === '{}' ? '新增' : this.isView ? '查看' : '修改'
       this.visible = true
     },
     changeProvience(val) {
-      console.log(val)
       this.citys = []
-      // this.data.city = ''
       this.$set(this.data, 'city', '')
       CITYDATA.allCity.map(v => {
         if (v.prov === val) {
@@ -101,18 +95,13 @@ export default {
       })
     },
     changeCity(val) {
-      console.log(val)
-
       this.$set(this.data, 'city', val)
     },
     async onSubmit() {
-      console.log(this.data)
       try {
-        const res =
-          this.title === '新增'
-            ? await addTableData({ data: this.data })
-            : await updateTableData({ data: this.data })
-        console.log(res)
+        this.title === '新增'
+          ? await addTableData({ data: this.data })
+          : await updateTableData({ data: this.data })
         this.visible = false
         this.$emit('reload')
       } catch (error) {

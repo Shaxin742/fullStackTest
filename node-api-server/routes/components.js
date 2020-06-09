@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 10:37:32
+ * @LastEditTime: 2020-06-09 11:40:12
  */
 
 var express = require('express');
@@ -41,7 +41,6 @@ router.post('/formsubmit', function (req, res) {
   var form = new multiparty.Form({ uploadDir: './public/uploads' });
   form.parse(req, function (err, fields, files) {
     console.log(fields, files, ' fields2')
-    console.log(files)
     if (err) {
     } else {
       res.send({ code: 200, data: files.files[0].path })
@@ -79,10 +78,7 @@ router.get('/getTableData', function (req, res) {
 // 删除
 router.delete('/deleteTableData', function (req, res) {
   let datas = req.body.data
-  console.log(datas)
   const sqlDelete = `DELETE FROM userData WHERE id IN (${datas+''})`
-  console.log(sqlDelete)
-  // 查询data
   db.pool.query(sqlDelete, (err, results) => {
     console.log(err);
     console.log(results);
@@ -94,7 +90,6 @@ router.delete('/deleteTableData', function (req, res) {
 router.post('/addTableData', function (req, res) {
   let datas = req.body.data
   const sqlAdd = `INSERT INTO userData (date,name,province,city,address,zip) values (?,?,?,?,?,?)`
-  // 查询data
   db.pool.query(sqlAdd,[datas.date,datas.name,datas.province,datas.city,datas.address,datas.zip], (err, results) => {
     console.log(err);
     console.log(results);
@@ -104,9 +99,7 @@ router.post('/addTableData', function (req, res) {
 // 修改
 router.patch('/updateTableData', function (req, res) {
   let datas = req.body.data
-  // UPDATE users SET username = ?  WHERE  username=?
   const sqlAdd = `UPDATE userData SET date=?,name=?,province=?,city=?,address=?,zip=? WHERE id=?`
-  // 查询data
   db.pool.query(sqlAdd,[datas.date,datas.name,datas.province,datas.city,datas.address,datas.zip,datas.id], (err, results) => {
     console.log(err);
     console.log(results);
