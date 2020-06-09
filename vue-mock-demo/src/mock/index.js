@@ -17,5 +17,7 @@ Mock.mock(/app\/dash-api\/components\/getSongs.*/, 'get', components.getSongs)
 Mock.mock(/app\/dash-api\/components\/formsubmit.*/, 'post', components.formsubmit)
 Mock.mock(/app\/dash-api\/components\/getTableData.*/, 'get', components.getTableData)
 Mock.mock(/app\/dash-api\/components\/deleteTableData.*/, 'post', components.deleteTableData)
+Mock.mock(/app\/dash-api\/components\/addTableData.*/, 'post', components.addTableData)
+Mock.mock(/app\/dash-api\/components\/updateTableData.*/, 'post', components.updateTableData)
 
 export default Mock

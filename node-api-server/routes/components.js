@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 18:04:04
+ * @LastEditTime: 2020-06-09 10:37:32
  */
 
 var express = require('express');
@@ -51,13 +51,10 @@ router.post('/formsubmit', function (req, res) {
 
 // 查询
 router.get('/getTableData', function (req, res) {
-  console.log(req.query.pageSize)
   let pageSize = Number(req.query.pageSize)
   let { pageNo, name, sortName = '', sortOrder = '' } = req.query
-  console.log(name)
 
   let total = 0
-  console.log([(pageNo - 1) * pageSize, pageSize])
 
   // 排序 和不排序 使用不同sql 语句  
   // 这块大概有问题 我自己想的方法
@@ -90,6 +87,30 @@ router.delete('/deleteTableData', function (req, res) {
     console.log(err);
     console.log(results);
     res.send({ code: 200, data: '删除成功' })
+  });
+})
+
+// 新增
+router.post('/addTableData', function (req, res) {
+  let datas = req.body.data
+  const sqlAdd = `INSERT INTO userData (date,name,province,city,address,zip) values (?,?,?,?,?,?)`
+  // 查询data
+  db.pool.query(sqlAdd,[datas.date,datas.name,datas.province,datas.city,datas.address,datas.zip], (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: '新增成功' })
+  });
+})
+// 修改
+router.patch('/updateTableData', function (req, res) {
+  let datas = req.body.data
+  // UPDATE users SET username = ?  WHERE  username=?
+  const sqlAdd = `UPDATE userData SET date=?,name=?,province=?,city=?,address=?,zip=? WHERE id=?`
+  // 查询data
+  db.pool.query(sqlAdd,[datas.date,datas.name,datas.province,datas.city,datas.address,datas.zip,datas.id], (err, results) => {
+    console.log(err);
+    console.log(results);
+    res.send({ code: 200, data: '修改成功' })
   });
 })
 

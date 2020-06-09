@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:46:52
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 17:04:17
+ * @LastEditTime: 2020-06-09 09:46:19
  */
 import { getUrlParams } from './utils.js'
 const songs = {
@@ -57,6 +57,24 @@ export default {
       code: 200,
       message: 'success',
       data: '删除成功'
+    }
+  },
+
+  addTableData: option => {
+    console.log(option)
+    return {
+      code: 200,
+      message: 'success',
+      data: '新增成功'
+    }
+  },
+
+  updateTableData: option => {
+    console.log(option)
+    return {
+      code: 200,
+      message: 'success',
+      data: '修改成功'
     }
   }
 }

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 18:07:47
+ * @LastEditTime: 2020-06-09 10:43:01
  -->
 <template>
   <div>
@@ -36,17 +36,20 @@
       @handleSelectionChange="handleSelectionChange"
       @sortChange="sortChange"
     />
-    <add-model :visible="addVisible" />
+
+    <!-- 新增修改弹窗 -->
+    <data-model ref="dataModel" @reload="getTableData" />
   </div>
 </template>
 
 <script>
-import addModel from './addModel'
+import dataModel from './dataModel'
 import { getTableData, deleteTableData } from '@/api/components'
 import BaseTable from '@/components/BaseTable'
 export default {
   components: {
-    BaseTable, addModel
+    BaseTable,
+    dataModel
   },
   data: function() {
     return {
@@ -108,14 +111,18 @@ export default {
             return (
               <div>
                 <el-button
-                  onClick={function() {
+                  onClick={() => {
                     this.viewData(record)
                   }}
                   size='mini'
                 >
                   查看
                 </el-button>
-                <el-button size='mini'>编辑</el-button>
+                <el-button size='mini'
+                  onClick={() => {
+                    this.editData(record)
+                  }}
+                >编辑</el-button>
               </div>
             )
           }
@@ -126,9 +133,7 @@ export default {
       pageNo: 1,
       multipleSelection: [],
       sortName: '',
-      sortOrder: '',
-
-      addVisible: false
+      sortOrder: ''
     }
   },
   mounted() {
@@ -195,8 +200,15 @@ export default {
         this.loading = false
       }
     },
+    viewData(record) {
+      console.log(record)
+      this.$refs.dataModel.init(record.row, true)
+    },
     addTableData() {
-      this.addVisible = true
+      this.$refs.dataModel.init({})
+    },
+    editData(record) {
+      this.$refs.dataModel.init(record.row)
     }
   }
 }
