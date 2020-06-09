@@ -2,13 +2,13 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:54:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 10:19:37
+ * @LastEditTime: 2020-06-09 14:56:09
  */
 import request from '@/utils/request'
 
 import mockState from '@/utils/mockState'
-const serverUrl = mockState.serverUrl
-const serverName = 'dash-api/'
+const serverUrl = mockState.serverUrlMock
+const serverName = ''
 
 export function getSongs(params) {
   return request({

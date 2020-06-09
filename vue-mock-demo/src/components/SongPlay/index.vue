@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-29 15:52:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 15:23:11
+ * @LastEditTime: 2020-06-09 15:00:55
  -->
 <template>
   <div class="con">
@@ -209,6 +209,7 @@ export default {
     data: {
       handler(val) {
         if (val && JSON.stringify(val) !== '{}') {
+          this.audio.playing = false
           const data = val
           this.lrcList = []
           this.songUrl = data.url

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 11:39:33
+ * @LastEditTime: 2020-06-09 14:45:36
  -->
 <template>
   <div>
@@ -15,7 +15,7 @@
         </el-col>
         <el-col :span="16" style="text-align:right;">
           <el-form-item>
-            <el-button type="primary" @click="addTableData()">新增</el-button>
+            <el-button class="btn1" @click="addTableData()">新增</el-button>
             <el-button type="primary" @click="getTableData()">查询</el-button>
             <el-button type="danger" @click="deleteItem()">删除</el-button>
           </el-form-item>
@@ -51,7 +51,7 @@ export default {
     BaseTable,
     dataModel
   },
-  data: function() {
+  data() {
     return {
       form: {
         name: ''
@@ -217,5 +217,8 @@ export default {
 .demo-ruleForm {
   margin-top: 20px;
   margin-right: 20px;
+}
+.btn1{
+  // background: $blue;
 }
 </style>

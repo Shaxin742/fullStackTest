@@ -27,18 +27,11 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/app/api/user-api': {
+      '/api': {
         target: `http://127.0.0.1:3000`, // python 项目
         changeOrigin: true,
         pathRewrite: {
-          '/app/api/user-api': ''
-        }
-      },
-      '/app/api/dash-api': {
-        target: `http://127.0.0.1:3000`, // python 项目
-        changeOrigin: true,
-        pathRewrite: {
-          '/app/api/dash-api': ''
+          '/api': ''
         }
       }
     }
@@ -90,7 +83,7 @@ module.exports = {
       .when(process.env.NODE_ENV === 'development',
         config => config.devtool('cheap-source-map')
       )
-      
+
     config
       .when(process.env.NODE_ENV !== 'development',
         config => {

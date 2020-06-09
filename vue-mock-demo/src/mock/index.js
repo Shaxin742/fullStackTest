@@ -5,19 +5,19 @@ import dashBoard from './dashBoard.js' // 首页
 import components from './components.js' // 组件
 
 // 登录登出
-Mock.mock(/app\/user-api\/user\/login.*/, 'post', user.login)
-Mock.mock(/app\/user-api\/user\/info.*/, 'get', user.info)
-Mock.mock(/app\/user-api\/user\/logout.*/, 'post', user.logout)
+Mock.mock(/user\/login.*/, 'post', user.login)
+Mock.mock(/user\/info.*/, 'get', user.info)
+Mock.mock(/user\/logout.*/, 'post', user.logout)
 
 // 首页
-Mock.mock(/app\/dash-api\/dashBoard\/getCalendar.*/, 'get', dashBoard.getCalendar)
+Mock.mock(/dashBoard\/getCalendar.*/, 'get', dashBoard.getCalendar)
 
 // 组件 components
-Mock.mock(/app\/dash-api\/components\/getSongs.*/, 'get', components.getSongs)
-Mock.mock(/app\/dash-api\/components\/formsubmit.*/, 'post', components.formsubmit)
-Mock.mock(/app\/dash-api\/components\/getTableData.*/, 'get', components.getTableData)
-Mock.mock(/app\/dash-api\/components\/deleteTableData.*/, 'post', components.deleteTableData)
-Mock.mock(/app\/dash-api\/components\/addTableData.*/, 'post', components.addTableData)
-Mock.mock(/app\/dash-api\/components\/updateTableData.*/, 'post', components.updateTableData)
+Mock.mock(/components\/getSongs.*/, 'get', components.getSongs)
+Mock.mock(/components\/formsubmit.*/, 'post', components.formsubmit)
+Mock.mock(/components\/getTableData.*/, 'get', components.getTableData)
+Mock.mock(/components\/deleteTableData.*/, 'post', components.deleteTableData)
+Mock.mock(/components\/addTableData.*/, 'post', components.addTableData)
+Mock.mock(/components\/updateTableData.*/, 'post', components.updateTableData)
 
 export default Mock

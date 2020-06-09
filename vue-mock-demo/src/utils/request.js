@@ -18,7 +18,7 @@ const cancelPending = (config) => {
 }
 // 创建axios实例
 const service = axios.create({
-  baseURL: '/app', // api的base_url
+  baseURL: '', // api的base_url
   timeout: 600000 // 请求超时时间
 })
 

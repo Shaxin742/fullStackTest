@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 import mockState from '@/utils/mockState'
 const serverUrl = mockState.serverUrl
-const serverName = 'dash-api/'
+const serverName = ''
 
 export function getCalender(params) {
   return request({
