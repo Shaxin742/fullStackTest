@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-08 18:11:32
+ * @LastEditTime: 2020-06-09 18:02:57
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -68,6 +68,26 @@ export const asyncRoutes = [
         name: 'userTable',
         component: () => import('@/views/components/userTable'),
         meta: { title: 'userTable' }
+      },
+      {
+        path: 'treeSelect',
+        name: 'treeSelect',
+        component: () => import('@/router-view'),
+        meta: { title: 'treeSelect' },
+        children: [
+          {
+            path: 'select',
+            name: 'select',
+            component: () => import('@/views/components/treeSelect/select1'),
+            meta: { title: 'select' }
+          },
+          {
+            path: 'treeSelect',
+            name: 'treeSelect',
+            component: () => import('@/views/components/treeSelect/select2'),
+            meta: { title: 'treeSelect' }
+          }
+        ]
       }
     ]
   },

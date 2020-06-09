@@ -521,8 +521,6 @@ export default {
     })
 
     this.debouncedQueryChange = debounce(this.debounce, e => {
-      console.log(123123123)
-      console.log(e)
       this.handleQueryChange(e.target.value)
     })
 
