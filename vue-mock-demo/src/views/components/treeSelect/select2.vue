@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-09 16:15:12
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-10 10:04:20
+ * @LastEditTime: 2020-06-10 11:15:26
  -->
 <template>
   <div class="treeSelect">
@@ -135,20 +135,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.treeSelect {
-  .el-select-dropdown__list {
-    // .el-select-dropdown__item {
-    //   padding: 0;
-    // }
-    .el-select-dropdown__item.hover,
-    .el-select-dropdown__item:hover {
-      background: #fff;
-    }
-  }
-  .el-tree-node.is-focusable.is-checked{
-    background: green;
-  }
-}
 </style>
 <style lang="scss" scoped>
 .hidden-options {
@@ -175,5 +161,4 @@ export default {
   height: 10px;
   background-color: #fdfdfd;
 }
-
 </style>
