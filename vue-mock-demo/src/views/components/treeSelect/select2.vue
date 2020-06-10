@@ -2,16 +2,17 @@
  * @Author: ShaXin
  * @Date: 2020-06-09 16:15:12
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 18:09:34
+ * @LastEditTime: 2020-06-10 10:04:20
  -->
 <template>
   <div class="treeSelect">
     <el-select
+      ref="mineSelect"
       v-model="mineStatus"
       placeholder="请选择"
       filterable
-      multiple
       remote
+      multiple
       collapse-tags
       :remote-method="remoteMethod"
       :loading="loading"
@@ -21,10 +22,13 @@
         <el-tree
           ref="tree"
           :data="data"
-          show-checkbox
           node-key="id"
+          show-checkbox
           highlight-current
           :props="defaultProps"
+          :filter-node-method="filterNode"
+          :expand-on-click-node="false"
+          @node-click="treeNodeClick"
           @check-change="handleCheckChange"
         />
       </el-option>
@@ -116,10 +120,36 @@ export default {
     },
     remoteMethod(v) {
       console.log(v)
+      this.$refs.tree.filter(v)
+    },
+    filterNode(value, data) {
+      if (!value) return true
+      return data.label.indexOf(value) !== -1
+    },
+    treeNodeClick(data, node, val) {
+      console.log(data, node, val)
+      // this.mineStatus = data.label
+      // this.$refs.mineSelect.blur()
     }
   }
 }
 </script>
+<style lang="scss">
+.treeSelect {
+  .el-select-dropdown__list {
+    // .el-select-dropdown__item {
+    //   padding: 0;
+    // }
+    .el-select-dropdown__item.hover,
+    .el-select-dropdown__item:hover {
+      background: #fff;
+    }
+  }
+  .el-tree-node.is-focusable.is-checked{
+    background: green;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .hidden-options {
   display: none;
@@ -146,15 +176,4 @@ export default {
   background-color: #fdfdfd;
 }
 
-.treeSelect {
-  .el-select-dropdown__list {
-    // .el-select-dropdown__item {
-    //   padding: 0;
-    // }
-    .el-select-dropdown__item.hover,
-    .el-select-dropdown__item:hover {
-      background: #fff;
-    }
-  }
-}
 </style>

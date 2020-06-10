@@ -5,11 +5,6 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = 'aoe' // page title
-
-const port = 9876// dev port
-
-// All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
@@ -20,7 +15,7 @@ module.exports = {
     sourceMap: true
   },
   devServer: {
-    port: port,
+    port: 9876,
     open: true,
     overlay: {
       warnings: false,
@@ -37,9 +32,7 @@ module.exports = {
     }
   },
   configureWebpack: {
-    // provide the app's title in webpack's name field, so that
-    // it can be accessed in index.html to inject the correct title.
-    name: name,
+    name: 'aoe',
     resolve: {
       alias: {
         '@': resolve('src')
@@ -47,9 +40,6 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-    config.plugins.delete('preload') // TODO: need test
-    config.plugins.delete('prefetch') // TODO: need test
-
     // set svg-sprite-loader
     config.module
       .rule('svg')
