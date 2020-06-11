@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:46:52
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 09:46:19
+ * @LastEditTime: 2020-06-11 10:55:13
  */
 import { getUrlParams } from './utils.js'
 const songs = {
@@ -31,8 +31,7 @@ export default {
     }
   },
   formsubmit: options => {
-    console.log(options)
-    const { data } = JSON.parse(options.body)
+    const { data } = options.body
     console.log(data)
     return {
       code: 200,

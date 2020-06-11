@@ -8,7 +8,7 @@
         <tags-view />
       </div>
       <app-main />
-      <right-panel v-if="showSettings">
+      <right-panel>
         瞅你玛丽个臭批
       </right-panel>
     </div>
@@ -38,7 +38,6 @@ export default {
     ...mapState({
       sidebar: state => state.app.sidebar,
       device: state => state.app.device,
-      showSettings: state => state.settings.showSettings,
       fixedHeader: state => state.settings.fixedHeader
     }),
     classObj() {

@@ -1,7 +1,6 @@
 <template>
-  <div :class="{'has-logo':showLogo}">
+  <div class="has-logo">
     <logo
-      v-if="showLogo"
       :collapse="isCollapse"
     />
     <el-scrollbar wrap-class="scrollbar-wrapper">
@@ -50,9 +49,6 @@ export default {
         return meta.activeMenu
       }
       return path
-    },
-    showLogo() {
-      return this.$store.state.settings.sidebarLogo
     },
     variables() {
       return variables

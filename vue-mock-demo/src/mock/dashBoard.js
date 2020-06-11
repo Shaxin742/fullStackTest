@@ -11,7 +11,7 @@ function getDate(year, month, day = 0) {
   return new Date(year, month, day)
 }
 function getlocaData(year, month, day = 0) {
-  const date = new Date(year, month, day).toLocaleString()
+  const date = new Date(year, month, day).toLocaleDateString()
   const timestrip = Date.parse(date) + 28800000
   return new Date(timestrip)
 }
@@ -32,7 +32,6 @@ function getCalender(timeVal) {
     new Date(year, month + 1, 0).getDate() + firstWeekDay - lastWeekDay + 6
 
   const startTime = firstDay - (firstWeekDay - 1) * 24 * 60 * 60 * 1000
-
   for (let i = 0; i < curmonthdays; i++) {
     calendatArr.push({
       date: new Date(startTime + i * 24 * 60 * 60 * 1000),

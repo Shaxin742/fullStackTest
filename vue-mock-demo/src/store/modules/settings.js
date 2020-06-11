@@ -2,10 +2,8 @@ import variables from '@/styles/element-variables.scss'
 
 const state = {
   theme: variables.theme,
-  showSettings: '就是今生今世',
   tagsView: true,
-  fixedHeader: true,
-  sidebarLogo: true
+  fixedHeader: true
 }
 
 const mutations = {

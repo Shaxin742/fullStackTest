@@ -2,12 +2,12 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 09:54:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 14:56:09
+ * @LastEditTime: 2020-06-11 10:54:43
  */
 import request from '@/utils/request'
 
 import mockState from '@/utils/mockState'
-const serverUrl = mockState.serverUrlMock
+const serverUrl = mockState.serverUrl
 const serverName = ''
 
 export function getSongs(params) {

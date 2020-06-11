@@ -2,11 +2,11 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 14:33:14
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-26 15:51:19
+ * @LastEditTime: 2020-06-11 11:06:03
  */
 export default {
   serverUrl(apiName) {
-    return `/api/${apiName}`
+    return `/app/api/${apiName}`
   },
   serverUrlMock(apiName) {
     return `/${apiName}`

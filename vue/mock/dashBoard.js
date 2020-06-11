@@ -10,7 +10,7 @@ function getDate(year, month, day = 0) {
   return new Date(year, month, day)
 }
 function getlocaData(year, month, day = 0) {
-  const date = new Date(year, month, day).toLocaleString()
+  const date = new Date(year, month, day).toLocaleDateString()
   const timestrip = Date.parse(date) + 28800000
   return new Date(timestrip)
 }

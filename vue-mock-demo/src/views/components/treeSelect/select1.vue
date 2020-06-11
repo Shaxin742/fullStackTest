@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-09 17:45:56
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 18:03:20
+ * @LastEditTime: 2020-06-10 15:25:28
  -->
 <template>
   <el-select
@@ -15,6 +15,8 @@
     :remote-method="remoteMethod"
     :loading="loading"
   >
+    <!--
+    :filter-method="remoteMethod"-->
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -63,6 +65,7 @@ export default {
   },
   methods: {
     remoteMethod(query) {
+      console.log(query)
       if (query !== '') {
         this.loading = true
         this.options = this.list.filter(item => {

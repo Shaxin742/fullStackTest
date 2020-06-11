@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-28 09:41:27
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-28 09:50:11
+ * @LastEditTime: 2020-06-11 10:51:56
  */
 var express = require('express');
 var router = express.Router();
@@ -24,7 +24,7 @@ function getDate(year, month, day = 0) {
   return new Date(year, month, day)
 }
 function getlocaData(year, month, day = 0) {
-  const date = new Date(year, month, day).toLocaleString()
+  const date = new Date(year, month, day).toLocaleDateString()
   const timestrip = Date.parse(date) + 28800000
   return new Date(timestrip)
 }

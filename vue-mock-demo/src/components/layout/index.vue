@@ -45,7 +45,6 @@ export default {
     ...mapState({
       sidebar: state => state.app.sidebar,
       device: state => state.app.device
-      // showSettings: state => state.settings.showSettings,
       // fixedHeader: state => state.settings.fixedHeader
     }),
     classObj() {

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:56:10
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-29 13:19:13
+ * @LastEditTime: 2020-06-11 10:36:57
  -->
 <template>
   <div class="dashboard-container">
@@ -150,6 +150,7 @@ export default {
         date: data
       }
       const res = await getCalender(params)
+      console.log(res)
       this.calendatArr = cloneDeep(res.data)
     },
     // 是否是当前月

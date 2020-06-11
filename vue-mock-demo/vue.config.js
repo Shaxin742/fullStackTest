@@ -22,11 +22,11 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/api': {
+      '/app/api': {
         target: `http://127.0.0.1:3000`, // python 项目
         changeOrigin: true,
         pathRewrite: {
-          '/api': ''
+          '/app/api': ''
         }
       }
     }

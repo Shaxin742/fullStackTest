@@ -18,12 +18,13 @@ const cancelPending = (config) => {
 }
 // 创建axios实例
 const service = axios.create({
-  baseURL: '', // api的base_url
+  baseURL: '/app', // api的base_url
   timeout: 600000 // 请求超时时间
 })
 
 service.interceptors.request.use(
   config => {
+    console.log(config)
     if (Cookies.get('Admin-Token')) {
       config.headers['Authorization'] = Cookies.get('Admin-Token')
     }
