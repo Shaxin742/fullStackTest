@@ -8,7 +8,7 @@
     <div class="rightPanel">
       <div
         class="handle-button"
-        :style="{'top':buttonTop+'px','background-color':theme}"
+        :style="{'top':buttonTop+'px'}"
         @click="show=!show"
       >
         <i :class="show?'el-icon-close':'el-icon-setting'" />
@@ -36,11 +36,6 @@ export default {
   data() {
     return {
       show: false
-    }
-  },
-  computed: {
-    theme() {
-      return this.$store.state.settings.theme
     }
   },
   watch: {

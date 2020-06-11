@@ -1,7 +1,5 @@
-import variables from '@/styles/element-variables.scss'
 
 const state = {
-  theme: variables.theme,
   tagsView: true,
   fixedHeader: true
 }
