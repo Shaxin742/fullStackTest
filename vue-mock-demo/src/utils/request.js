@@ -24,10 +24,10 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    console.log(config)
-    if (Cookies.get('Admin-Token')) {
-      config.headers['Authorization'] = Cookies.get('Admin-Token')
+    if (Cookies.get('token')) {
+      config.headers['Authorization'] = Cookies.get('token')
     }
+    console.log(config)
     cancelPending(config)
     config.cancelToken = new CancelToken(res => {
       pending.push({ 'UrlPath': config.url, 'Cancel': res })

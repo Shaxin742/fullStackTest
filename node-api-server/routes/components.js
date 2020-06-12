@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 11:40:12
+ * @LastEditTime: 2020-06-12 10:11:31
  */
 
 var express = require('express');
@@ -69,8 +69,6 @@ router.get('/getTableData', function (req, res) {
   
   // 查询data
   db.pool.query(sqlSelect, ['%' + name + '%', (pageNo - 1) * pageSize, pageSize], (err, results) => {
-    console.log(err);
-    console.log(results);
     res.send({ code: 200, data: { tableData: results, total: total } })
   });
 })

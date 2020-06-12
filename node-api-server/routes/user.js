@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/db'); //引入db
+var JwtUtil = require('../token_vertify.js');
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -17,7 +19,9 @@ router.post('/login', function (req, res, next) {
     if (err) {
       response = { code: 400, data: '用户名或密码错误' };
     }
-    response = { code: 200, message: 'success', data: { token: params.username + "-token" } };
+    let jwt = new JwtUtil(params.username);
+    let token = jwt.generateToken();
+    response = { code: 200, message: 'success', data: { token: token } };
     res.send(response);
   });
 })
@@ -42,8 +46,9 @@ router.get('/info', function (req, res) {
 
   var params = req.query
   console.log('params', params)
+  console.log('res', res)
   var response
-  const info = users[params.token]
+  const info = users['admin-token']
   if (!info) {
     response = { code: 400, data: '登录失败' }
   } else {

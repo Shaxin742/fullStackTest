@@ -5,10 +5,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var JwtUtil = require('./token_vertify.js');
+
 var userRouter = require('./routes/user');
 var dashBoardRouter = require('./routes/dashBoard');
 var componentsRouter = require('./routes/components');
-var fs = require("fs");
+const bodyParser = require('body-parser');
 
 
 app.all("*", function (req, res, next) {
@@ -22,18 +24,37 @@ app.all("*", function (req, res, next) {
   next()
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 // 这里dest对应的值是你要将上传的文件存的文件夹
 
 app.use(logger('dev'));
-const bodyParser = require('body-parser');
 app.use(bodyParser.json());//数据JSON类型
 app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// catch 404 and forward to error handler
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
+
+// 解析token获取用户信息
+app.use(function (req, res, next) {
+  if (req.url != '/user/login' && req.url != '/user/register') {
+    let token = req.headers['authorization'];
+    let jwt = new JwtUtil(token);
+    let result = jwt.verifyToken();
+    // 如果考验通过就next，否则就返回登陆信息不正确
+    console.log(result);
+    if (result == 'err') {
+      res.send({ status: 403, msg: '登录已过期,请重新登录' });
+      // res.render('login.html');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 // 路由文件
 ///app/api
@@ -41,10 +62,12 @@ app.use('/user', userRouter);
 app.use('/dashBoard', dashBoardRouter);
 app.use('/components', componentsRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+//当token失效返回提示信息
+// app.use(function (err, req, res, next) {
+//   if (err.status == 401) {
+//     return res.status(401).send('token失效');
+//   }
+// });
 
 // error handler
 app.use(function (err, req, res, next) {
