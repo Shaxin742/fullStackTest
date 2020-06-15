@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-12 16:01:38
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-12 16:37:11
+ * @LastEditTime: 2020-06-15 09:58:35
  */
 const jwt = require('jsonwebtoken')
 
@@ -26,18 +26,18 @@ JwtUtil.verToken(token).then((err, data) => {
 })
 
 // 密钥
-// const secret = 'ILOVENINGHAO'
+const secret = 'ILOVENINGHAO'
 
-// // 签发 Token
-// const token = jwt.sign(payload, secret, { expiresIn: '1day' })
+// 签发 Token
+const token = jwt.sign(payload, secret, { expiresIn: '1day' })
 
-// // 输出签发的 Token
-// console.log(token)
+// 输出签发的 Token
+console.log(token)
 
-// jwt.verify(token, secret, (error, decoded) => {
-//   if (error) {
-//     console.log(error.message)
-//     return
-//   }
-//   console.log(decoded)
-// })
+jwt.verify(token, secret, (error, decoded) => {
+  if (error) {
+    console.log(error.message)
+    return
+  }
+  console.log(decoded)
+})

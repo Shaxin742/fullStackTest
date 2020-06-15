@@ -36,8 +36,8 @@ const actions = {
         console.log(response)
         const { data } = response
         console.log(data.token)
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_TOKEN', 'Bearer ' + data.token)
+        setToken('Bearer ' + data.token)
         resolve()
       }).catch(error => {
         reject(error)

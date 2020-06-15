@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var JwtUtil = require('./token_vertify.js');
+// const jwt = require('jsonwebtoken')
 
 var userRouter = require('./routes/user');
 var dashBoardRouter = require('./routes/dashBoard');
@@ -43,8 +44,17 @@ app.use(function (req, res, next) {
     let token = req.headers['authorization'];
     let jwt = new JwtUtil(token);
     let result = jwt.verifyToken();
+    // const secret = 'QQQQQQQ'
+    // let result
+    // jwt.verify(token.split(" ")[1], secret, (error, decoded) => {
+    //   if (error) {
+    //     console.log(error.message)
+    //     result = 'err'
+    //   }
+    //   result = decoded
+    // })
     // 如果考验通过就next，否则就返回登陆信息不正确
-    console.log(result);
+    console.log('result', result);
     if (result == 'err') {
       res.send({ status: 403, msg: '登录已过期,请重新登录' });
       // res.render('login.html');

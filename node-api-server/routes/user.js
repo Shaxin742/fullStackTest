@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db/db'); //引入db
 var JwtUtil = require('../token_vertify.js');
+// const jwt = require('jsonwebtoken')
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -19,8 +20,17 @@ router.post('/login', function (req, res, next) {
     if (err) {
       response = { code: 400, data: '用户名或密码错误' };
     }
-    let jwt = new JwtUtil(params.username);
+    let jwt = new JwtUtil({name:params.username});
     let token = jwt.generateToken();
+    // let payload = {
+    //   username: params.username
+    // }
+    // // 密钥
+    // const secret = 'QQQQQQQ'
+
+    // // 签发 Token
+    // const token = jwt.sign(payload, secret, { expiresIn: '1day' })
+
     response = { code: 200, message: 'success', data: { token: token } };
     res.send(response);
   });
@@ -45,8 +55,6 @@ router.get('/info', function (req, res) {
   // var params = URL.parse(req.url,true).query;
 
   var params = req.query
-  console.log('params', params)
-  console.log('res', res)
   var response
   const info = users['admin-token']
   if (!info) {
