@@ -11,8 +11,6 @@ class Jwt {
     //生成token
     generateToken() {
         let data = this.data;
-        console.log('generateToken', data)
-        // let cert = 'aaaaa'
         let cert = fs.readFileSync(path.join(__dirname, './pem/public_key.pem'));//私钥 可以自己生成
         let token = jwtoken.sign(data, cert, { expiresIn: '1day' });
         return token;
@@ -21,13 +19,10 @@ class Jwt {
     // 校验token
     verifyToken() {
         let token = this.data;
-        console.log("asdasdasd", token)
-        // let cert = 'aaaaa'
         let cert = fs.readFileSync(path.join(__dirname, './pem/public_key.pem'));//私钥 可以自己生成
         let res;
-        console.log(123123)
-        let result = jwtoken.verify(token.split(" ")[1], cert)
-        console.log('还是四十', result)
+        // let result = jwtoken.verify(token.split(" ")[1], cert)
+        // console.log('还是四十', result)
         jwtoken.verify(token.split(" ")[1], cert, (error, decoded) => {
             if (error) {
                 console.log(error.message)

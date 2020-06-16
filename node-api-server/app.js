@@ -33,10 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
+
 
 // 解析token获取用户信息
 app.use(function (req, res, next) {
@@ -44,20 +41,10 @@ app.use(function (req, res, next) {
     let token = req.headers['authorization'];
     let jwt = new JwtUtil(token);
     let result = jwt.verifyToken();
-    // const secret = 'QQQQQQQ'
-    // let result
-    // jwt.verify(token.split(" ")[1], secret, (error, decoded) => {
-    //   if (error) {
-    //     console.log(error.message)
-    //     result = 'err'
-    //   }
-    //   result = decoded
-    // })
     // 如果考验通过就next，否则就返回登陆信息不正确
     console.log('result', result);
     if (result == 'err') {
       res.send({ status: 403, msg: '登录已过期,请重新登录' });
-      // res.render('login.html');
     } else {
       next();
     }
@@ -72,12 +59,10 @@ app.use('/user', userRouter);
 app.use('/dashBoard', dashBoardRouter);
 app.use('/components', componentsRouter);
 
-//当token失效返回提示信息
-// app.use(function (err, req, res, next) {
-//   if (err.status == 401) {
-//     return res.status(401).send('token失效');
-//   }
-// });
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:53:30
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-01 15:24:15
+ * @LastEditTime: 2020-06-16 11:10:08
  -->
 <template>
   <div class="login-container">
@@ -115,10 +115,11 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          this.$store.dispatch('user/login', this.loginForm).then((data) => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          }).catch(() => {
+          }).catch((data) => {
+            this.$message.error(data || '登陆失败')
             this.loading = false
           })
         } else {

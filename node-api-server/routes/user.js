@@ -12,26 +12,19 @@ router.get('/', function (req, res, next) {
 router.post('/login', function (req, res, next) {
   var response
   var params = req.body;
-  console.log('params.username', params.username)
   let sqlSelect = 'SELECT * FROM users WHERE username = ? && password=?'
   db.pool.query(sqlSelect, [params.username, params.password], (err, results) => {
-    console.log(err);
-    console.log(results);
     if (err) {
-      response = { code: 400, data: '用户名或密码错误' };
+      response = { code: 500, data: '数据库链接错误' };
+    } else {
+      if (results && results.length) {
+        let jwt = new JwtUtil({ name: params.username, id: results[0].id });
+        let token = jwt.generateToken();
+        response = { code: 200, message: 'success', data: { token: token } };
+      } else {
+        response = { code: 400, data: '用户名或密码错误' };
+      }
     }
-    let jwt = new JwtUtil({name:params.username});
-    let token = jwt.generateToken();
-    // let payload = {
-    //   username: params.username
-    // }
-    // // 密钥
-    // const secret = 'QQQQQQQ'
-
-    // // 签发 Token
-    // const token = jwt.sign(payload, secret, { expiresIn: '1day' })
-
-    response = { code: 200, message: 'success', data: { token: token } };
     res.send(response);
   });
 })
