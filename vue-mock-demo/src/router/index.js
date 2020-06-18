@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-11 10:01:09
+ * @LastEditTime: 2020-06-17 11:13:34
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -88,6 +88,20 @@ export const asyncRoutes = [
             meta: { title: 'treeSelect' }
           }
         ]
+      }
+    ]
+  },
+  { path: '/socket',
+    component: Layout,
+    redirect: '/socket/socket',
+    name: 'socket',
+    meta: { title: 'socket', icon: 'example' },
+    children: [
+      {
+        path: 'socket',
+        name: 'socket',
+        component: () => import('@/views/socket'),
+        meta: { title: 'socket' }
       }
     ]
   },

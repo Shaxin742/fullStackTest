@@ -27,7 +27,6 @@ service.interceptors.request.use(
     if (Cookies.get('token')) {
       config.headers['Authorization'] = Cookies.get('token')
     }
-    console.log(config)
     cancelPending(config)
     config.cancelToken = new CancelToken(res => {
       pending.push({ 'UrlPath': config.url, 'Cancel': res })
@@ -45,7 +44,6 @@ service.interceptors.response.use(
     cancelPending(response.config)
     return response.data
   }, error => {
-    console.log(error)
     return Promise.reject(error)
   }
 )

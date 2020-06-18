@@ -127,6 +127,7 @@ export default {
   left: -48px;
   text-align: center;
   font-size: 24px;
+  background: green;
   border-radius: 6px 0 0 6px !important;
   z-index: 0;
   pointer-events: auto;

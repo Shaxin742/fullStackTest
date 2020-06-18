@@ -6,13 +6,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var JwtUtil = require('./token_vertify.js');
-// const jwt = require('jsonwebtoken')
 
 var userRouter = require('./routes/user');
 var dashBoardRouter = require('./routes/dashBoard');
 var componentsRouter = require('./routes/components');
-const bodyParser = require('body-parser');
+var socketClientRouter = require('./routes/socketClient');
 
+const bodyParser = require('body-parser');
 
 app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -33,18 +33,21 @@ app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 // 解析token获取用户信息
 app.use(function (req, res, next) {
-  if (req.url != '/user/login' && req.url != '/user/register') {
+  let whiteList = ['/socketServer/socketServer', '/user/register', '/user/login']
+  if (whiteList.indexOf(req.url) === -1) {
     let token = req.headers['authorization'];
     let jwt = new JwtUtil(token);
     let result = jwt.verifyToken();
     // 如果考验通过就next，否则就返回登陆信息不正确
     console.log('result', result);
-    if (result == 'err') {
+    if(!token){
+      next()
+    }
+    if (!result || result == 'err') {
       res.send({ status: 403, msg: '登录已过期,请重新登录' });
+      next();
     } else {
       next();
     }
@@ -58,13 +61,14 @@ app.use(function (req, res, next) {
 app.use('/user', userRouter);
 app.use('/dashBoard', dashBoardRouter);
 app.use('/components', componentsRouter);
+app.use('/socketServer', socketClientRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
+
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -72,7 +76,10 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: err.message,
+    error: err
+  })
 });
 
 module.exports = app;

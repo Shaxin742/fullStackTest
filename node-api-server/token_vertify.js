@@ -23,7 +23,7 @@ class Jwt {
         let res;
         // let result = jwtoken.verify(token.split(" ")[1], cert)
         // console.log('还是四十', result)
-        jwtoken.verify(token.split(" ")[1], cert, (error, decoded) => {
+        jwtoken.verify(token, cert, (error, decoded) => {
             if (error) {
                 console.log(error.message)
                 res = 'err'

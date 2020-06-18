@@ -184,9 +184,9 @@ import NavigationMixin from './navigation-mixin'
 import { isKorean } from 'element-ui/src/utils/shared'
 
 export default {
-  mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
-
   name: 'ShaxinSelect',
+  directives: { Clickoutside },
+  mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
 
   componentName: 'ElSelect',
 
@@ -383,8 +383,6 @@ export default {
     //   ElTag,
     //   ElScrollbar
   },
-
-  directives: { Clickoutside },
 
   watch: {
     selectDisabled() {
