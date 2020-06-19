@@ -25,8 +25,6 @@ app.all("*", function (req, res, next) {
   next()
 });
 
-// 这里dest对应的值是你要将上传的文件存的文件夹
-
 app.use(logger('dev'));
 app.use(bodyParser.json());//数据JSON类型
 app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
@@ -36,15 +34,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 解析token获取用户信息
 app.use(function (req, res, next) {
   let whiteList = ['/socketServer/socketServer', '/user/register', '/user/login']
+  let token = req.headers['authorization'];
+  if (!token) {
+    next()
+  }
   if (whiteList.indexOf(req.url) === -1) {
-    let token = req.headers['authorization'];
     let jwt = new JwtUtil(token);
     let result = jwt.verifyToken();
     // 如果考验通过就next，否则就返回登陆信息不正确
     console.log('result', result);
-    if(!token){
-      next()
-    }
     if (!result || result == 'err') {
       res.send({ status: 403, msg: '登录已过期,请重新登录' });
       next();
@@ -67,7 +65,6 @@ app.use('/socketServer', socketClientRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
 
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
