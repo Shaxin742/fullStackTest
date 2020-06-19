@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-17 11:05:41
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-19 11:31:21
+ * @LastEditTime: 2020-06-19 14:24:52
  -->
 <template>
   <div>
@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import { socketTest } from '@/api/socket'
-// import SocketClient from '@/utils/socketClient'
 export default {
   data: function() {
     return {
@@ -20,7 +18,7 @@ export default {
     }
   },
   mounted() {
-    this.websock = new WebSocket('ws://localhost:3365/socketServer/socketServer')
+    this.websock = new WebSocket('ws://localhost:3365')
     console.log(this.websock)
     this.websock.onopen = e => {
       console.log(`WebSocket 连接状态： ${this.websock.readyState}`)
