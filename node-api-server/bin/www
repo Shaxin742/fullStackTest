@@ -22,12 +22,13 @@ app.set('port', port);
  */
 
 var server = http.createServer(app); // http服务器
+
+// websocket use
 var wsServer = new ws.Server({ // 加入创建ws服务器的代码。
   port: 3365,
   server: server // 注意这个server选项，要么挂载在一个已有的http服务器中，要么它会自己创建一个。
   // 这边已经有一个http服务器了，所以我们填上，进行挂载就行了。
 });
-
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -37,6 +38,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+// websocket use
 wsServer.on('connection', function (websocket) { // 加入这段代码，对连接之后的websocket连接进行配置。
   wsUtils.init(websocket); // 这边的init函数稍后说明。
 });

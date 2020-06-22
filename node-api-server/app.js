@@ -33,10 +33,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 解析token获取用户信息
 app.use(function (req, res, next) {
-  let whiteList = ['/socketServer/socketServer', '/user/register', '/user/login']
+  let whiteList = ['', '/user/register', '/user/login']
   let token = req.headers['authorization'];
   if (!token) {
-    next()
+    return next()
   }
   if (whiteList.indexOf(req.url) === -1) {
     let jwt = new JwtUtil(token);
@@ -45,12 +45,12 @@ app.use(function (req, res, next) {
     console.log('result', result);
     if (!result || result == 'err') {
       res.send({ status: 403, msg: '登录已过期,请重新登录' });
-      next();
+      return next();
     } else {
-      next();
+      return next();
     }
   } else {
-    next();
+    return next();
   }
 });
 

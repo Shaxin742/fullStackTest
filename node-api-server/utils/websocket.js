@@ -1,8 +1,7 @@
 var wsServer = null;
-
+var num = 0
 function init(ws) {
   wsServer = ws;
-  console.log(2, wsServer)
   wsServer.on('error', onError); // 监听对应事件。
   wsServer.on('open', onOpen);
   wsServer.on('close', onClose);
@@ -11,20 +10,26 @@ function init(ws) {
 function send(message) {
   if (!wsServer) return;
   wsServer.send(message);
+  return
 }
 
 function onError() {
   console.log("onError")
+  return
 }
 function onOpen() {
   console.log("onOpen")
+  return
 }
 function onClose() {
   console.log("onClose")
+  return
 }
 function onMessage() {
   console.log("onMessage1")
-  send(123123)
+  num+=1
+  send(num)
+  return
 }
 
 

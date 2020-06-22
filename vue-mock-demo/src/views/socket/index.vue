@@ -2,10 +2,10 @@
  * @Author: ShaXin
  * @Date: 2020-06-17 11:05:41
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-19 14:24:52
+ * @LastEditTime: 2020-06-22 10:17:23
  -->
 <template>
-  <div>
+  <div>{{ data }}
     <el-button @click="testSocket">测试</el-button>
   </div>
 </template>
@@ -14,7 +14,8 @@
 export default {
   data: function() {
     return {
-      websock: null
+      websock: null,
+      data: ''
     }
   },
   mounted() {
@@ -26,6 +27,7 @@ export default {
 
     this.websock.onmessage = data => {
       console.log(data)
+      this.data = data.data
     }
 
     this.websock.onclose = data => {
