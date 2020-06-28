@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-12 10:11:31
+ * @LastEditTime: 2020-06-23 15:07:15
  */
 
 var express = require('express');
@@ -51,7 +51,7 @@ router.post('/formsubmit', function (req, res) {
 // 查询
 router.get('/getTableData', function (req, res) {
   let pageSize = Number(req.query.pageSize)
-  let { pageNo, name, sortName = '', sortOrder = '' } = req.query
+  let { pageNo, name='', sortName = '', sortOrder = '' } = req.query
 
   let total = 0
 

@@ -1,14 +1,4 @@
 <!--
-
-options: Object table参数
-  options: {
-    stripe: true, // 是否为斑马纹 table
-    loading: false, // 是否添加表格loading加载动画
-    highlightCurrentRow: true, // 是否支持当前行高亮显示
-    mutiSelect: true // 是否支持列表项选中功能
-    border：true // 表格样式
-  },
-
 lazy:树形数据懒加载
 load：树形数据懒加载
 rowKey：树形数据懒加载
@@ -23,7 +13,7 @@ column:需要展示的列
 <template>
   <div class="table">
     <el-table
-      ref="mutipleTable"
+      ref="baseTable"
       v-loading="loading"
       :stripe="stripe"
       :border="border"
@@ -37,44 +27,11 @@ column:需要展示的列
       @selection-change="handleSelectionChange"
       @sort-change="sortChange"
     >
-      <template slot="ematy">12312312</template>
+      <template slot="ematy">抽你妈了个臭嗨</template>
       <el-table-column v-if="mutiSelect" type="selection" style="width: 55px;" />
-      <template v-for="(column, index) in columns">
-        <el-table-column :key="index" v-bind="column">
-          <template slot-scope="scope">
-            <template v-if="!column.render">
-              <template v-if="column.formatter">
-                <span :class="column.class" v-html="column.formatter(scope.row, column)" />
-              </template>
-              <template v-else>
-                <span :class="column.class">{{ scope.row[column.prop] }}</span>
-              </template>
-            </template>
-            <template v-else>
-              <columns-render
-                :column="column"
-                :row="scope.row"
-                :render="column.render"
-                :index="index"
-              />
-            </template>
-          </template>
-        </el-table-column>
+      <template v-for="column in columns">
+        <Columns :key="column.dataIndex" :column="column" />
       </template>
-
-      <!-- <template v-for="item in columns">
-        <el-table-column v-if="item.render" :key="item.dataIndex" v-bind="item" sortable="sortable">
-          <template slot-scope="{row, column, $index}">
-            <columns-render
-              :render-col="item.render"
-              :record="row"
-              :value="row[item.dataIndex]"
-              :index="$index"
-            />
-          </template>
-        </el-table-column>
-        <el-table-column v-else :key="item.prop" v-bind="item" />
-      </template>-->
     </el-table>
     <div style="text-align:right;margin:4px 0">
       <el-pagination
@@ -90,10 +47,10 @@ column:需要展示的列
   </div>
 </template>
 <script>
-import ColumnsRender from './ColumnsRender'
+import Columns from './Columns'
 export default {
   components: {
-    ColumnsRender
+    Columns
   },
   props: {
     rowKey: {
@@ -127,15 +84,7 @@ export default {
       type: Array,
       default: () => []
     }, // 需要展示的列 === prop：列数据对应的属性，label：列名，align：对齐方式，width：列宽
-    options: {
-      type: Object,
-      default: () => {
-        return {
-          stripe: false, // 是否为斑马纹 table
-          highlightCurrentRow: false // 是否要高亮当前行
-        }
-      }
-    },
+
     // 是否为斑马纹 table
     stripe: {
       type: Boolean,
@@ -179,6 +128,11 @@ export default {
       default: 'total, sizes, prev, pager, next, jumper'
     }
   },
+  watch: {
+    columns: function() {
+      this.doLayout()
+    }
+  },
   methods: {
     // 多行选中
     handleSelectionChange(val) {
@@ -192,11 +146,24 @@ export default {
     },
     sortChange(data) {
       this.$emit('sortChange', data)
+    },
+
+    doLayout() {
+      setTimeout(() => {
+        if (this.$refs.baseTable) {
+          this.$refs.baseTable.doLayout()
+        }
+      }, 100)
+    },
+    edit(column, scope) {
+      console.log(column)
+      column.isEdit = !column.isEdit
+      this.doLayout()
     }
   }
 }
 </script>
-<style lang="scss" >
+<style lang="scss">
 .has-gutter {
   background: green;
 }

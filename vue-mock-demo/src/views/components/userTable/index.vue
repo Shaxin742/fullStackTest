@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-05 16:38:49
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-09 14:45:36
+ * @LastEditTime: 2020-06-28 10:16:14
  -->
 <template>
   <div>
@@ -51,6 +51,11 @@ export default {
     BaseTable,
     dataModel
   },
+  filters: {
+    capitalize: function(value) {
+      return value.toUpperCase()
+    }
+  },
   data() {
     return {
       form: {
@@ -79,19 +84,16 @@ export default {
           label: '省份',
           align: 'center',
           width: 160,
-          sortable: 'custom'
+          sortable: 'custom',
+          formatter: (row, column, cellValue) => {
+            return `嘎嘎嘎嘎${row.province}`
+          }
         },
-        { prop: 'city', label: '城市', align: 'center', sortable: 'custom' },
-        {
-          prop: 'address',
-          label: '地址',
-          align: 'center',
-          'show-overflow-tooltip': true
-        },
+        { prop: 'address', label: '地址', align: 'center', 'show-overflow-tooltip': true },
         { prop: 'zip', label: '邮编', align: 'center' },
         {
           prop: 'city',
-          label: '标题',
+          label: '城市',
           align: 'left',
           showTip: true,
           render: (h, record) => {
@@ -118,11 +120,14 @@ export default {
                 >
                   查看
                 </el-button>
-                <el-button size='mini'
+                <el-button
+                  size='mini'
                   onClick={() => {
                     this.editData(record)
                   }}
-                >编辑</el-button>
+                >
+                  编辑
+                </el-button>
               </div>
             )
           }
@@ -217,8 +222,5 @@ export default {
 .demo-ruleForm {
   margin-top: 20px;
   margin-right: 20px;
-}
-.btn1{
-  // background: $blue;
 }
 </style>
