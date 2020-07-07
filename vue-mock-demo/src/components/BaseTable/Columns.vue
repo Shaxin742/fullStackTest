@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-28 10:18:54
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-28 10:23:28
+ * @LastEditTime: 2020-06-28 10:58:09
  -->
 <template>
   <el-table-column v-if="column.render" :key="column.dataIndex" v-bind="column">
@@ -18,7 +18,12 @@
       </template>
     </template>
   </el-table-column>
-  <el-table-column v-else :key="column.prop" v-bind="column" />
+  <el-table-column v-else :key="column.prop" v-bind="column">
+    <span v-if="column.itemEdit">
+      <el-input v-model="scope.row[column.prop]" />
+      <el-button>123</el-button>
+    </span>
+  </el-table-column>
 </template>
 
 <script>
@@ -35,10 +40,8 @@ export default {
       default: () => {}
     }
   }
-
 }
 </script>
 
 <style>
-
 </style>

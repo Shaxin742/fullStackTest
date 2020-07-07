@@ -2,16 +2,16 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:36:58
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-05-26 16:41:52
+ * @LastEditTime: 2020-07-07 11:04:26
  * 查看vue打包后文件服务
  */
 var express = require('express');
 var app = express();
 
-app.use('/static',express.static(__dirname + '/static'));
+app.use('/static',express.static(__dirname + '/htmlViews/static'));
 
 app.get('/', function(req, res){
-   res.sendFile(__dirname+'/index.html');
+   res.sendFile(__dirname+'/htmlViews/index.html');
 });
 
 var server = app.listen(9877, function(){

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-23 13:20:59
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-28 09:22:05
+ * @LastEditTime: 2020-06-28 10:50:38
  -->
 <template>
   <div>
@@ -34,6 +34,7 @@ export default {
         { prop: 'id', label: 'id', align: 'center', width: 60 },
         {
           prop: 'date',
+          itemEdit: true,
           label: '日期',
           align: 'center',
           width: 160
