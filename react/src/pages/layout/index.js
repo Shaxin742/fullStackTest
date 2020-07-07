@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
 import './index.css'
-import Test from '../test'
-import Table from '../table'
+import { logout } from '../../utils/Session'
+import ContentMain from '../../components/contentMain'
 import { Link, withRouter, Route, Switch } from 'react-router-dom'
 import router from '../../routers/index.js'
 const { Header, Content, Sider } = Layout;
@@ -13,10 +13,6 @@ class Menus extends Component {
     this.state = {
       routes: []
     }
-  }
-  componentDidMount() {
-    console.log(JSON.stringify(router))
-    console.log(router[2])
   }
   renderMenuItem = ({ path, icon, title, }) => {
     return (
@@ -42,29 +38,11 @@ class Menus extends Component {
   render() {
     return (
       <Menu theme="dark" mode="inline">
-        {/* {router[0].map((item, index) => {
-          return <Menu.Item key={index}>
-            <Icon type="user" />
-            <span>{item.path}</span>
-          </Menu.Item>
-          // {item.path}{index}
-        })} */}
         {
-          router && router[2].routers.map(item => {
+          router && router[1].routers.map(item => {
             return item.routers && item.routers.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
           })
         }
-        {/* {router.map(v=>{
-          if(v&&v.router&&v.router.length>0){
-            v.routers.map(item => {
-              return item.routers && item.routers.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
-            })
-          }
-        })} */}
-        <Menu.Item>
-          <Icon type="user" />
-          <span>12313</span>
-        </Menu.Item>
       </Menu>
     )
   }
@@ -80,7 +58,12 @@ export default class SiderDemo extends Component {
       collapsed: !this.state.collapsed,
     });
   };
-
+  logout = () => {
+    logout()
+    this.props.history.push({
+      pathname: '/login'
+    })
+  }
   render() {
     return (
       <Layout>
@@ -95,6 +78,7 @@ export default class SiderDemo extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
+            <Button onClick={this.logout}>登出</Button>
           </Header>
           <Content
             style={{
@@ -105,15 +89,14 @@ export default class SiderDemo extends Component {
             }}
           >
             {/* {router[2].routers.map(route => {
-              return <Route
+              return (<PrivateRoute
                 exact
-                key={route.key}
+                key={route.path}
                 path={route.path}
                 component={route.component}
-              />
+              />)
             })} */}
-            <Route path="/test" component={Test}/>
-            <Route path="/table" component={Table}/>
+            <ContentMain/>
           </Content>
         </Layout>
       </Layout>
