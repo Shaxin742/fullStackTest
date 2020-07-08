@@ -1,0 +1,37 @@
+.login-container{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-wrap: nowrap;
+  flex-direction: row;  /* 子元素横向排列 */
+  justify-content: center; /* 相对父元素水平居中 */
+  margin-top: 100px;
+  background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
+  .login-form{
+    width: 400px;
+    padding: 10px;
+    .title{
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .ant-form-item{
+      margin-bottom: 19px;
+    }
+    .ant-form-item-with-help {
+      margin-bottom: 0;
+    }
+    .login-form-button{
+      width: 100%;
+    }
+    .forgotPw{
+      float: right;
+      color: #1890ff;
+      cursor: pointer;
+      transition: .4s;
+      &:active{
+        color: #096dd9
+      }
+    }
+  }
+}

@@ -39,7 +39,7 @@ class Menus extends Component {
     return (
       <Menu theme="dark" mode="inline">
         {
-          router && router[1].routers.map(item => {
+          router && router.map(item => {
             return item.routers && item.routers.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
           })
         }
@@ -88,7 +88,7 @@ export default class SiderDemo extends Component {
               minHeight: 280,
             }}
           >
-            {/* {router[2].routers.map(route => {
+            {/* {router.map(route => {
               return (<PrivateRoute
                 exact
                 key={route.path}

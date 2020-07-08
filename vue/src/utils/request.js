@@ -5,7 +5,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: '/app/api/dev-api', // url = base url + request url
+  baseURL: '/app/api/dev-api', 
   timeout: 5000 // request timeout
 })
 let pending = []
@@ -17,7 +17,7 @@ let cancelPending = (config) => {
       if (item.UrlPath === config.url) {
         item.Cancel() // 取消请求
         pending.splice(index, 1) // 移除当前请求记录
-      };
+      }
     } else {
       item.Cancel() // 取消请求
       pending.splice(index, 1) // 移除当前请求记录

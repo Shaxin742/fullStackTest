@@ -12,6 +12,7 @@ router.get('/', function (req, res, next) {
 router.post('/login', function (req, res, next) {
   var response
   var params = req.body;
+  console.log('login',params)
   let sqlSelect = 'SELECT * FROM users WHERE username = ? && password=?'
   db.pool.query(sqlSelect, [params.username, params.password], (err, results) => {
     if (err) {
