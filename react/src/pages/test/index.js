@@ -1,26 +1,35 @@
 import React, { Component } from "react";
+import { test } from '../../api/components'
 const AppInfoParser = require('app-info-parser')
-export default class test extends Component {
+export default class testPage extends Component {
   state = { item: '' };
+  componentDidMount() {
+    console.log(12312313)
+    this.loadData()
+  }
 
+  loadData = () => {
+    test({ name: 1 }).then(res => {
+      console.log(res)
+    })
+  }
   handleChange = (event) => {
     const parser = new AppInfoParser(event.target.files[0])
     let ggg = 'asasd'
     parser.parse().then(result => {
       console.log(result)
       console.log(ggg);
-    }).catch(err => {
-    })
+    }).catch(err => { })
   };
   render() {
-    return(
-    <div>
-      <input
-        type="file"
-        accept=".apk,.ipa"
-        onChange={(e) => this.handleChange(e)}
-      />
-    </div>
+    return (
+      <div>
+        <input
+          type="file"
+          accept=".apk,.ipa"
+          onChange={(e) => this.handleChange(e)}
+        />
+      </div>
     )
   }
 }

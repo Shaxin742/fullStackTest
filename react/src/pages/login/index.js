@@ -2,30 +2,30 @@ import React, { Component } from "react";
 import { Button, Form, Input, Checkbox, Icon } from "antd";
 import { authenticateSuccess } from '../../utils/Session'
 import './login.scss'
+import { login } from '../../api/user'
+import { observer, inject } from 'mobx-react';
 
-class login extends Component {
+@inject('userStore')
+@observer
+class loginPage extends Component {
+
   handleSubmit = (e) => {
     e.preventDefault()
     const { validateFields } = this.props.form;
     validateFields((err, values) => {
-      if (!err) {
-        console.log(values)
-        // authenticateSuccess("username", '123123')
-        // this.props.history.push({
-        //   pathname: '/test'
-        // })
-        fetch('/api/user/login', {
-          method: 'post',
-          body: JSON.stringify(values),
-          headers: {
-            'content-type': 'application/json'
-          },
-        }).then(res => res.json())
-          .catch(error => console.error('Error:', error))
-          .then(response => console.log('Success:', response));
-      } else {
-        console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrror')
-      }
+      this.props.userStore.toggleLogin(values)
+      // console.log(this.props.userStore.loginUser, 123132)
+      //   if (!err) {
+      //     login(JSON.stringify(values)).then(res=>{
+      //       console.log(res)
+      //       authenticateSuccess(res.data.token)
+      //       this.props.history.push({
+      //         pathname: '/test'
+      //       })
+      //     })
+      //   } else {
+      //     console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrror')
+      //   }
     });
   }
 
@@ -76,4 +76,4 @@ class login extends Component {
     )
   }
 }
-export default Form.create()(login)
+export default Form.create()(loginPage)

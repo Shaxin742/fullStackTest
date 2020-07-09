@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 解析token获取用户信息
 app.use(function (req, res, next) {
-  let whiteList = ['', '/user/register', '/user/login']
+  let whiteList = ['', '/user/register', '/user/login','/components/getTest']
   let token = req.headers['authorization'];
   if (!token) {
     return next()

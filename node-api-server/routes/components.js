@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-23 15:07:15
+ * @LastEditTime: 2020-07-09 10:14:02
  */
 
 var express = require('express');
@@ -13,7 +13,11 @@ var multiparty = require("multiparty");
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
-
+router.get('/getTest', function (req, res) {
+  console.log(req.query)
+  var response = { code: 200, data:'nice' }
+  res.send(response);
+})
 router.get('/getSongs', function (req, res) {
   const { name } = req.query
   console.log(name)
