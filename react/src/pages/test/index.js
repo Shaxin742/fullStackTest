@@ -3,16 +3,6 @@ import { test } from '../../api/components'
 const AppInfoParser = require('app-info-parser')
 export default class testPage extends Component {
   state = { item: '' };
-  componentDidMount() {
-    console.log(12312313)
-    this.loadData()
-  }
-
-  loadData = () => {
-    test({ name: 1 }).then(res => {
-      console.log(res)
-    })
-  }
   handleChange = (event) => {
     const parser = new AppInfoParser(event.target.files[0])
     let ggg = 'asasd'

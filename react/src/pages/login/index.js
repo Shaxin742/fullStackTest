@@ -1,31 +1,48 @@
 import React, { Component } from "react";
-import { Button, Form, Input, Checkbox, Icon } from "antd";
-import { authenticateSuccess } from '../../utils/Session'
+import { Button, Form, Input, Checkbox, Icon, message } from "antd";
 import './login.scss'
-import { login } from '../../api/user'
 import { observer, inject } from 'mobx-react';
+import { Link } from 'react-router-dom'
+import { authenticateSuccess } from '../../utils/Session'
+import { login } from '../../api/user'
 
 @inject('userStore')
 @observer
 class loginPage extends Component {
+  state = {
+    loading: false
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
+    this.setState({
+      loading: true
+    })
     const { validateFields } = this.props.form;
     validateFields((err, values) => {
-      this.props.userStore.toggleLogin(values)
-      // console.log(this.props.userStore.loginUser, 123132)
-      //   if (!err) {
-      //     login(JSON.stringify(values)).then(res=>{
-      //       console.log(res)
-      //       authenticateSuccess(res.data.token)
-      //       this.props.history.push({
-      //         pathname: '/test'
-      //       })
-      //     })
-      //   } else {
-      //     console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrror')
-      //   }
+      if (!err) {
+        // this.props.userStore.toggleLogin(values)
+        login(JSON.stringify(values)).then(res => {
+          console.log(res)
+          if (res && res.code === 200) {
+            this.setState({
+              loading: false
+            })
+            authenticateSuccess(res.data.token)
+            this.props.userStore.toggleToken(res.data.token)
+            this.props.history.push({
+              pathname: '/dash'
+            })
+          } else {
+            this.setState({
+              loading: false
+            })
+            message.error('登录失败:' + res);
+          }
+        })
+      } else {
+        console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrror')
+      }
     });
   }
 
@@ -62,11 +79,11 @@ class loginPage extends Component {
                 valuePropName: 'checked',
               })(<div>
                 <Checkbox>Remember me</Checkbox>
-                <a href='javascript:void(0)' className='forgotPw'>忘记密码</a>
+                <Link className='forgotPw'>忘记密码</Link>
               </div>)}
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
+              <Button loading={this.state.loading} type="primary" htmlType="submit" className="login-form-button">
                 登 录
               </Button>
             </Form.Item>
