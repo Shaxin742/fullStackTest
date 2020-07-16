@@ -12,7 +12,7 @@ class Jwt {
     generateToken() {
         let data = this.data;
         let cert = fs.readFileSync(path.join(__dirname, './pem/public_key.pem'));//私钥 可以自己生成
-        let token = jwtoken.sign(data, cert, { expiresIn: '1day' });
+        let token = jwtoken.sign(data, cert, { expiresIn: '1h' });
         return token;
     }
 

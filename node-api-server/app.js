@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 解析token获取用户信息
 app.use(function (req, res, next) {
-  let whiteList = ['', '/user/register', '/user/login','/components/getTest']
+  let whiteList = ['', '/user/register', '/user/login']
   let token = req.headers['authorization'];
   if (!token) {
     return next()
@@ -44,8 +44,8 @@ app.use(function (req, res, next) {
     // 如果考验通过就next，否则就返回登陆信息不正确
     console.log('result', result);
     if (!result || result == 'err') {
-      res.send({ status: 403, msg: '登录已过期,请重新登录' });
-      return next();
+      res.send({ status: 401, code: 50002, msg: '登录已过期,请重新登录' });
+      return
     } else {
       return next();
     }

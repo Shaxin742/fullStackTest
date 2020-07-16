@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Button, Dropdown } from 'antd';
 import './index.css'
 import { logout } from '../../utils/Session'
 import ContentMain from '../../components/contentMain'
@@ -14,7 +14,9 @@ class Menus extends Component {
       routes: []
     }
   }
+
   renderMenuItem = ({ path, icon, title, }) => {
+    console.log(path)
     return (
       <Menu.Item key={path} style={{ width: '100%' }}>
         <Link to={path}>
@@ -36,8 +38,11 @@ class Menus extends Component {
     )
   }
   render() {
+    let { defaultSelectedKeys, defaultOpenKeys } = this.props
+    console.log(defaultOpenKeys, 111)
+    console.log(defaultSelectedKeys, 22)
     return (
-      <Menu theme="dark" mode="inline">
+      <Menu defaultOpenKeys={defaultOpenKeys} defaultSelectedKeys={defaultSelectedKeys} theme="dark" mode="inline">
         {
           router && router.map(item => {
             return item.routers && item.routers.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
@@ -51,7 +56,23 @@ class Menus extends Component {
 export default class SiderDemo extends Component {
   state = {
     collapsed: false,
+    defaultSelectedKeys: [],
+    defaultOpenKeys: [],
   };
+
+  componentWillMount() {
+    let pathName = this.props.history.location.pathname
+    let paths = pathName.split("/")
+    // 菜单
+    let defaultSelectedKeys = [pathName]
+    let keys = paths.length > 2 ? paths.slice(0, paths.length - 1) : []
+    // 菜单
+    let defaultOpenKeys = keys.filter(item => { return item }).map(item => item = '/' + item)
+    this.setState({
+      defaultSelectedKeys,
+      defaultOpenKeys
+    })
+  }
 
   toggle = () => {
     this.setState({
@@ -65,20 +86,36 @@ export default class SiderDemo extends Component {
     })
   }
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          个人中心
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item onClick={this.logout}>
+          注销
+        </Menu.Item>
+      </Menu>
+    );
+    let { defaultOpenKeys, collapsed, defaultSelectedKeys } = this.state
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ height: '100vh' }}>
+        <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: '100vh' }}>
           <div className="logo" />
-          <Menus />
+          <Menus defaultOpenKeys={defaultOpenKeys} defaultSelectedKeys={defaultSelectedKeys} />
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
             <Icon
               className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              type={collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-            <Button onClick={this.logout}>登出</Button>
+            <span className='userAver'>
+              <Dropdown overlay={menu}>
+                <img onClick={e => e.preventDefault()} src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594635658169&di=f142d0aa478a92f3ebdcd959f45fcd21&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F62%2F02%2F01300542526392139955025309984.jpg' alt='123'></img>
+              </Dropdown>
+            </span>
           </Header>
           <Content
             style={{
@@ -96,7 +133,7 @@ export default class SiderDemo extends Component {
                 component={route.component}
               />)
             })} */}
-            <ContentMain/>
+            <ContentMain />
           </Content>
         </Layout>
       </Layout>

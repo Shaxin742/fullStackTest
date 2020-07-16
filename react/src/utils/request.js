@@ -2,23 +2,25 @@
  * @Author: ShaXin
  * @Date: 2020-07-09 10:15:39
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-07-09 13:43:34
+ * @LastEditTime: 2020-07-16 17:20:13
  */
 
 import { isAuthenticated } from './Session'
+import { message } from 'antd';
 export function request(url, options) {
   console.log(url, options)
   if (options.method.toUpperCase() === 'GET' && options.params) {
     let searchStr = '';
     if (options.params instanceof Object) {
       for (let i in options.params) {
-        searchStr += (i + '=' + options.params[i]);
+        searchStr += (i + '=' + options.params[i]) + '&';
       }
     }
-    url = url + '?' + searchStr;
+    url = url + '?' + searchStr.substr(0, searchStr.length - 1);;
   }
-  console.log('url',url)
+  console.log('url', url)
   let token = isAuthenticated()
+  console.log("token", token)
   let authToken = {}
   if (token) {
     authToken = {
@@ -28,16 +30,17 @@ export function request(url, options) {
     };
   }
   const defaultOptions = {
-    ...authToken,
     credentials: 'include'
   };
 
   Object.assign(defaultOptions, options)
- 
+
+  console.log(defaultOptions)
   if (!(options.body instanceof FormData)) {
     defaultOptions.headers = {
       'content-type': 'application/json',
-      ...options.headers
+      ...options.headers,
+      ...authToken.headers,
     }
   } else {
     defaultOptions.headers = {
@@ -54,6 +57,13 @@ export function request(url, options) {
       return response.json();
     })
     .then(response => {
+      console.log(response)
+      if (response.code === 50002) {
+        console.log('aaaaaaa')
+        message.error(response.msg)
+        window.location.href = '#/login'
+        return;
+      }
       return response;
     })
     .catch(error => {

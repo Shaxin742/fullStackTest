@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-06-01 16:38:15
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-07-09 10:14:02
+ * @LastEditTime: 2020-07-13 09:30:08
  */
 
 var express = require('express');
@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
 });
 router.get('/getTest', function (req, res) {
   console.log(req.query)
-  var response = { code: 200, data:'nice' }
+  var response = { code: 200, data: 'nice' }
   res.send(response);
 })
 router.get('/getSongs', function (req, res) {
@@ -55,7 +55,7 @@ router.post('/formsubmit', function (req, res) {
 // 查询
 router.get('/getTableData', function (req, res) {
   let pageSize = Number(req.query.pageSize)
-  let { pageNo, name='', sortName = '', sortOrder = '' } = req.query
+  let { pageNo, name = '', sortName = '', sortOrder = '' } = req.query
 
   let total = 0
 
@@ -68,8 +68,10 @@ router.get('/getTableData', function (req, res) {
   // 查询总数量
   let totalSelect = 'SELECT * FROM userdata where name like ? '
   db.pool.query(totalSelect, ['%' + name + '%'], (err, results) => {
+    console.log(results)
     total = results.length
   })
+
   
   // 查询data
   db.pool.query(sqlSelect, ['%' + name + '%', (pageNo - 1) * pageSize, pageSize], (err, results) => {
@@ -80,7 +82,7 @@ router.get('/getTableData', function (req, res) {
 // 删除
 router.delete('/deleteTableData', function (req, res) {
   let datas = req.body.data
-  const sqlDelete = `DELETE FROM userData WHERE id IN (${datas+''})`
+  const sqlDelete = `DELETE FROM userData WHERE id IN (${datas + ''})`
   db.pool.query(sqlDelete, (err, results) => {
     console.log(err);
     console.log(results);
@@ -92,7 +94,7 @@ router.delete('/deleteTableData', function (req, res) {
 router.post('/addTableData', function (req, res) {
   let datas = req.body.data
   const sqlAdd = `INSERT INTO userData (date,name,province,city,address,zip) values (?,?,?,?,?,?)`
-  db.pool.query(sqlAdd,[datas.date,datas.name,datas.province,datas.city,datas.address,datas.zip], (err, results) => {
+  db.pool.query(sqlAdd, [datas.date, datas.name, datas.province, datas.city, datas.address, datas.zip], (err, results) => {
     console.log(err);
     console.log(results);
     res.send({ code: 200, data: '新增成功' })
@@ -102,7 +104,7 @@ router.post('/addTableData', function (req, res) {
 router.patch('/updateTableData', function (req, res) {
   let datas = req.body.data
   const sqlAdd = `UPDATE userData SET date=?,name=?,province=?,city=?,address=?,zip=? WHERE id=?`
-  db.pool.query(sqlAdd,[datas.date,datas.name,datas.province,datas.city,datas.address,datas.zip,datas.id], (err, results) => {
+  db.pool.query(sqlAdd, [datas.date, datas.name, datas.province, datas.city, datas.address, datas.zip, datas.id], (err, results) => {
     console.log(err);
     console.log(results);
     res.send({ code: 200, data: '修改成功' })

@@ -1,0 +1,45 @@
+/*
+ * @Author: ShaXin
+ * @Date: 2020-07-16 13:52:04
+ * @LastEditors: ShaXin
+ * @LastEditTime: 2020-07-16 13:58:17
+ */
+import React from "react";
+import Editor from '../../components/editor'
+class EditorPage extends React.Component {
+  state = {
+    richConditions: '',
+    disabled: false,
+    conditionTips: '',
+    richFlag: ''
+  }
+  // 富文本框
+  getRichConditions = (aa, bb) => {
+    // 申报条件
+    this.setState({
+      richConditions: aa,
+      conditionTips: bb,   // 正文错误提示 bool
+      richFlag: false
+    });
+  }
+  render() {
+    let { richConditions, disabled, conditionTips, richFlag } = this.state
+    return (
+      <div>
+        <Editor
+          getContent={this.getRichConditions}
+          verified={!disabled}
+          title={'申报条件'}
+          content={richConditions}    // string 编辑器内容
+          tips={conditionTips}
+          articleFlag={richFlag}   // 是否回填内容  
+          width={100}
+          height={293}
+          boxWidth={'boxWidth'}
+        />
+      </div>
+    )
+  }
+}
+
+export default EditorPage
