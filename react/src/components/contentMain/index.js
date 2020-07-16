@@ -4,6 +4,7 @@ import Dash from '../../pages/dash'
 import Test from '../../pages/test'
 import Table from '../../pages/table'
 import Editor from '../../pages/editor'
+import D3 from '../../pages/d3'
 import React from "react";
 import { Redirect, Switch } from 'react-router-dom'
 
@@ -16,6 +17,7 @@ class ContentMain extends React.Component {
           <PrivateRoute path='/test' component={Test} />
           <PrivateRoute path='/user/table' component={Table} />
           <PrivateRoute path='/editor' component={Editor} />
+          <PrivateRoute path='/d3' component={D3} />
 
           <Redirect exact from='/' to='/dash' />
         </Switch>

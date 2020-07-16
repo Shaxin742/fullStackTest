@@ -7,6 +7,7 @@ const routers = [
     ]
   },
   { path: '/editor', title: '富文本', icon: 'user' },
+  { path: '/d3', title: 'd3', icon: 'user' },
 ]
 
 export default routers

@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-07-09 10:15:39
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-07-16 17:20:13
+ * @LastEditTime: 2020-07-16 17:32:21
  */
 
 import { isAuthenticated } from './Session'
@@ -57,9 +57,7 @@ export function request(url, options) {
       return response.json();
     })
     .then(response => {
-      console.log(response)
       if (response.code === 50002) {
-        console.log('aaaaaaa')
         message.error(response.msg)
         window.location.href = '#/login'
         return;
