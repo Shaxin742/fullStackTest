@@ -16,7 +16,6 @@ class Menus extends Component {
   }
 
   renderMenuItem = ({ path, icon, title, }) => {
-    console.log(path)
     return (
       <Menu.Item key={path} style={{ width: '100%' }}>
         <Link to={path}>
@@ -39,8 +38,6 @@ class Menus extends Component {
   }
   render() {
     let { defaultSelectedKeys, defaultOpenKeys } = this.props
-    console.log(defaultOpenKeys, 111)
-    console.log(defaultSelectedKeys, 22)
     return (
       <Menu defaultOpenKeys={defaultOpenKeys} defaultSelectedKeys={defaultSelectedKeys} theme="dark" mode="inline">
         {
