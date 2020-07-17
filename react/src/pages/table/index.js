@@ -36,27 +36,30 @@ class test extends Component {
     total: 0,
     loading: false,
     selectedRowKeys: [],
-    pageNo: 1,
+    current: 1,
     pageSize: 10,
+    sortName: '',
+    sortOrder: ''
   }
+
   componentDidMount() {
     this.getTableData()
   }
 
   getTableData(search) {
-    let { pageSize, pageNo } = this.state
-    let params = { pageSize, pageNo, ...search }
+    let { pageSize, current, sortName, sortOrder } = this.state
+    let params = { pageSize, pageNo: current, sortName, sortOrder, ...search }
     this.setState({
       loading: true
     })
     getTableData(params).then(res => {
-      if(res&&res.code ===200){
+      if (res && res.code === 200) {
         this.setState({
           data: res.data.tableData,
           total: res.data.total,
           loading: false
         })
-      }else{
+      } else {
         message.error('查询失败');
         this.setState({
           loading: false
@@ -70,17 +73,25 @@ class test extends Component {
     this.setState({ selectedRowKeys });
   };
 
-  handleChange(pagination, filters, sorter) {
-    console.log(pagination, filters, sorter)
-  }
+  handleChange = (pagination, filters, sorter) => {
+    console.log(pagination, 11, filters, 22, sorter)
+    console.log({ ...pagination })
+    let { current, pageSize } = pagination
+    let { field, order } = sorter
+    let trans = {
+      ascend: 'asc',
+      descend: 'desc',
+    }
+    this.setState({
+      current,
+      pageSize,
+      sortName: field,
+      sortOrder: trans[order]
+    }, () => {
+      this.getTableData()
+    })
 
-  // handlePageChange(page) {
-  //   this.setState({
-  //     pageNo: page
-  //   }, () => {
-  //     this.getTableData()
-  //   })
-  // }
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -95,13 +106,13 @@ class test extends Component {
   }
 
   render() {
-    let { data, selectedRowKeys, loading, currentPage, total } = this.state
+    let { data, selectedRowKeys, current, loading, total } = this.state
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
     };
     const paginationProps = {
-      page: currentPage,
+      current,
       // onChange: (page) => this.handlePageChange(page),
       total: total,
       showTotal: (total => `共 ${total} 条`)
