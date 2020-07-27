@@ -2,7 +2,7 @@
  * @Author: ShaXin
  * @Date: 2020-05-26 16:50:40
  * @LastEditors: ShaXin
- * @LastEditTime: 2020-06-22 11:05:51
+ * @LastEditTime: 2020-07-24 09:17:30
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -108,6 +108,20 @@ export const asyncRoutes = [
         name: 'socket',
         component: () => import('@/views/socket'),
         meta: { title: 'socket' }
+      }
+    ]
+  },
+  { path: '/algorithm',
+    component: Layout,
+    redirect: '/algorithm/algorithm',
+    name: 'socket',
+    meta: { title: 'algorithm', icon: 'example' },
+    children: [
+      {
+        path: 'algorithm',
+        name: 'algorithm',
+        component: () => import('@/views/algorithm'),
+        meta: { title: 'algorithm' }
       }
     ]
   },

@@ -11,8 +11,9 @@ const en = {
   song: 'song',
   form: 'form',
   userTable: 'userTable',
-  ExternalLink: '外链',
-  vue: 'vue'
+  ExternalLink: 'ExternalLink',
+  vue: 'vue',
+  algorithm: 'algorithm'
 }
 
 export default en

@@ -58,6 +58,10 @@ export default class SiderDemo extends Component {
   };
 
   componentWillMount() {
+    this.dealPath()
+  }
+
+  dealPath = () => {
     let pathName = this.props.history.location.pathname
     let paths = pathName.split("/")
     // 菜单
@@ -76,12 +80,14 @@ export default class SiderDemo extends Component {
       collapsed: !this.state.collapsed,
     });
   };
+
   logout = () => {
     logout()
     this.props.history.push({
       pathname: '/login'
     })
   }
+  
   render() {
     const menu = (
       <Menu>

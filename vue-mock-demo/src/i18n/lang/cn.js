@@ -12,7 +12,8 @@ const cn = {
   form: 'form表单',
   userTable: '列表',
   ExternalLink: '外链',
-  vue: 'vue'
+  vue: 'vue',
+  algorithm: '算法'
 }
 
 export default cn

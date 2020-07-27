@@ -21,7 +21,6 @@ const columns = [
     title: '地址',
     dataIndex: 'address',
     key: 'address',
-
     render: (text, record) => (
       <span>
         <Tag color={'geekblue'} >{text}</Tag>
@@ -90,7 +89,6 @@ class test extends Component {
     }, () => {
       this.getTableData()
     })
-
   }
 
   handleSubmit = (e) => {
@@ -98,7 +96,6 @@ class test extends Component {
     const { validateFields } = this.props.form;
     validateFields((err, values) => {
       if (!err) {
-        console.log(values)
         let data = delNullKeys(values)
         this.getTableData(data)
       }
