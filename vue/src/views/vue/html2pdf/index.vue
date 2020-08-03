@@ -26,7 +26,9 @@
       type="danger"
       size="small"
       @click="ExportSavePdf('pdfCentent',htmlTitle,nowTime)"
-    >导出PDF</el-button>
+    >
+      导出PDF
+    </el-button>
   </div>
 </template>
 <script>

@@ -10,7 +10,7 @@ export default {
   components: { cutImage },
   data() {
     return {
-      url: 'http://dl.ppt123.net/pptbj/201603/2016030410190920.jpg',
+      url: '',
       path: ''
     }
   },

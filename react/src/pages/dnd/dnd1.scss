@@ -1,0 +1,25 @@
+.app {
+  background: #ffffff;
+}
+
+.container {
+  display: block;
+  border: #cccccc solid 1px;
+  padding: 10px;
+  height: 220px;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.card {
+  display: inline-block;
+  vertical-align: middle;
+  height: 200px;
+  width: 200px;
+  border: 1px dashed gray;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #ffffff;
+  white-space: normal;
+  cursor: move;
+}

@@ -3,7 +3,9 @@
   <section class="c-avatar-cutter" @dragstart="false">
     <div class="mask" />
     <div class="container g-popup-box">
-      <p class="title">选择头像</p>
+      <p class="title">
+        选择头像
+      </p>
       <div class="content">
         <div class="c-left" :class="{'c-left--doing':imgURL}">
           <div
@@ -61,8 +63,12 @@
         </div>
       </div>
       <div class="c-btn-group">
-        <el-button @click="onCancel">取消</el-button>
-        <el-button @click="onEnter">确定</el-button>
+        <el-button @click="onCancel">
+          取消
+        </el-button>
+        <el-button @click="onEnter">
+          确定
+        </el-button>
       </div>
     </div>
   </section>

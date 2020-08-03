@@ -8,6 +8,13 @@ const routers = [
   },
   { path: '/editor', title: '富文本', icon: 'user' },
   { path: '/d3', title: 'd3', icon: 'user' },
+  {
+    path: '/dnd', title: '拖拽列表', icon: 'user', routers: [
+      { path: '/dnd/dnd1', title: '拖拽列表', icon: 'user' },
+      { path: '/dnd/dnd2', title: '拖拽列表', icon: 'user' },
+    ]
+  },
+
 ]
 
 export default routers
