@@ -3,9 +3,6 @@
   <section class="c-avatar-cutter" @dragstart="false">
     <div class="mask" />
     <div class="container g-popup-box">
-      <p class="title">
-        选择头像
-      </p>
       <div class="content">
         <div class="c-left" :class="{'c-left--doing':imgURL}">
           <div
@@ -84,7 +81,7 @@ export default {
   },
   data() {
     return {
-      imgURL: '',
+      imgURL: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596453411216&di=471847525b6f66da1dfa6ff8b24ee745&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F86%2F10%2F01300000184180121920108394217.jpg',
       scaleRate: 1, // 图片缩放比
       minWidth: 20, // 选择框最小宽度
       containerBoxData: {
