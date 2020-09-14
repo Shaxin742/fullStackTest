@@ -1,6 +1,10 @@
 <template>
   <div>
     <tree-comp :list-val="listVal" />
+    {{ data.name }}
+    <el-button @click="test">
+      123
+    </el-button>
   </div>
 </template>
 <script>
@@ -30,7 +34,14 @@ export default {
             { 'name': 'one chicken' }
           ]
         }
-      ]
+      ],
+      data:{}
+    }
+  },
+  methods:{
+    test(){
+      this.$set(this.data,'name','1111')
+      this.name = '123'
     }
   }
 }
