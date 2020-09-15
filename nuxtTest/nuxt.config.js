@@ -1,12 +1,18 @@
 
-const env = require('./env')
+// const env = require('./env')
+
+const path = require('path');
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
 export default {
   mode: 'universal',
   // target: 'server',
-  env: {
-    base_url: env[process.env.NODE_ENV].base_url,
-    host_name: env[process.env.NODE_ENV].host_name,
-  },
+  // env: {
+  //   base_url: env[process.env.NODE_ENV].base_url,
+  //   host_name: env[process.env.NODE_ENV].host_name,
+  // },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -29,7 +35,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/svg-icon',
   ],
   /*
   ** Auto import components
@@ -52,5 +59,29 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
+    extend(config, ctx) {
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [resolve(__dirname, 'assets/icons')]
+      config.module.rules.push({
+        test: /\.svg$/,
+        include: [resolve(__dirname, 'assets/icons')],
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: '[name]'
+        },
+        use: [{ loader: 'svg-sprite-loader',options: {symbolId: '[name]'}}]
+      })
+    },
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
   }
 }
