@@ -1,10 +1,6 @@
 
 // const env = require('./env')
-
-const path = require('path');
-function resolve(dir) {
-  return path.join(__dirname, dir);
-}
+const { resolve } = require('path')
 
 export default {
   mode: 'universal',
@@ -59,7 +55,7 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
-    extend(config, ctx) {
+    extend(config,  { isDev, isClient }) {
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
       svgRule.exclude = [resolve(__dirname, 'assets/icons')]
       config.module.rules.push({
@@ -69,12 +65,10 @@ export default {
         options: {
           symbolId: '[name]'
         },
-        use: [{ loader: 'svg-sprite-loader',options: {symbolId: '[name]'}}]
       })
-    },
-    extend(config, ctx) {
+
       // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
+      if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
