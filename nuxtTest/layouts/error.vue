@@ -4,9 +4,9 @@
     <div class="container-bottom">      
       <p>404</p>      
       <nuxt-link to="/">        
-        <a-button type="primary">
+        <el-button type="primary">
           返回首页
-        </a-button>     
+        </el-button>     
       </nuxt-link>    
     </div>  
   </div>

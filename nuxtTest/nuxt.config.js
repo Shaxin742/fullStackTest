@@ -33,6 +33,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/svg-icon',
+    '@plugins/mockjs'
   ],
   /*
   ** Auto import components
@@ -55,7 +56,7 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
-    extend(config,  { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
       svgRule.exclude = [resolve(__dirname, 'assets/icons')]
       config.module.rules.push({
