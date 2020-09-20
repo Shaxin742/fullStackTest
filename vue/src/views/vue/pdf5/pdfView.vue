@@ -51,6 +51,21 @@ export default {
       return id.getContext('2d')
     }
   },
+  beforeUpdate(){
+    console.log("update")
+  },
+  mounted(){
+    console.log("mounted")
+  },
+  updated(){
+    console.log("updatddddde")
+  },
+  created(){
+    this.$nextTick(()=>{
+      
+    console.log("nextTick")
+    })
+  },
   methods: {
     repaint() {
       this.$nextTick(() => {
