@@ -5,6 +5,10 @@
     <el-button @click="test">
       123
     </el-button>
+    {{ userName }}
+    <el-button @click="jumptest">
+      jumptest
+    </el-button>
   </div>
 </template>
 <script>
@@ -38,10 +42,21 @@ export default {
       data:{}
     }
   },
+  computed:{
+    userName(){
+      return this.$store.state.user.name
+    }
+  },
   methods:{
     test(){
       this.$set(this.data,'name','1111')
       this.name = '123'
+    },
+    jumptest(){
+      this.$router.replace({
+        path:'/vue/tree',
+        query:{name:1}
+      })
     }
   }
 }
