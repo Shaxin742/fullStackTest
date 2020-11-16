@@ -25,7 +25,6 @@ let cancelPending = (config) => {
 // request interceptor
 service.interceptors.request.use(
   config => {
-
     cancelPending(config)
     config.cancelToken = new CancelToken(res => {
       pending.push({ 'UrlPath': config.url, 'Cancel': res })

@@ -27,6 +27,20 @@
             </el-input>
           </div>
         </el-form-item>
+        <el-form-item>
+          <div class="identifybox">
+            <el-input
+              v-model="userInfo.identifyCode"
+            >
+              <div
+                slot="suffix"
+                @click="refreshCode"
+              >
+                <s-identify :identify-code="identifyCode" /> 
+              </div>
+            </el-input>
+          </div>
+        </el-form-item>
         <el-button type="primary" class="login-btn" @click="login">
           登 录
         </el-button>
@@ -36,14 +50,22 @@
 </template>
 
 <script>
+import SIdentify from "@/components/identify.vue";
 export default {
+  name: "Login",
+  components: {
+    SIdentify
+  },
   data() {
     return {
+      identifyCode: "",
+      identifyCodes: "1234567890ABCDEFGHIGKLMNoPQRSTUVWXYZ",
       // 登录信息
       userInfo: {
         username: "",
         password: "",
-        code: ""
+        code: "",
+        identifyCode: "",
       },
       // 校验
       rules: {
@@ -59,6 +81,11 @@ export default {
       // 定时器
       timer: null
     };
+  },
+  mounted() {
+    // 验证码初始化
+    this.identifyCode = "";
+    this.makeCode(this.identifyCodes, 4);
   },
   methods: {
     // 验证码定时
@@ -81,6 +108,27 @@ export default {
       this.codeText = "获取验证码";
       clearInterval(this.timer);
     },
+
+    // 切换验证码
+    refreshCode() {
+      this.identifyCode = "";
+      this.makeCode(this.identifyCodes, 4);
+    },
+    // 生成四位随机验证码
+    makeCode(o, l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.identifyCodes[
+          this.randomNum(0, this.identifyCodes.length)
+        ];
+      }
+      console.log(this.identifyCode);
+    },
+
+    // 生成随机数
+    randomNum (min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+
     login() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -99,14 +147,22 @@ export default {
 </script>
 <style lang='scss' scoped>
 $base_color: #007fff;
+
+.identifybox{
+  display: flex;
+  justify-content: space-between;
+  margin-top:7px;
+}
+.iconstyle{
+  color:#409EFF;
+  }
 .container {
   margin: 0 auto;
   min-height: 100vh;
   background: url("../assets/images/login.jpg") no-repeat;
   background-size: cover;
   .login-container {
-    height: 300px;
-    width: 400px;
+    width: 350px;
     padding: 30px;
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.1);

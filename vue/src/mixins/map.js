@@ -1,4 +1,4 @@
-export default {
+export const map =  {
   created: function() {
     this.hello()
   },

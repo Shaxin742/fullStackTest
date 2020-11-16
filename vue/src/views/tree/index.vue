@@ -12,13 +12,19 @@
     />
     <el-date-picker v-model="timeVal" type="date" placeholder="选择日期" />
     <test1 :val="val22" />
+
+    <ol v-for="{name,val} of array" :key="val">
+      <li>{{ name }},{{ val }}</li>
+    </ol>
   </div>
 </template>
 
 <script>
 import test1 from "./test1";
+import { test } from "@/mixins/test";
 export default {
   components: { test1 },
+  mixins: [test],
   data() {
     return {
       filterText: "",
@@ -77,7 +83,12 @@ export default {
         label: "label"
       },
       timeVal: "",
-      val22:'哈哈哈'
+      val22: "哈哈哈",
+      array: [
+        { name: 1, val: 1 },
+        { name: 2, val: 2 },
+        { name: 3, val: 3 }
+      ]
     };
   },
   watch: {
@@ -89,6 +100,9 @@ export default {
     filterNode(value, data) {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
+    },
+    hello() {
+      alert(1);
     }
   }
 };

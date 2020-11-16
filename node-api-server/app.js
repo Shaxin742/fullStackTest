@@ -38,6 +38,7 @@ app.use(function (req, res, next) {
   if (!token) {
     return next()
   }
+  console.log(req.url)
   if (whiteList.indexOf(req.url) === -1) {
     let jwt = new JwtUtil(token);
     let result = jwt.verifyToken();

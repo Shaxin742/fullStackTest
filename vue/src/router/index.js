@@ -368,7 +368,33 @@ export const asyncRoutes = [
         name: 'cascader2',
         component: () => import('@/views/vue/cascader2'),
         meta: { title: 'cascader2', icon: 'eye' }
-      }
+      },
+      // {
+      //   path: 'luckyDraw',
+      //   name: 'luckyDraw',
+      //   component: () => import('@/views/vue/luckyDraw/index.vue'),
+      //   meta: { title: 'luckyDraw', icon: 'eye' }
+      // },
+       {
+        path: 'luckyDraw',
+        name: 'luckyDraw',
+        component: () => import('@/views/vue/luckyDraw'),
+        meta: { title: 'luckyDraw', icon: 'eye' },
+        children:[
+          {
+            path: 'luckyDraw',
+            name: 'luckyDraw',
+            component: () => import('@/views/vue/luckyDraw/luckyDraw'),
+            meta: { title: 'luckyDraw', icon: 'eye' },
+          },
+          {
+            path: 'roundLucky',
+            name: 'roundLucky',
+            component: () => import('@/views/vue/luckyDraw/roundLucky'),
+            meta: { title: 'roundLucky', icon: 'eye' },
+          },
+        ]
+      },
     ]
   },
   // {

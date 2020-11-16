@@ -2,7 +2,9 @@
   <div class="dashboard-container">
     <div class="win10Cal">
       <ul>
-        <li v-for="v in weeks" :key="v" class="weekCon">{{ v }}</li>
+        <li v-for="v in weeks" :key="v" class="weekCon">
+          {{ v }}
+        </li>
         <li
           v-for="(item,index) in calendatArr"
           :key="index"
@@ -31,14 +33,20 @@
       </ul>
     </div>
 
-    <div style="height:20px">--------
-      {{ GetLunarDay(2020,1,13) }}----------</div>
+    <div style="height:20px">
+      --------
+      {{ GetLunarDay(2020,1,13) }}----------
+    </div>
 
-    <div class="dashboard-text">vuex测试: {{ name }}</div>
+    <div class="dashboard-text">
+      <!-- vuex测试: {{ name }} -->
+    </div>
     <el-date-picker v-model="timeVal" type="date" placeholder="选择日期" />
     <div class="calendar">
       <ul>
-        <li v-for="v in weeks" :key="v" class="weekCon">{{ v }}</li>
+        <li v-for="v in weeks" :key="v" class="weekCon">
+          {{ v }}
+        </li>
         <li
           v-for="(item,index) in calendatArr"
           :key="index"
@@ -69,8 +77,10 @@
 import { getCalender } from '@/api/dashBoard'
 import { mapGetters } from 'vuex'
 import { cloneDeep } from 'lodash'
+import {test} from "@/mixins/test"
 export default {
   name: 'Dashboard',
+  mixins:[test],
   data() {
     return {
       weeks: ['一', '二', '三', '四', '五', '六', '日'],
@@ -90,10 +100,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['name'])
+    // ...mapGetters(['name'])
   },
   watch: {
-    timeVal(val, oldVal) {
+    timeVal(val) {
       this.selectedIndex = -1
       this.getCalender(this.getNewDate(val))
     }
@@ -415,7 +425,7 @@ export default {
     background: #1a1a1a;
     display: inline-block;
     width: 360px;
-    height: 320px;
+    // height: 320px;
     font-size: 0;
     margin: 0;
     text-align: center;

@@ -7,7 +7,7 @@
 var mysql = require("mysql");
 
 var pool = mysql.createConnection({
-  host: "127.0.0.1", // 主机地址
+  host: "localhost", // 主机地址
   port: 3306, // 端口
   user: "root", // 数据库访问账号
   password: "123456", // 数据库访问密码
@@ -36,7 +36,7 @@ pool.connect(function (err) {
 //     console.log("get connection ");
 //     //Use the connection
 //     connection.query(sql, values, function (err, results, fields) {
-//       console.log(JSON.stringify(results));
+//       console.log(JSON.stringify(results));`
 //       //每次查询都会 回调
 //       callback(err, results);
 //       //只是释放链接，在缓冲池了，没有被销毁
