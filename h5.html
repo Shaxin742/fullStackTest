@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test</title>
+    <link rel="stylesheet" href="https://test.com/index.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>webview-wechat-detail</h1>
+      <p>
+        detail
+      </p>
+      <button type="button" id="btn">返回小程序</button>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.3.0.js"></script>
+    <script>
+      /* eslint-disable */
+      $(function() {
+        doucument.cookie = "bb=bbbbbb";
+        $("#btn").on("click", function(s) {
+          document.cookie = "aa=ssssss";
+          wx.miniProgram.navigateTo({
+            url: "/pages/index?test=testtest",
+            success: function() {
+              console.log("success");
+            },
+            fail: function() {
+              console.log("fail");
+            },
+            complete: function() {
+              console.log("complete");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
