@@ -12,23 +12,15 @@ module.exports = app => {
       required: true,
     },
     id: {
-      type: Number,
+      type: String,
     },
     sexy: {
-      type: Number,
+      type: String,
       // enum: [ '男', '女' ],
     },
-    // phone: {
-    //   type: String,
-    //   validate: {
-    //     validator(v) {
-    //       if (v.length < 8) {
-    //         return false;
-    //       }
-    //     },
-    //     message: '${v} is not a valid phone number!',
-    //   },
-    // },
+    address: {
+      type: String,
+    },
   });
   // 以上定义了表数据的类型
 
